@@ -1,31 +1,31 @@
 @extends('admin.Layout.app')
 
-@section('title', 'Liste des categories')
+@section('title', 'Liste des editeurs')
 
 @section('content')
 
-    <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des categories</h1>
+    <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des editeurs</h1>
 
 
 
 
-    <!-- Bouton pour ajouter une nouvelle categorie -->
+    <!-- Bouton pour ajouter une nouvelle editeur -->
     <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('categories.create') }}" class="btn btn-success shadow">
-            <i class="bi bi-plus-circle"></i> Ajouter une nouvelle categorie
+        <a href="{{ route('editeurs.create') }}" class="btn btn-success shadow">
+            <i class="bi bi-plus-circle"></i> Ajouter une nouvelle editeur
         </a>
     </div>
 
-    <!-- Liste des categories -->
+    <!-- Liste des editeurs -->
     <div class="card shadow-lg border-0">
         <div class="card-header bg-primary text-white fw-bold">
-            <i class="bi bi-list-task"></i> categories 
+            <i class="bi bi-list-task"></i> editeurs 
         </div>
         <div class="card-body">
-            @if($categories->isEmpty())
+            @if($editeurs->isEmpty())
                 <div class="alert alert-info text-center py-4" role="alert">
                     <i class="bi bi-info-circle-fill me-2"></i>
-                    🚀 Aucune categorie . Ajoutez-en une maintenant !
+                    🚀 Aucune editeur . Ajoutez-en une maintenant !
                 </div>
             @else
                 <div class="table-responsive">
@@ -33,20 +33,20 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Nom de l'categorie</th>
+                                <th>Nom de l'editeur</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $categorie)
+                            @foreach ($editeurs as $editeur)
                                 <tr>
-                                    <td>{{ ($categories->currentPage() - 1) * $categories->perPage() + $loop->iteration }}</td>
-                                    <td class="fw-bold">{{ $categorie->categorie }}</td>
+                                    <td>{{ ($editeurs->currentPage() - 1) * $editeurs->perPage() + $loop->iteration }}</td>
+                                    <td class="fw-bold">{{ $editeur->editeur }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', $categorie->id) }}" class="btn btn-warning btn-sm shadow">
+                                        <a href="{{ route('editeurs.edit', $editeur->id) }}" class="btn btn-warning btn-sm shadow">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form action="{{ route('categories.destroy', $categorie->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
+                                        <form action="{{ route('editeurs.destroy', $editeur->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm shadow">
@@ -63,32 +63,32 @@
                 <!-- Pagination améliorée -->
                 <div class="mt-3 d-flex justify-content-center align-items-center gap-2">
                     <!-- Aller à la première page -->
-                    @if(!$categories->onFirstPage())
-                        <a href="{{ $categories->url(1) }}" class="btn btn-outline-primary shadow-sm">
+                    @if(!$editeurs->onFirstPage())
+                        <a href="{{ $editeurs->url(1) }}" class="btn btn-outline-primary shadow-sm">
                             <i class="bi bi-chevron-double-left"></i> Première
                         </a>
                     @endif
 
                     <!-- Bouton -5 pages -->
-                    @if($categories->currentPage() > 5)
-                        <a href="{{ $categories->url($categories->currentPage() - 5) }}" class="btn btn-outline-secondary shadow-sm">
+                    @if($editeurs->currentPage() > 5)
+                        <a href="{{ $editeurs->url($editeurs->currentPage() - 5) }}" class="btn btn-outline-secondary shadow-sm">
                             <i class="bi bi-arrow-left-circle"></i> -5
                         </a>
                     @endif
 
                     <!-- Pagination Laravel -->
-                    {{ $categories->links('pagination::bootstrap-5') }}
+                    {{ $editeurs->links('pagination::bootstrap-5') }}
 
                     <!-- Bouton +5 pages -->
-                    @if($categories->currentPage() + 5 <= $categories->lastPage())
-                        <a href="{{ $categories->url($categories->currentPage() + 5) }}" class="btn btn-outline-secondary shadow-sm">
+                    @if($editeurs->currentPage() + 5 <= $editeurs->lastPage())
+                        <a href="{{ $editeurs->url($editeurs->currentPage() + 5) }}" class="btn btn-outline-secondary shadow-sm">
                             +5 <i class="bi bi-arrow-right-circle"></i>
                         </a>
                     @endif
 
                     <!-- Aller à la dernière page -->
-                    @if($categories->currentPage() < $categories->lastPage())
-                        <a href="{{ $categories->url($categories->lastPage()) }}" class="btn btn-outline-primary shadow-sm">
+                    @if($editeurs->currentPage() < $editeurs->lastPage())
+                        <a href="{{ $editeurs->url($editeurs->lastPage()) }}" class="btn btn-outline-primary shadow-sm">
                             Dernière <i class="bi bi-chevron-double-right"></i>
                         </a>
                     @endif

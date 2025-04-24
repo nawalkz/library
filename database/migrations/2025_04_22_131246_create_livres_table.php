@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('nombre_inventaire');
             $table->unsignedBigInteger('editeur_id');
             $table->foreign('editeur_id')->references('id')->on('editeurs');
+            $table->string('image')->nullable();
             $table->bigInteger('nombre_page');
             $table->date('edition');
             $table->string('isbn');
