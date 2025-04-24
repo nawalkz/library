@@ -20,13 +20,12 @@ return new class extends Migration
             $table->foreign('auteur_id')->references('id')->on('auteurs');
             $table->unsignedBigInteger('categorie_id');
             $table->foreign('categorie_id')->references('id')->on('categories');
-            $table->string('image');
-            $table->string('description');
-            $table->string('tag');
+            $table->string('nombre_inventaire');
+            $table->unsignedBigInteger('editeur_id');
+            $table->foreign('editeur_id')->references('id')->on('editeurs');
             $table->bigInteger('nombre_page');
-            $table->integer('nombre_exemplaire');
             $table->date('edition');
-            $table->timestamps();
+            $table->string('isbn');
         });
 
         Schema::enableForeignKeyConstraints();
