@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Editeur extends Model
 {
     use HasFactory;
+    protected $guarded= ['id'];
+    public function livre(){
+        return $this->hasMany(Livre::class);
+    }
 }

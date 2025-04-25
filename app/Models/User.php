@@ -21,7 +21,21 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'vill',
+        'adresse',
+        'telephone',
+        'image',
+        'isadmin',
+        'code_cin',
+        'rol_id',
+        
     ];
+    public function getProfileImagePathAttribute()
+{
+    return $this->image ? asset('storage/profile_images/' . $this->image) : asset('default_profile.png');
+}
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +56,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    //les relations 
+public function role()
+{
+    return $this->belongsTo(Role::class);
+}
+
+public function emprunts()
+{
+    return $this->hasMany(Emprunt::class);
+}
+
+public function reservations()
+{
+    return $this->hasMany(Reservation::class);
+}
+
+public function notifications()
+{
+    return $this->hasMany(Notification::class);
+}
+
 }
