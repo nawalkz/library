@@ -12,7 +12,8 @@ class EmpruntController extends Controller
      */
     public function index()
     {
-        //
+        $emprunts = Emprunt::all();
+        return view('admin.emprunts.index', compact('emprunts'));
     }
 
     /**
@@ -34,9 +35,10 @@ class EmpruntController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Emprunt $emprunt)
+    public function show(Emprunt $emprunt ,$id)
     {
-        //
+        $emprunt = Emprunt::findOrFail($id);
+        return view('admin.emprunts.show', compact('emprunt'));
     }
 
     /**
@@ -58,8 +60,11 @@ class EmpruntController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Emprunt $emprunt)
+    public function destroy(Emprunt $emprunt ,$id)
     {
-        //
+        $emprunt = Emprunt::findOrFail($id);
+        $emprunt->delete();
+
+        return redirect()->route('admin.emprunts.index')->with('success', 'Emprunt supprimé avec succès.');
     }
 }

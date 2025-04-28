@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,5 +61,6 @@ Route::middleware('admin')->group(function () {
         
 
 require __DIR__.'/auth.php';
+
 
 

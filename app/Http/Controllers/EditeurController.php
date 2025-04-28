@@ -12,7 +12,8 @@ class EditeurController extends Controller
      */
     public function index()
     {
-        //
+           $editeur = Editeur::all();
+           return view('admin.editeurs.index', compact('editeur'));
     }
 
     /**
@@ -20,7 +21,8 @@ class EditeurController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.editeurs.create');
     }
 
     /**
@@ -28,7 +30,10 @@ class EditeurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validated();
+        Editeur::create($formFields);
+
+        return redirect()->route('admin.editeurs.index')->with('success', 'editeur ajouté avec succès.');
     }
 
     /**
@@ -36,15 +41,17 @@ class EditeurController extends Controller
      */
     public function show(Editeur $editeur)
     {
-        //
+        return view('admin.editeurs.show', compact('editeur'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Editeur $editeur)
+    public function edit($id)
+
     {
-        //
+        $editeur = Editeur::findOrFail($id);
+        return view('admin.editeurs.edit', compact('editeur'));
     }
 
     /**
@@ -52,14 +59,21 @@ class EditeurController extends Controller
      */
     public function update(Request $request, Editeur $editeur)
     {
-        //
+        $formFields = $request->validated();
+        $editeur->update($formFields);
+
+        return redirect()->route('admin.editeurs.index')->with('success', 'editeur mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Editeur $editeur)
+    public function destroy($id)
     {
-        //
+        $editeur = Editeur::findOrFail($id);
+        $editeur->delete();  
+
+        return redirect()->route('admin.editeurs.index')->with('success', 'editeur supprimé avec succès.');
     }
+    
 }
