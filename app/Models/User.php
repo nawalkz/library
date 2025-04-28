@@ -21,13 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'vill',
+        'ville',
         'adresse',
         'telephone',
         'image',
         'isadmin',
         'code_cin',
-        'rol_id',
+        'role_id',
         
     ];
     public function getProfileImagePathAttribute()

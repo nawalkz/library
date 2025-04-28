@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
             $table->string('image')->nullable();
-            $table->string('code_cin')->unique();
-            $table->boolean('isadmin')->default(0);
+            $table->string('code_cin')->nullable();
+            $table->boolean('isadmin')->default(1);
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->rememberToken();
