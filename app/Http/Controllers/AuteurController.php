@@ -12,7 +12,8 @@ class AuteurController extends Controller
      */
     public function index()
     {
-        //
+           $auteur = Auteur::all();
+           return view('admin.auteurs.index', compact('auteur'));
     }
 
     /**
@@ -20,7 +21,8 @@ class AuteurController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.auteurs.create');
     }
 
     /**
@@ -28,7 +30,10 @@ class AuteurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validated();
+        Auteur::create($formFields);
+
+        return redirect()->route('admin.auteurs.index')->with('success', 'auteur ajouté avec succès.');
     }
 
     /**
@@ -36,15 +41,16 @@ class AuteurController extends Controller
      */
     public function show(Auteur $auteur)
     {
-        //
+        return view('admin.auteurs.show', compact('auteur'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Auteur $auteur)
+    public function edit(Auteur $auteur,$id)
     {
-        //
+        $auteur= Auteur::findOrFail($id);
+        return view('admin.auteurs.edit', compact('auteur'));
     }
 
     /**
@@ -52,14 +58,21 @@ class AuteurController extends Controller
      */
     public function update(Request $request, Auteur $auteur)
     {
-        //
+        $formFields = $request->validated();
+        $auteur->update($formFields);
+
+        return redirect()->route('admin.auteurs.index')->with('success', 'auteur mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Auteur $auteur)
+    public function destroy(Auteur $auteur,$id)
     {
-        //
+        $auteur= Auteur::findOrFail($id);
+        $auteur->delete();
+
+        return redirect()->route('admin.auteurs.index')->with('success', 'auteur supprimé avec succès.');
     }
+    
 }

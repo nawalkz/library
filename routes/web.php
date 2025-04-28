@@ -2,6 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LivreController;
+use App\Http\Controllers\EditeurController;
+use App\Http\Controllers\AuteurController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\EmpruntController;
+use App\Http\Controllers\Etudiant\EtudiantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';

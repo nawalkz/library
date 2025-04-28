@@ -12,7 +12,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::all();
+        return view('admin.reservations.index', compact('reservations'));
     }
 
     /**
@@ -34,9 +35,10 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation)
+    public function show(Reservation $reservation,$id )
     {
-        //
+        $reservation = Reservation::findOrFail($id);
+        return view('admin.reservations.show', compact('reservation'));
     }
 
     /**
@@ -58,8 +60,12 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(Reservation $reservation ,$id)
     {
-        //
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+
+        return redirect()->route('admin.reservations.index')->with('success', 'Réservation supprimée avec succès.');
     }
+  
 }

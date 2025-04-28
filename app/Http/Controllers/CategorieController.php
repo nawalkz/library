@@ -6,13 +6,15 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+           $categorie = Categorie::all();
+           return view('admin.categories.index', compact('categorie'));
     }
 
     /**
@@ -20,7 +22,8 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.categories.create');
     }
 
     /**
@@ -28,7 +31,10 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validated();
+       Categorie::create($formFields);
+
+        return redirect()->route('admin.categories.index')->with('success', 'categorie ajouté avec succès.');
     }
 
     /**
@@ -36,15 +42,16 @@ class CategorieController extends Controller
      */
     public function show(Categorie $categorie)
     {
-        //
+        return view('admin.categories.show', compact('categorie'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie)
+    public function edit(Categorie $categorie,$id)
     {
-        //
+        $categorie = Categorie::findOrFail($id);
+        return view('admin.categories.edit', compact('categorie'));
     }
 
     /**
@@ -52,14 +59,21 @@ class CategorieController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        //
+        $formFields = $request->validated();
+        $categorie->update($formFields);
+
+        return redirect()->route('admin.categories.index')->with('success', 'categorie mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categorie $categorie)
+    public function destroy(Categorie $categorie,$id)
     {
-        //
+        $categorie=Categorie::findOrFail($id);
+        $categorie->delete();
+
+        return redirect()->route('admin.categories.index')->with('success', 'categorie supprimé avec succès.');
     }
+    
 }

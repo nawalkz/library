@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Livre;
 use Illuminate\Http\Request;
+use App\Models\Editeur;
+use App\Models\Auteur;
+use App\Models\Categorie;
+
 
 class LivreController extends Controller
 {
@@ -12,7 +16,8 @@ class LivreController extends Controller
      */
     public function index()
     {
-        //
+       $livres = Livre::all();
+       return view('admin.livres.index', compact('livres'));
     }
 
     /**
@@ -20,7 +25,8 @@ class LivreController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.livres.create');
     }
 
     /**
@@ -28,7 +34,10 @@ class LivreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validated();
+        Livre::create($formFields);
+
+        return redirect()->route('admin.livres.index')->with('success', 'Livre ajouté avec succès.');
     }
 
     /**
@@ -36,15 +45,16 @@ class LivreController extends Controller
      */
     public function show(Livre $livre)
     {
-        //
+        return view('admin.livres.show', compact('livre'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Livre $livre)
+    public function edit(Livre $livre,$id)
     {
-        //
+        $livre = Livre::findOrFail($id);
+        return view('admin.livres.edit', compact('livre'));
     }
 
     /**
@@ -52,14 +62,21 @@ class LivreController extends Controller
      */
     public function update(Request $request, Livre $livre)
     {
-        //
+        $formFields = $request->validated();
+        $livre->update($formFields);
+
+        return redirect()->route('admin.livres.index')->with('success', 'Livre mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Livre $livre)
+    public function destroy(Livre $livre,$id)
     {
-        //
+        $livre = Livre::findOrFail($id);
+        $livre->delete();
+
+        return redirect()->route('admin.livres.index')->with('success', 'Livre supprimé avec succès.');
     }
+    
 }

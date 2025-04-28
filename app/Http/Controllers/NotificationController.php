@@ -4,62 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    
+    // katsifet notification l database
+
+    public function via($notifiable)
     {
-        //
+        return ['database'];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function toDatabase($notifiable)
     {
-        //
-    }
+        return [
+            'message' => 'Veuillez retourner les livres empruntés avant la fin de votre cursus.',
+            'etudiant_id' => $notifiable->id,
+        ];
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Notification $notification)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Notification $notification)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Notification $notification)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Notification $notification)
-    {
-        //
+        //  comment transferer la notification  a un etudient
+        $user = User::find($id);
+        $user->notify(new NotificationController());
     }
 }
+   
