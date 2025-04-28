@@ -28,9 +28,9 @@
             @foreach($roles as $role)
             <tr class="border-t">
                 <td class="p-2">{{ $role->id }}</td>
-                <td class="p-2">{{ $role->nom }}</td>
-                <td class="p-2">{{ $role->période du livre}}</td>
-                <td class="p-2">{{ $role->Nombre du livre possible }}</td>
+                <td class="p-2">{{ $role->role}}</td>
+                <td class="p-2">{{ $role->periode}}</td>
+                <td class="p-2">{{ $role->nombre_livre }}</td>
                 <td class="p-2">
                     <a href="{{ route('roles.edit', $role->id) }}" class="text-blue-500">Modifier</a>
                 </td>

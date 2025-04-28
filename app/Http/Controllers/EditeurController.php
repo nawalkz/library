@@ -12,8 +12,8 @@ class EditeurController extends Controller
      */
     public function index()
     {
-           $editeur = Editeur::all();
-           return view('admin.editeurs.index', compact('editeur'));
+           $editeurs = Editeur::all();
+           return view('admin.editeurs.index', compact('editeurs'));
     }
 
     /**

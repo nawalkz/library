@@ -5,7 +5,7 @@
           <a href="" class="brand-link">
             <!--begin::Brand Image-->
             <img
-              src="{{ asset('assets/img/admin/logo1.jpg') }}"
+              src="{{ asset('assets/img/admin/logo2.jpg ') }}"
               alt="AdminLTE Logo"
               class="brand-image "
             />
