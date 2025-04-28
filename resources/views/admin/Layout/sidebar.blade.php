@@ -53,13 +53,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('reservation.admin.index') }}" class="nav-link @if (request()->routeIs('reservation.admin.*')) active @endif">
+                <a href="{{ route('reservations.index') }}" class="nav-link @if (request()->routeIs('reservation.admin.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Reservations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('emprunt.admin.index') }}" class="nav-link @if (request()->routeIs('emprunt.admin.*')) active @endif">
+                <a href="{{ route('emprunts.index') }}" class="nav-link @if (request()->routeIs('emprunt.admin.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Emprunts</p>
                 </a>

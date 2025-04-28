@@ -7,6 +7,7 @@ use App\Http\Controllers\EmpruntController;
 use App\Http\Controllers\LivreController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,11 +48,10 @@ Route::middleware('admin')->group(function () {
     Route::resource('notifications', NotificationController::class);
     Route::resource('roles', RoleController::class);
 
-    route::get('/emprunt/admin/list', [App\Http\Controllers\EmpruntController::class, 'indexAdmin'])->name('emprunt.admin.index');
-    route::get('/emprunt/admin/{emprunt}/show', [App\Http\Controllers\EmpruntController::class, 'show'])->name('emprunt.admin.show');
+    Route::resource('reservations', ReservationController::class);
 
-    route::get('/reservation/admin/list', [App\Http\Controllers\ReservationController::class, 'indexAdmin'])->name('reservation.admin.index');
-    route::get('/reservation/admin/{reservation}/show', [App\Http\Controllers\ReservationController::class, 'show'])->name('reservation.admin.show');
+    Route::resource('emprunts', EmpruntController::class);
+
     
     Route::get('/filter-voyages', [LivreController::class, 'filter'])->name('voyages.filter');
     Route::get('/filter-multiple', [LivreController::class, 'filter_sidebar'])->name('voyages.filtermultiple');

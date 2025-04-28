@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategorieRequest;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class CategorieController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategorieRequest $request)
     {
         $formFields = $request->validated();
        Categorie::create($formFields);
