@@ -68,9 +68,9 @@ class AuteurController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Auteur $auteur,$id)
+    public function destroy(Auteur $auteur)
     {
-        $auteur= Auteur::findOrFail($id);
+        
         $auteur->delete();
 
         return redirect()->route('admin.auteurs.index')->with('success', 'auteur supprimé avec succès.');

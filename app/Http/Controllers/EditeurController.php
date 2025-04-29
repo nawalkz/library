@@ -69,9 +69,9 @@ class EditeurController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Editeur $editeur)
     {
-        $editeur = Editeur::findOrFail($id);
+    
         $editeur->delete();  
 
         return redirect()->route('admin.editeurs.index')->with('success', 'editeur supprimé avec succès.');

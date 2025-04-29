@@ -72,9 +72,9 @@ class LivreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Livre $livre,$id)
+    public function destroy(Livre $livre)
     {
-        $livre = Livre::findOrFail($id);
+       
         $livre->delete();
 
         return redirect()->route('admin.livres.index')->with('success', 'Livre supprimé avec succès.');

@@ -58,7 +58,8 @@
                                                 <td class="fw-bold">{{ $livre->categorie->categorie }}</td>
                                                 <td class="fw-bold">{{ $livre->edition}}</td>
                                                 <td class="fw-bold">{{ $livre->nombre_page}}</td>
-                                               
+                                                <td class="fw-bold">{{ $livre->nombre_inventaire}}</td>
+                                                <td class="fw-bold">{{ $livre->statut}}</td>
                                                 <td class="fw-bold">{{ $livre->image}}</td>
                                     <td>
                                         <a href="{{ route('livres.edit', $livre->id) }}" class="btn btn-warning btn-sm shadow">
