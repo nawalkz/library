@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Auteur;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreAuteurRequest;
+use App\Http\Requests\UpdateAuteurRequest;
 
 class AuteurController extends Controller
 {
@@ -28,7 +30,7 @@ class AuteurController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAuteurRequest $request)
     {
         $formFields = $request->validated();
         Auteur::create($formFields);
@@ -56,7 +58,7 @@ class AuteurController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Auteur $auteur)
+    public function update(UpdateAuteurRequest $request, Auteur $auteur)
     {
         $formFields = $request->validated();
         $auteur->update($formFields);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 
 class RoleController extends Controller
 {
@@ -29,7 +31,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store( StoreRoleRequest $request)
     {
         $formFields = $request->validated();
         Role::create($formFields);
@@ -57,7 +59,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Role $role)
+    public function update(UpdateRoleRequest $request,Role $role)
     {
         $formFields = $request->validated();
         $role->update($formFields);

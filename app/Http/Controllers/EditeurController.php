@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Editeur;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreEditeurRequest;
+use App\Http\Requests\UpdateEditeurRequest;
 
 class EditeurController extends Controller
 {
@@ -28,7 +30,7 @@ class EditeurController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEditeurRequest $request)
     {
         $formFields = $request->validated();
         Editeur::create($formFields);
@@ -57,7 +59,7 @@ class EditeurController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Editeur $editeur)
+    public function update(UpdateEditeurRequest $request, Editeur $editeur)
     {
         $formFields = $request->validated();
         $editeur->update($formFields);

@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use SebastianBergmann\Type\TrueType;
 
-class StoreRoleRequest extends FormRequest
+class UpdateRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +22,9 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'role' => 'required|string|max:255',
-           'periode' => 'required|integer|min:1',
-            'nombre_livre' => 'required|integer|min:1',
+             'role' => 'required|string|max:255',
+             'periode' => 'required|integer|min:1',
+             'nombre_livre' => 'required|integer|min:1',
         ];
     }
     public function messages()

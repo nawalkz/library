@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategorieRequest;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCategorieRequest;
 
 class CategorieController extends Controller
 
@@ -59,7 +60,7 @@ class CategorieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
         $formFields = $request->validated();
         $categorie->update($formFields);

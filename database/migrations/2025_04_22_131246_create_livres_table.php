@@ -27,6 +27,7 @@ return new class extends Migration
             $table->bigInteger('nombre_page');
             $table->date('edition');
             $table->string('isbn');
+            $table->string('statut')->default('disponible');
         });
 
         Schema::enableForeignKeyConstraints();

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('editeurs', function (Blueprint $table) {
             $table->id();
             $table->string('editeur');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

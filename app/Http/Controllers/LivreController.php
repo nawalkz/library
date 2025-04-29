@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Editeur;
 use App\Models\Auteur;
 use App\Models\Categorie;
+use App\Http\Requests\StoreLivreRequest;
+use App\Http\Requests\UpdateLivreRequest;
 
 
 class LivreController extends Controller
@@ -32,7 +34,7 @@ class LivreController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreLivreRequest $request)
     {
         $formFields = $request->validated();
         Livre::create($formFields);
@@ -60,7 +62,7 @@ class LivreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Livre $livre)
+    public function update(UpdateLivreRequest $request, Livre $livre)
     {
         $formFields = $request->validated();
         $livre->update($formFields);
