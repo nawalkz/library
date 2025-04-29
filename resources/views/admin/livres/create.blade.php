@@ -3,6 +3,8 @@
 @section('title', 'Ajouter une nouvelle livre')
 
 @section('content')
+
+
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter une nouvelle livre</h1>
     @php
