@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEditeurRequest extends FormRequest
+class UpdateCategorieRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +22,20 @@ class StoreEditeurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'editeur' => 'required|string|max:255',
-           
+            'categorie' => ['required', 'string', 'max:255'], 
         ];
     }
+    /**
+     * Personnalise les messages de validation.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [
-            'editeur.required' => 'Le nom de l éditeur est obligatoire.',
-            'editeur.string' => 'Le nom de l éditeur doit être une chaîne de caractères.',
-            'editeur.max' => 'Le nom de l éditeur ne peut pas dépasser 255 caractères.',
+            'categorie.required' => 'Le nom de la catégorie est obligatoire.',
+            'categorie.string' => 'Le nom de la catégorie doit être une chaîne de caractères.',
+            'categorie.max' => 'Le nom de la catégorie ne peut pas dépasser 255 caractères.',
         ];
     }
 }
