@@ -1,36 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-@extends('layouts.app')
+@extends('admin.Layout.app')
+
+@section('title', 'Ajouter une nouvelle role')
 
 @section('content')
-<div class="container">
-    <h2 class="text-xl font-bold mb-4">Ajouter un rôle</h2>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter une nouvelle role</h1>
 
-    <form action="{{ route('roles.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('roles.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
-        <div>
-            <label for="nom" class="block font-medium">Nom du rôle</label>
-            <input type="text" name="nom" id="nom" class="border rounded w-full p-2" required>
+        <!-- Nom de l'role -->
+        <div class="mb-3">
+            <label for="role" class="form-label fw-bold">Nom de le role</label>
+            <input type="text" name="role" id="role" class="form-control @error('role') is-invalid @enderror" value="{{ old('role') }}" required>
+
+            @error('role')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <div>
-            <label for="nom" class="block font-medium">Période du livre</label>
-            <input type="text" name="nom" id="nom" class="border rounded w-full p-2" required>
+        <!-- periode -->
+        <div class="mb-3">
+            <label for="periode" class="form-label fw-bold">Periode</label>
+            <input type="text" name="periode" id="periode" class="form-control @error('periode') is-invalid @enderror" value="{{ old('periode') }}" required>
+
+            @error('periode')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <div>
-            <label for="nom" class="block font-medium">Nombre du livre possible</label>
-            <input type="text" name="nom" id="nom" class="border rounded w-full p-2" required>
+ <!-- nombre livre  -->
+
+        <div class="mb-3">
+            <label for="nombre_livre" class="form-label fw-bold">Nombre livre</label>
+            <input type="text" name="nombre_livre" id="nombre_livre" class="form-control @error('nombre_livre') is-invalid @enderror" value="{{ old('nombre_livre') }}" required>
+
+            @error('nombre_livre')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Ajouter</button>
+        
+
+        <!-- Boutons de contrôle -->
+        <div class="d-flex justify-content-between mt-4">
+            <a href="{{ route('roles.index') }}" class="btn btn-outline-secondary shadow-sm">
+                <i class="bi bi-arrow-left"></i> Annuler
+            </a>
+            <button type="submit" class="btn btn-success shadow-sm">
+                <i class="bi bi-check-circle"></i> Ajouter
+            </button>
+        </div>
     </form>
 </div>
 @endsection
-
-</body>
-</html>

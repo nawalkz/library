@@ -13,7 +13,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-           $roles = Role::all();
+           $roles = Role::paginate(10);
            return view('admin.roles.index', compact('roles'));
     }
 
@@ -48,9 +48,8 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role,$id)
+    public function edit(Role $role)
     {
-        $role = Role::findOrFail($id);
         return view('admin.roles.edit', compact('role'));
     }
 

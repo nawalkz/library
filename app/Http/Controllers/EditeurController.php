@@ -12,7 +12,7 @@ class EditeurController extends Controller
      */
     public function index()
     {
-           $editeurs = Editeur::all();
+           $editeurs = Editeur::paginate(10);
            return view('admin.editeurs.index', compact('editeurs'));
     }
 
