@@ -34,7 +34,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nom de l'role</th>
-                                
+                                <th>Periode</th>
+                                <th>Nombre livre</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -43,6 +44,8 @@
                                 <tr>
                                     <td>{{ ($roles->currentPage() - 1) * $roles->perPage() + $loop->iteration }}</td>
                                     <td class="fw-bold">{{ $role->role }}</td>
+                                    <td class="fw-bold">{{ $role->periode}}</td>
+                                    <td class="fw-bold">{{ $role->nombre_livre }}</td>
                                     <td>
                                         <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm shadow">
                                             <i class="bi bi-pencil-square"></i>
