@@ -3,6 +3,8 @@
 @section('title', 'Modifier l\'categorie')
 
 @section('content')
+
+
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-primary fw-bold">🖊️ Modifier l'categorie</h1>
 

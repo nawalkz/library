@@ -3,6 +3,7 @@
 @section('title', 'Ajouter une nouvelle categorie')
 
 @section('content')
+
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter une nouvelle categorie</h1>
 

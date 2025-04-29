@@ -3,6 +3,12 @@
 @section('title', 'Liste des categories')
 
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 
     <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des categories</h1>
 

@@ -9,6 +9,12 @@
 @extends('layouts.app')
 
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="container">
     <h2 class="text-xl font-bold mb-4">Liste des emprunts</h2>
 
