@@ -50,11 +50,11 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie,$id)
-    {
-        $categorie = Categorie::findOrFail($id);
-        return view('admin.categories.edit', compact('categorie'));
-    }
+    public function edit(Categorie $categorie)
+{
+    return view('admin.categories.edit', compact('categorie'));
+}
+
 
     /**
      * Update the specified resource in storage.

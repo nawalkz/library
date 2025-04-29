@@ -1,17 +1,17 @@
 @extends('admin.Layout.app')
-@section('title', 'Ajouter Livre')
+
+@section('title', 'Ajouter une nouvelle livre')
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">Ajouter Livre</h1>
-
+    <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter une nouvelle livre</h1>
     @php
         $categories = App\Models\Categorie::all();
         $auteurs = App\Models\Auteur::all();
         $editeurs = App\Models\Editeur::all();
     @endphp
 
-    <form action="{{ route('livres.store') }}" method="POST" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
+    <form action="{{ route('livres.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
        <!-- categorie -->
@@ -30,9 +30,8 @@
                 @enderror
             </small>
         </div>
-
-        <!-- auteur -->
-        <div class="mb-3">
+       <!-- auteur -->
+       <div class="mb-3">
             <label for="auteur_id" class="form-label fw-bold">Auteur:</label>
             <select name="auteur_id" id="auteur_id" class="form-select" required>
                 @foreach($auteurs as $auteur)
@@ -47,9 +46,8 @@
                 @enderror
             </small>
         </div>
-
-        <!-- editeur -->
-        <div class="mb-3">
+  <!-- editeur -->
+  <div class="mb-3">
             <label for="editeur_id" class="form-label fw-bold">Editeur:</label>
             <select name="editeur_id" id="editeur_id" class="form-select" required>
                 @foreach($editeurs as $editeur)
@@ -65,8 +63,9 @@
             </small>
         </div>
 
-        <!-- titre -->
-        <div class="mb-3">
+
+ <!-- titre -->
+ <div class="mb-3">
             <label for="titre" class="form-label fw-bold">Titre:</label>
             <input
                 type="text"
@@ -144,6 +143,8 @@
                 @enderror
             </small>
         </div>
+
+
 <!-- Image Upload -->
         <div class="mb-3">
             <label for="image" class="form-label fw-bold">Image:</label>
@@ -158,24 +159,15 @@
                     @enderror
                 </small>
         </div>
-        <!-- Submit Button -->
-        <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Ajouter
+        <!-- Boutons de contrôle -->
+        <div class="d-flex justify-content-between mt-4">
+            <a href="{{ route('livres.index') }}" class="btn btn-outline-secondary shadow-sm">
+                <i class="bi bi-arrow-left"></i> Annuler
+            </a>
+            <button type="submit" class="btn btn-success shadow-sm">
+                <i class="bi bi-check-circle"></i> Ajouter
             </button>
         </div>
     </form>
 </div>
 @endsection
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>

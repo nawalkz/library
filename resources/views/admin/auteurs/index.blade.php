@@ -33,8 +33,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Nom de l'auteur</th>
-                                <th>Prenom de l'auteur</th>
+                                <th>L'auteur</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -42,8 +41,8 @@
                             @foreach ($auteurs as $auteur)
                                 <tr>
                                     <td>{{ ($auteurs->currentPage() - 1) * $auteurs->perPage() + $loop->iteration }}</td>
-                                    <td class="fw-bold">{{ $auteur->nom }}</td>
-                                    <td class="fw-bold">{{ $auteur->prenom }}</td>
+                                    <td class="fw-bold">{{ $auteur->auteur }}</td>
+                
                                     <td>
                                         <a href="{{ route('auteurs.edit', $auteur->id) }}" class="btn btn-warning btn-sm shadow">
                                             <i class="bi bi-pencil-square"></i>

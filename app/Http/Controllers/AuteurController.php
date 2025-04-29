@@ -47,9 +47,8 @@ class AuteurController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Auteur $auteur,$id)
+    public function edit(Auteur $auteur)
     {
-        $auteur= Auteur::findOrFail($id);
         return view('admin.auteurs.edit', compact('auteur'));
     }
 

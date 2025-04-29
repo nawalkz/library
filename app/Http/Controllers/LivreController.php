@@ -51,9 +51,8 @@ class LivreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Livre $livre,$id)
+    public function edit(Livre $livre)
     {
-        $livre = Livre::findOrFail($id);
         return view('admin.livres.edit', compact('livre'));
     }
 

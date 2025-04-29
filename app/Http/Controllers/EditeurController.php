@@ -47,10 +47,9 @@ class EditeurController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit()
 
     {
-        $editeur = Editeur::findOrFail($id);
         return view('admin.editeurs.edit', compact('editeur'));
     }
 

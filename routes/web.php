@@ -42,7 +42,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('admin')->group(function () {
     Route::get('/admin', function () {return view('admin.Layout.app');})->name('admin');
     Route::resource('auteurs', AuteurController::class);
-    Route::resource('categories', CategorieController::class);
+    Route::resource('categories', CategorieController::class, [
+        'parameters' => ['categories' => 'categorie']]);
     Route::resource('editeurs', EditeurController::class);
     Route::resource('livres', LivreController::class);
     Route::resource('notifications', NotificationController::class);

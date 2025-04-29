@@ -32,7 +32,7 @@
                     <table class="table table-hover align-middle text-center">
                         <thead class="table-dark">
                             <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>Nom de l'categorie</th>
                                 <th>Actions</th>
                             </tr>

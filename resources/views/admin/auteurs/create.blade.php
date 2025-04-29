@@ -9,21 +9,12 @@
     <form action="{{ route('auteurs.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
-        <!-- Nom de l'auteur -->
+        <!-- l'auteur -->
         <div class="mb-3">
-            <label for="nom" class="form-label fw-bold">Nom de l'auteur</label>
-            <input type="text" name="nom" id="nom" class="form-control @error('nom') is-invalid @enderror" value="{{ old('nom') }}" required>
+            <label for="auteur" class="form-label fw-bold">L'auteur</label>
+            <input type="text" name="auteur" id="auteur" class="form-control @error('auteur') is-invalid @enderror" value="{{ old('auteur') }}" required>
 
-            @error('nom')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <!-- prenom de l'auteur -->
-        <div class="mb-3">
-            <label for="prenom" class="form-label fw-bold">Prenom de l'auteur</label>
-            <input type="text" name="prenom" id="prenom" class="form-control @error('prenom') is-invalid @enderror" value="{{ old('prenom') }}" required>
-
-            @error('prenom')
+            @error('auteur')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

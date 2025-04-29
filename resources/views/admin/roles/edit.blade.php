@@ -22,7 +22,8 @@
         <!-- periode -->
         <div class="mb-3">
             <label for="periode" class="form-label fw-bold">Periode</label>
-            <input type="text" name="periode" id="periode" class="form-control @error('periode') is-invalid @enderror" value="{{ old('periode', $periode->periode) }}" required>
+            <input type="text" name="periode" id="periode" class="form-control @error('periode') is-invalid @enderror" value="{{ old('periode', $role->periode) }}"
+            required>
 
             @error('periode')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -32,7 +33,8 @@
          <!-- nombre_livre -->
          <div class="mb-3">
             <label for="nombre_livre" class="form-label fw-bold">Nombre livre</label>
-            <input type="text" name="nombre_livre" id="nombre_livre" class="form-control @error('nombre_livre') is-invalid @enderror" value="{{ old('nombre_livre', $nombre_livre->nombre_livre) }}" required>
+            <input type="text" name="nombre_livre" id="nombre_livre" class="form-control @error('nombre_livre') is-invalid @enderror"
+            value="{{ old('nombre_livre', $role->nombre_livre) }}"required>
 
             @error('nombre_livre')
                 <div class="invalid-feedback">{{ $message }}</div>
