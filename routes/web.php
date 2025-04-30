@@ -8,6 +8,7 @@ use App\Http\Controllers\LivreController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     })->name('dashboard');
 
     Route::resource('auteurs', AuteurController::class);
+    Route::resource('users', UserController::class);
     Route::resource('categories', CategorieController::class, [
         'parameters' => ['categories' => 'categorie']
     ]);
@@ -54,6 +56,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('reservations', ReservationController::class);
     Route::resource('emprunts', EmpruntController::class);
+    Route::resource('notifications', NotificationController::class,);
+
 });
 
 

@@ -1,50 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-@extends('layouts.app')
-
+@extends('admin.Layout.app')
 @section('content')
-@if (session('destroy'))
-    <div class="alert alert-danger">
-        {{ session('destroy') }}
-    </div>
-    @endif
-
-<div class="container">
-    <h2 class="text-xl font-bold mb-4">Liste des emprunts</h2>
-
-    
-
-    <table class="table-auto w-full border">
+<div class="container mt-4">
+    <h2>Liste des emprunts</h2>
+    <table class="table table-bordered">
         <thead>
-            <tr class="bg-gray-200">
-                <th class="p-2">ID</th>
-                <th class="p-2">Livre</th>
-                <th class="p-2">Adhérent</th>
-                <th class="p-2">Date d'emprunt</th>
-                <th class="p-2">Date de retour</th>
-                <th class="p-2">Etat du livre</th>
-                <th class="p-2">observation</th>
-                <th class="p-2">Actions</th>
+            <tr>
+                <th>ID</th>
+                <th>Utilisateur</th>
+                <th>Livre</th>
+                <th>Date d'emprunt</th>
+                <th>Date de retour</th>
+                <th>État du livre</th>
+                <th>Observation</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($emprunts as $emprunt)
-            <tr class="border-t">
-                <td class="p-2">{{ $emprunt->id }}</td>
-                <td class="p-2">{{ $emprunt->livre->titre  }}</td>
-                <td class="p-2">{{ $emprunt->user->name}}</td>
-                <td class="p-2">{{ $emprunt->date_emprunt }}</td>
-                <td class="p-2">{{ $emprunt->date_retour }}</td>
-                <td class="p-2">{{ $emprunt->etat_livre }}</td>
-                <td class="p-2">{{ $emprunt->observation }}</td>
-                <td class="p-2">
-                    <a href="{{ route('admin.emprunts.show', $emprunt->id) }}" class="text-blue-500">Voir</a>
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $emprunt->user->name ?? 'N/A' }}</td>
+                <td>{{ $emprunt->livre->titre ?? 'N/A' }}</td>
+                <td>{{ $emprunt->date_emprunt }}</td>
+                <td>{{ $emprunt->date_retoure }}</td>
+                <td>{{ $emprunt->etat_livre }}</td>
+                <td>{{ $emprunt->observation }}</td>
+                <td>
+                    <a href="{{ route('admin.emprunts.show', $emprunt->id) }}" class="btn btn-info btn-sm">Voir</a>
+
                 </td>
             </tr>
             @endforeach
@@ -52,6 +35,3 @@
     </table>
 </div>
 @endsection
-
-</body>
-</html>

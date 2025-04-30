@@ -2,33 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification;
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Emprunt;
+use App\Notifications\RetourLivreRetardNotification;
+use Illuminate\Support\Carbon;
 
 class NotificationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    
-    // katsifet notification l database
+    public function index()
+{
+    $notifications = auth()->user()->notifications; // Ou Notification::all() si tu veux tout voir
 
-    public function via($notifiable)
-    {
-        return ['database'];
-    }
-
-    public function toDatabase($notifiable)
-    {
-        return [
-            'message' => 'Veuillez retourner les livres empruntés avant la fin de votre cursus.',
-            'etudiant_id' => $notifiable->id,
-        ];
-
-        //  comment transferer la notification  a un etudient
-        $user = User::find($id);
-        $user->notify(new NotificationController());
-    }
+    return view('admin.notifications.index', compact('notifications'));
 }
-   
+
+public function verifierRetards()
+{
+    $emprunts = Emprunt::where('date_retoure', '<', Carbon::today())->get();
+
+    foreach ($emprunts as $emprunt) {
+        $user = User::find($emprunt->user_id);
+        if ($user) {
+            $livre = $emprunt->livre; // Assure-toi que la relation existe
+            $user->notify(new RetourLivreRetardNotification($livre->titre ?? 'Inconnu'));
+        }
+    }
+
+    return redirect()->back()->with('success', 'Notifications envoyées aux utilisateurs en retard.');
+}
+
+}
