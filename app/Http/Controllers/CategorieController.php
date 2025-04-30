@@ -65,19 +65,19 @@ class CategorieController extends Controller
         $formFields = $request->validated();
         $categorie->update($formFields);
 
-        return redirect()->route('admin.categories.index')->with('success', 'categorie mis à jour avec succès.');
+        return redirect()->route('admin.categories.index')->with('update', 'categorie mis à jour avec succès.');
     }
     
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categorie $categorie,$id)
+    public function destroy(Categorie $categorie)
     {
-        $categorie=Categorie::findOrFail($id);
+       
         $categorie->delete();
 
-        return redirect()->route('admin.categories.index')->with('success', 'categorie supprimé avec succès.');
+        return redirect()->route('admin.categories.index')->with('destroy', 'categorie supprimé avec succès.');
     }
     
 }

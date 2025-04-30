@@ -62,18 +62,18 @@ class AuteurController extends Controller
         $formFields = $request->validated();
         $auteur->update($formFields);
 
-        return redirect()->route('admin.auteurs.index')->with('success', 'auteur mis à jour avec succès.');
+        return redirect()->route('admin.auteurs.index')->with('update', 'auteur mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Auteur $auteur,$id)
+    public function destroy(Auteur $auteur)
     {
-        $auteur= Auteur::findOrFail($id);
+        
         $auteur->delete();
 
-        return redirect()->route('admin.auteurs.index')->with('success', 'auteur supprimé avec succès.');
+        return redirect()->route('admin.auteurs.index')->with('destroy', 'auteur supprimé avec succès.');
     }
     
 }

@@ -40,28 +40,24 @@ Route::middleware('auth')->group(function () {
 
 
 // ======= Admin routes =======
-Route::middleware('admin')->group(function () {
-    Route::get('/admin', function () {return view('admin.Layout.app');})->name('admin');
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.Layout.app');
+    })->name('dashboard');
+
     Route::resource('auteurs', AuteurController::class);
     Route::resource('auteurs', UserController::class);
     Route::resource('categories', CategorieController::class, [
-        'parameters' => ['categories' => 'categorie']]);
+        'parameters' => ['categories' => 'categorie']
+    ]);
     Route::resource('editeurs', EditeurController::class);
     Route::resource('livres', LivreController::class);
     Route::resource('notifications', NotificationController::class);
     Route::resource('roles', RoleController::class);
-
     Route::resource('reservations', ReservationController::class);
-
     Route::resource('emprunts', EmpruntController::class);
+});
 
-    
-    Route::get('/filter-voyages', [LivreController::class, 'filter'])->name('voyages.filter');
-    Route::get('/filter-multiple', [LivreController::class, 'filter_sidebar'])->name('voyages.filtermultiple');
-    Route::get('/filter-search', [LivreController::class, 'search'])->name('voyages.search');
-
-        });
-        
 
 require __DIR__.'/auth.php';
 

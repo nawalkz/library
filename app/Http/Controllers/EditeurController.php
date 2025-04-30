@@ -49,7 +49,7 @@ class EditeurController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(Editeur $editeur)
 
     {
         return view('admin.editeurs.edit', compact('editeur'));
@@ -63,18 +63,18 @@ class EditeurController extends Controller
         $formFields = $request->validated();
         $editeur->update($formFields);
 
-        return redirect()->route('admin.editeurs.index')->with('success', 'editeur mis à jour avec succès.');
+        return redirect()->route('admin.editeurs.index')->with('update', 'editeur mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Editeur $editeur)
     {
-        $editeur = Editeur::findOrFail($id);
+    
         $editeur->delete();  
 
-        return redirect()->route('admin.editeurs.index')->with('success', 'editeur supprimé avec succès.');
+        return redirect()->route('admin.editeurs.index')->with('destroy', 'editeur supprimé avec succès.');
     }
     
 }

@@ -7,7 +7,7 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter une nouvelle categorie</h1>
 
-    <form action="{{ route('categories.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('admin.categories.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
         <!-- Nom de l'categorie -->
@@ -22,7 +22,7 @@
 
         <!-- Boutons de contrôle -->
         <div class="d-flex justify-content-between mt-4">
-            <a href="{{ route('categories.index') }}" class="btn btn-outline-secondary shadow-sm">
+            <a href="{{ route('admin.categories.index') }}" class="btn btn-outline-secondary shadow-sm">
                 <i class="bi bi-arrow-left"></i> Annuler
             </a>
             <button type="submit" class="btn btn-success shadow-sm">

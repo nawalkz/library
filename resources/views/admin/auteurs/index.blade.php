@@ -3,13 +3,21 @@
 @section('title', 'Liste des auteurs')
 
 @section('content')
-@if(session('success'))
+@if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
-
-
+    @endif
+    @if (session('update'))
+    <div class="alert alert-primary">
+        {{ session('update') }}
+    </div>
+    @endif
+    @if (session('destroy'))
+    <div class="alert alert-danger">
+        {{ session('destroy') }}
+    </div>
+    @endif
     <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des auteurs</h1>
 
 
@@ -17,7 +25,7 @@
 
     <!-- Bouton pour ajouter une nouvelle auteur -->
     <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('auteurs.create') }}" class="btn btn-success shadow">
+        <a href="{{ route('admin.auteurs.create') }}" class="btn btn-success shadow">
             <i class="bi bi-plus-circle"></i> Ajouter une nouvelle auteur
         </a>
     </div>
@@ -50,10 +58,10 @@
                                     <td class="fw-bold">{{ $auteur->auteur }}</td>
                 
                                     <td>
-                                        <a href="{{ route('auteurs.edit', $auteur->id) }}" class="btn btn-warning btn-sm shadow">
+                                        <a href="{{ route('admin.auteurs.edit', $auteur->id) }}" class="btn btn-warning btn-sm shadow">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form action="{{ route('auteurs.destroy', $auteur->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
+                                        <form action="{{ route('admin.auteurs.destroy', $auteur->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm shadow">

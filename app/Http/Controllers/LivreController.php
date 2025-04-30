@@ -66,18 +66,18 @@ class LivreController extends Controller
         $formFields = $request->validated();
         $livre->update($formFields);
 
-        return redirect()->route('admin.livres.index')->with('success', 'Livre mis à jour avec succès.');
+        return redirect()->route('admin.livres.index')->with('update', 'Livre mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Livre $livre,$id)
+    public function destroy(Livre $livre)
     {
-        $livre = Livre::findOrFail($id);
+       
         $livre->delete();
 
-        return redirect()->route('admin.livres.index')->with('success', 'Livre supprimé avec succès.');
+        return redirect()->route('admin.livres.index')->with('destroy', 'Livre supprimé avec succès.');
     }
     
 }

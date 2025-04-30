@@ -9,11 +9,11 @@
 @extends('layouts.app')
 
 @section('content')
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
+@if (session('destroy'))
+    <div class="alert alert-danger">
+        {{ session('destroy') }}
     </div>
-@endif
+    @endif
 
 <div class="container">
     <h2 class="text-xl font-bold mb-4">Liste des emprunts</h2>
@@ -44,7 +44,7 @@
                 <td class="p-2">{{ $emprunt->etat_livre }}</td>
                 <td class="p-2">{{ $emprunt->observation }}</td>
                 <td class="p-2">
-                    <a href="{{ route('emprunts.show', $emprunt->id) }}" class="text-blue-500">Voir</a>
+                    <a href="{{ route('admin.emprunts.show', $emprunt->id) }}" class="text-blue-500">Voir</a>
                 </td>
             </tr>
             @endforeach

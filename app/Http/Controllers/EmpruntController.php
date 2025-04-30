@@ -60,11 +60,10 @@ class EmpruntController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Emprunt $emprunt ,$id)
+    public function destroy(Emprunt $emprunt)
     {
-        $emprunt = Emprunt::findOrFail($id);
         $emprunt->delete();
 
-        return redirect()->route('admin.emprunts.index')->with('success', 'Emprunt supprimé avec succès.');
+        return redirect()->route('admin.emprunts.index')->with('destroy', 'Emprunt supprimé avec succès.');
     }
 }

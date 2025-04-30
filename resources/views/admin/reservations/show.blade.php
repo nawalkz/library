@@ -24,7 +24,7 @@
     </div>
     
 
-    <a href="{{ route('reservations.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Retour</a>
+    <a href="{{ route('admin.reservations.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Retour</a>
 </div>
 @endsection
 

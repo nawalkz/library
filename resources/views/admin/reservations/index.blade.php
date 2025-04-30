@@ -2,11 +2,11 @@
 @extends('layouts.app')
 @section('title', 'Liste des reservation')
 @section('content')
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
+@if (session('destroy'))
+    <div class="alert alert-danger">
+        {{ session('destroy') }}
     </div>
-@endif
+    @endif
 
 <h1 class="mb-4 text-center text-primary fw-bold">📚 Liste des réservations</h1>
 
@@ -140,10 +140,36 @@
                                     </form>
                                 </td>
                             </tr>
+<<<<<<< HEAD
                         @endforeach
                     </tbody>
                 </table>
             </div>
+=======
+                        </thead>
+                        <tbody>
+                            @foreach ($reservations as $reservation)
+                                <tr>
+                                    <td class="fw-bold">{{ $reservation->id }}</td>
+                                    <td class="fw-bold">{{ $reservation->livre->titre  }}</td>
+                                    <td class="fw-bold">{{ $reservation->user->name   }}</td>
+                                    <td class="fw-bold">{{ $reservation->date_reservation }}</td>
+                                   
+                                    <td>
+                                        <form action="{{ route('admin.reservations.destroy', $reservation->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm shadow">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+>>>>>>> 938cee3a1fa73694c5b69264acc5cac68d0ad22a
 
             <!-- Pagination améliorée -->
             <div class="mt-3 d-flex justify-content-center align-items-center gap-2">

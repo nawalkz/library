@@ -63,18 +63,17 @@ class RoleController extends Controller
         $formFields = $request->validated();
         $role->update($formFields);
 
-        return redirect()->route('admin.roles.index')->with('success', 'role mis à jour avec succès.');
+        return redirect()->route('admin.roles.index')->with('update', 'role mis à jour avec succès.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role,$id)
+    public function destroy(Role $role)
     {
-        $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('admin.roles.index')->with('success', 'role supprimé avec succès.');
+        return redirect()->route('admin.roles.index')->with('destroy', 'role supprimé avec succès.');
     }
     
 }
