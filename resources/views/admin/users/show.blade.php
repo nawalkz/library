@@ -14,11 +14,7 @@
         <p><strong>Rôle :</strong> {{ $user->role->role }}</p>
         <p><strong>Admin ?</strong> {{ $user->isadmin ? 'Oui' : 'Non' }}</p>
 
-
-        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning mt-3">
-            <i class="bi bi-pencil"></i> Modifier
-        </a>
-        <a href="{{ route('users.index') }}" class="btn btn-secondary mt-3">⬅️ Retour à la liste</a>
+        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary mt-3">⬅️ Retour à la liste</a>
     </div>
 </div>
 @endsection

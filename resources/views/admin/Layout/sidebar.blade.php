@@ -29,7 +29,7 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{route('admin.users.index')}}" class="nav-link @if (request()->routeIs('users.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Users</p>
                 </a>

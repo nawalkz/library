@@ -46,7 +46,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     })->name('dashboard');
 
     Route::resource('auteurs', AuteurController::class);
-    Route::resource('auteurs', UserController::class);
+    Route::resource('users', UserController::class);
     Route::resource('categories', CategorieController::class, [
         'parameters' => ['categories' => 'categorie']
     ]);

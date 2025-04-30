@@ -3,12 +3,6 @@
 @section('content')
 <h1 class="mb-4 text-center text-primary fw-bold">👥 Liste des utilisateurs</h1>
 
-<!-- Bouton pour ajouter un utilisateur -->
-<div class="d-flex justify-content-end mb-3">
-    <a href="{{ route('users.create') }}" class="btn btn-success shadow">
-        <i class="bi bi-plus-circle"></i> Ajouter un utilisateur
-    </a>
-</div>
 
 <!-- Liste des utilisateurs -->
 <div class="card shadow-lg border-0">
@@ -52,19 +46,10 @@
                             </td>
                             <td>{{ $user->role->role  }}</td>
                             <td>
-                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">
+                                <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-info btn-sm">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" onclick="return confirm('Supprimer cet utilisateur ?')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
+
                             </td>
                         </tr>
                         @endforeach
