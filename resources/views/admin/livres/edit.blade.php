@@ -12,7 +12,8 @@
         $auteurs = App\Models\Auteur::all();
         $editeurs = App\Models\Editeur::all();
     @endphp
-    <form action="{{ route('admin.livres.update', $livre) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+
+    <form action="{{ route('admin.livres.update', $livre) }}" method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
         @csrf
         @method('PUT')
 
@@ -141,7 +142,23 @@
                 @enderror
             </small>
         </div>
+       
+        <!-- Statut -->
+        <div class="mb-3">
+            <label for="statut" class="form-label fw-bold">Statut:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="statut"
+                id="statut" value="{{ $livre->statut }}"
+                >
+            <small class="text-danger">
+                @error('statut')
+                    {{ $message }}
+                @enderror
+            </small>
         </div>
+       
       
         <!-- Image Upload -->
         <div class="mb-3">

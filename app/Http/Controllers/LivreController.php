@@ -35,12 +35,17 @@ class LivreController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreLivreRequest $request)
-    {
-        $formFields = $request->validated();
-        Livre::create($formFields);
+{
+    $formFields = $request->validated();
 
-        return redirect()->route('admin.livres.index')->with('success', 'Livre ajouté avec succès.');
+    if ($request->hasFile('image')) {
+        $formFields['image'] = $request->file('image')->store('livres', 'public');
     }
+
+    Livre::create($formFields);
+
+    return redirect()->route('admin.livres.index')->with('success', 'Livre ajouté avec succès.');
+}
 
     /**
      * Display the specified resource.
@@ -61,13 +66,21 @@ class LivreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLivreRequest $request, Livre $livre)
-    {
-        $formFields = $request->validated();
-        $livre->update($formFields);
+   
 
-        return redirect()->route('admin.livres.index')->with('update', 'Livre mis à jour avec succès.');
+    public function update(UpdateLivreRequest $request, Livre $livre)
+{    dd($request->all()); 
+    $formFields = $request->validated();
+    
+    if ($request->hasFile('image')) {
+        $formFields['image'] = $request->file('image')->store('livres', 'public');
     }
+
+    $livre->update($formFields);
+
+    return redirect()->route('admin.livres.index')->with('update', 'Livre mis à jour avec succès.');
+}
+
 
     /**
      * Remove the specified resource from storage.

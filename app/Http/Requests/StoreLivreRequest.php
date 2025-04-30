@@ -31,7 +31,7 @@ class StoreLivreRequest extends FormRequest
             'edition' => 'required|date',
             'isbn' => 'string|max:255',
             'statut' => 'required|in:disponible,réservé,emprunté',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ];
     }
     /**
@@ -72,7 +72,7 @@ class StoreLivreRequest extends FormRequest
 
             'image.image' => "Le fichier doit être une image.",
             'image.mimes' => "L'image doit être de type : jpg, jpeg, png",
-            'image.max' => "L'image ne doit pas dépasser 2 Mo.",
+            
         
         ];
     }

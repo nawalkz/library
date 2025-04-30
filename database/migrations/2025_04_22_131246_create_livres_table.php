@@ -28,6 +28,7 @@ return new class extends Migration
             $table->date('edition');
             $table->string('isbn');
             $table->string('statut')->default('disponible');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

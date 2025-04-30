@@ -76,7 +76,9 @@
                                                 <td class="fw-bold">{{ $livre->nombre_page}}</td>
                                                 <td class="fw-bold">{{ $livre->nombre_inventaire}}</td>
                                                 <td class="fw-bold">{{ $livre->statut}}</td>
-                                                <td class="fw-bold">{{ $livre->image}}</td>
+                                                <td>
+                                <img src="{{ asset('storage/' . $livre->image) }}" alt="Livre Image" width="50" height="50">
+                            </td>
                                     <td>
                                         <a href="{{ route('admin.livres.edit', $livre->id) }}" class="btn btn-warning btn-sm shadow">
                                             <i class="bi bi-pencil-square"></i>

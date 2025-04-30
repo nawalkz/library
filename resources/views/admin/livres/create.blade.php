@@ -13,7 +13,7 @@
         $editeurs = App\Models\Editeur::all();
     @endphp
 
-    <form action="{{ route('admin.livres.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('admin.livres.store') }}" method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
        <!-- categorie -->
@@ -141,6 +141,22 @@
                 required>
             <small class="text-danger">
                 @error('isbn')
+                    {{ $message }}
+                @enderror
+            </small>
+        </div>
+
+         <!-- statut -->
+         <div class="mb-3">
+            <label for="statut" class="form-label fw-bold">Statut:</label>
+            <input
+                type="text"
+                class="form-control"
+                name="statut"
+                id="statut"
+                required>
+            <small class="text-danger">
+                @error('statut')
                     {{ $message }}
                 @enderror
             </small>
