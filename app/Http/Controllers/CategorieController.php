@@ -67,6 +67,7 @@ class CategorieController extends Controller
 
         return redirect()->route('admin.categories.index')->with('success', 'categorie mis à jour avec succès.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
