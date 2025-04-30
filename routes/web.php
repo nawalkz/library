@@ -56,6 +56,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('reservations', ReservationController::class);
     Route::resource('emprunts', EmpruntController::class);
+    Route::resource('notifications', NotificationController::class,);
+
 });
 
 

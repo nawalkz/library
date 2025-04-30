@@ -4,12 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Models\Emprunt;
+use Illuminate\Support\Carbon;
 
 class ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+     public function convertToEmprunt($id)
+{
+    $reservation = Reservation::findOrFail($id);
+
+    // Créer l'emprunt à partir de la réservation
+    Emprunt::create([
+        'user_id' => $reservation->user_id,
+        'livre_id' => $reservation->livre_id,
+        'date_emprunt' => Carbon::now(),
+        'date_retoure' => Carbon::now()->addDays(10), // par exemple, 15 jours
+        'etat_livre' => 'bon',
+        'observation' => 'Créé via réservation',
+    ]);
+
+    // Supprimer la réservation ou la marquer comme traitée (selon le besoin)
+    $reservation->delete();
+
+    return redirect()->route('admin.reservations.index')->with('success', 'Réservation convertie en emprunt avec succès.');
+}
     public function index()
     {
         $reservations = Reservation::all();

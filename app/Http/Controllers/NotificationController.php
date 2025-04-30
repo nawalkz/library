@@ -2,77 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification;
-
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreNotificationRequest;
-use App\Http\Requests\UpdateNotificationRequest;
-
 use App\Models\User;
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    
-    // katsifet notification l database
-
-    /* public function via($notifiable)
-    {
-        return ['database'];
-    }
-
-    public function toDatabase($notifiable)
-    {
-        return [
-            'message' => 'Veuillez retournez les livres empruntés avant la fin de votre cursus.',
-            'etudiant_id' => $notifiable->id,
-        ];
-
-          comment transferer la notification  a un etudient
-        $user = User::find($id);
-        $user->notify(new NotificationController());
-    }
-}
-    */
-   
-
+use App\Models\Emprunt;
+use App\Notifications\RetourLivreRetardNotification;
+use Illuminate\Support\Carbon;
 
 class NotificationController extends Controller
 {
     public function index()
-    {
-        $notifications = Notification::with('etudiant')->latest()->paginate(10);
-        return view('admin.notifications.index', compact('notifications'));
+{
+    $notifications = auth()->user()->notifications; // Ou Notification::all() si tu veux tout voir
+
+    return view('admin.notifications.index', compact('notifications'));
+}
+
+public function verifierRetards()
+{
+    $emprunts = Emprunt::where('date_retoure', '<', Carbon::today())->get();
+
+    foreach ($emprunts as $emprunt) {
+        $user = User::find($emprunt->user_id);
+        if ($user) {
+            $livre = $emprunt->livre; // Assure-toi que la relation existe
+            $user->notify(new RetourLivreRetardNotification($livre->titre ?? 'Inconnu'));
+        }
     }
 
-    public function create()
-    {
-        $etudiants = User::all();
-        return view('admin.notifications.create', compact('etudiants'));
-    }
+    return redirect()->back()->with('success', 'Notifications envoyées aux utilisateurs en retard.');
+}
 
-    public function store(StoreNotificationRequest $request)
-    {
-        Notification::create($request->validated());
-        return redirect()->route('notifications.index')->with('success', 'Notification envoyée avec succès.');
-    }
-
-    public function edit(Notification $notification)
-    {
-        $etudiants = User::all();
-        return view('admin.notifications.edit', compact('notification', 'etudiants'));
-    }
-
-    public function update(UpdateNotificationRequest $request, Notification $notification)
-    {
-        $notification->update($request->validated());
-        return redirect()->route('notifications.index')->with('success', 'Notification mise à jour avec succès.');
-    }
-
-    public function destroy(Notification $notification)
-    {
-        $notification->delete();
-        return redirect()->route('notifications.index')->with('success', 'Notification supprimée avec succès.');
-    }
 }
