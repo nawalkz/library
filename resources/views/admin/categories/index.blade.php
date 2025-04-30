@@ -3,11 +3,21 @@
 @section('title', 'Liste des categories')
 
 @section('content')
-@if(session('success'))
+@if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
+    @endif
+    @if (session('update'))
+    <div class="alert alert-primary">
+        {{ session('update') }}
+    </div>
+    @endif
+    @if (session('destroy'))
+    <div class="alert alert-danger">
+        {{ session('destroy') }}
+    </div>
+    @endif
 
 
     <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des categories</h1>
@@ -17,7 +27,7 @@
 
     <!-- Bouton pour ajouter une nouvelle categorie -->
     <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('categories.create') }}" class="btn btn-success shadow">
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-success shadow">
             <i class="bi bi-plus-circle"></i> Ajouter une nouvelle categorie
         </a>
     </div>
@@ -49,10 +59,10 @@
                                     <td>{{ ($categories->currentPage() - 1) * $categories->perPage() + $loop->iteration }}</td>
                                     <td class="fw-bold">{{ $categorie->categorie }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', $categorie->id) }}" class="btn btn-warning btn-sm shadow">
+                                        <a href="{{ route('admin.categories.edit', $categorie->id) }}" class="btn btn-warning btn-sm shadow">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form action="{{ route('categories.destroy', $categorie->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
+                                        <form action="{{ route('admin.categories.destroy', $categorie->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm shadow">

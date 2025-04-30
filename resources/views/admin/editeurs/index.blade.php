@@ -3,11 +3,21 @@
 @section('title', 'Liste des editeurs')
 
 @section('content')
-@if(session('success'))
+@if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
+    @endif
+    @if (session('update'))
+    <div class="alert alert-primary">
+        {{ session('update') }}
+    </div>
+    @endif
+    @if (session('destroy'))
+    <div class="alert alert-danger">
+        {{ session('destroy') }}
+    </div>
+    @endif
 
 
     <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des editeurs</h1>
@@ -17,7 +27,7 @@
 
     <!-- Bouton pour ajouter une nouvelle editeur -->
     <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('editeurs.create') }}" class="btn btn-success shadow">
+        <a href="{{ route('admin.editeurs.create') }}" class="btn btn-success shadow">
             <i class="bi bi-plus-circle"></i> Ajouter une nouvelle editeur
         </a>
     </div>
@@ -38,7 +48,7 @@
                     <table class="table table-hover align-middle text-center">
                         <thead class="table-dark">
                             <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>Nom de l'editeur</th>
                                 <th>Actions</th>
                             </tr>
@@ -49,10 +59,10 @@
                                     <td>{{ ($editeurs->currentPage() - 1) * $editeurs->perPage() + $loop->iteration }}</td>
                                     <td class="fw-bold">{{ $editeur->editeur }}</td>
                                     <td>
-                                        <a href="{{ route('editeurs.edit', $editeur->id) }}" class="btn btn-warning btn-sm shadow">
+                                        <a href="{{ route('admin.editeurs.edit', $editeur->id) }}" class="btn btn-warning btn-sm shadow">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form action="{{ route('editeurs.destroy', $editeur->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
+                                        <form action="{{ route('admin.editeurs.destroy', $editeur->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm shadow">

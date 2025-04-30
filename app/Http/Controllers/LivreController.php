@@ -66,7 +66,7 @@ class LivreController extends Controller
         $formFields = $request->validated();
         $livre->update($formFields);
 
-        return redirect()->route('admin.livres.index')->with('success', 'Livre mis à jour avec succès.');
+        return redirect()->route('admin.livres.index')->with('update', 'Livre mis à jour avec succès.');
     }
 
     /**
@@ -77,7 +77,7 @@ class LivreController extends Controller
        
         $livre->delete();
 
-        return redirect()->route('admin.livres.index')->with('success', 'Livre supprimé avec succès.');
+        return redirect()->route('admin.livres.index')->with('destroy', 'Livre supprimé avec succès.');
     }
     
 }

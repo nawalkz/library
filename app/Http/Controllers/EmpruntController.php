@@ -64,6 +64,6 @@ class EmpruntController extends Controller
     {
         $emprunt->delete();
 
-        return redirect()->route('admin.emprunts.index')->with('success', 'Emprunt supprimé avec succès.');
+        return redirect()->route('admin.emprunts.index')->with('destroy', 'Emprunt supprimé avec succès.');
     }
 }

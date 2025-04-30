@@ -8,7 +8,7 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter une nouvelle role</h1>
 
-    <form action="{{ route('roles.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('admin.roles.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
         <!-- Nom de l'role -->
@@ -43,7 +43,7 @@
 
         <!-- Boutons de contrôle -->
         <div class="d-flex justify-content-between mt-4">
-            <a href="{{ route('roles.index') }}" class="btn btn-outline-secondary shadow-sm">
+            <a href="{{ route('admin.roles.index') }}" class="btn btn-outline-secondary shadow-sm">
                 <i class="bi bi-arrow-left"></i> Annuler
             </a>
             <button type="submit" class="btn btn-success shadow-sm">

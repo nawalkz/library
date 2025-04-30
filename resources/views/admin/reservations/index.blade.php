@@ -2,11 +2,11 @@
 @extends('layouts.app')
 @section('title', 'Liste des reservation')
 @section('content')
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
+@if (session('destroy'))
+    <div class="alert alert-danger">
+        {{ session('destroy') }}
     </div>
-@endif
+    @endif
 
 <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des resevations</h1>
 
@@ -48,7 +48,7 @@
                                     <td class="fw-bold">{{ $reservation->date_reservation }}</td>
                                    
                                     <td>
-                                        <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
+                                        <form action="{{ route('admin.reservations.destroy', $reservation->id) }}" method="POST" class="d-inline delete-form"  onsubmit="confirmDelete(event, this)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm shadow">

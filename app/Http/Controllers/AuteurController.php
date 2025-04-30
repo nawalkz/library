@@ -62,7 +62,7 @@ class AuteurController extends Controller
         $formFields = $request->validated();
         $auteur->update($formFields);
 
-        return redirect()->route('admin.auteurs.index')->with('success', 'auteur mis à jour avec succès.');
+        return redirect()->route('admin.auteurs.index')->with('update', 'auteur mis à jour avec succès.');
     }
 
     /**
@@ -73,7 +73,7 @@ class AuteurController extends Controller
         
         $auteur->delete();
 
-        return redirect()->route('admin.auteurs.index')->with('success', 'auteur supprimé avec succès.');
+        return redirect()->route('admin.auteurs.index')->with('destroy', 'auteur supprimé avec succès.');
     }
     
 }

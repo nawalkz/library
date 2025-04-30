@@ -13,7 +13,7 @@
         $editeurs = App\Models\Editeur::all();
     @endphp
 
-    <form action="{{ route('livres.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('admin.livres.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
 
        <!-- categorie -->
@@ -163,7 +163,7 @@
         </div>
         <!-- Boutons de contrôle -->
         <div class="d-flex justify-content-between mt-4">
-            <a href="{{ route('livres.index') }}" class="btn btn-outline-secondary shadow-sm">
+            <a href="{{ route('admin.livres.index') }}" class="btn btn-outline-secondary shadow-sm">
                 <i class="bi bi-arrow-left"></i> Annuler
             </a>
             <button type="submit" class="btn btn-success shadow-sm">

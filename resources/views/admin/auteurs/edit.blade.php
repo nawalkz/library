@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <h1 class="mb-4 text-center text-primary fw-bold">🖊️ Modifier l'auteur</h1>
 
-    <form action="{{ route('auteurs.update', $auteur) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('admin.auteurs.update', $auteur) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf
         @method('PUT')
 
@@ -22,7 +22,7 @@
        
         <!-- Boutons de contrôle -->
         <div class="d-flex justify-content-between mt-4">
-            <a href="{{ route('auteurs.index') }}" class="btn btn-outline-secondary shadow-sm">
+            <a href="{{ route('admin.auteurs.index') }}" class="btn btn-outline-secondary shadow-sm">
                 <i class="bi bi-arrow-left"></i> Annuler
             </a>
             <button type="submit" class="btn btn-primary shadow-sm">

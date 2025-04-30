@@ -35,43 +35,43 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('livres.index')}}" class="nav-link @if (request()->routeIs('livres.*')) active @endif">
+                <a href="{{route('admin.livres.index')}}" class="nav-link @if (request()->routeIs('livres.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Livre</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('categories.index')}}" class="nav-link @if (request()->routeIs('categories.*')) active @endif">
+                <a href="{{route('admin.categories.index')}}" class="nav-link @if (request()->routeIs('categories.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Categorie</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('auteurs.index') }}" class="nav-link @if (request()->routeIs('auteurs.*')) active @endif">
+                <a href="{{ route('admin.auteurs.index') }}" class="nav-link @if (request()->routeIs('auteurs.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Auteurs</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('reservations.index') }}" class="nav-link @if (request()->routeIs('reservation.admin.*')) active @endif">
+                <a href="{{ route('admin.reservations.index') }}" class="nav-link @if (request()->routeIs('reservation.admin.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Reservations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('emprunts.index') }}" class="nav-link @if (request()->routeIs('emprunt.admin.*')) active @endif">
+                <a href="{{ route('admin.emprunts.index') }}" class="nav-link @if (request()->routeIs('emprunt.admin.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Emprunts</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('notifications.index')}}" class="nav-link @if (request()->routeIs('notifications.*')) active @endif">
+                <a href="{{route('admin.notifications.index')}}" class="nav-link @if (request()->routeIs('notifications.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Notifications</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('roles.index') }}" class="nav-link @if (request()->routeIs('roles.*')) active @endif">
+                <a href="{{ route('admin.roles.index') }}" class="nav-link @if (request()->routeIs('roles.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Roles</p>
                 </a>
@@ -80,7 +80,7 @@
           
               
               <li class="nav-item">
-                <a href="{{ route('editeurs.index') }}" class="nav-link @if (request()->routeIs('editeurs.*')) active @endif">
+                <a href="{{ route('admin.editeurs.index') }}" class="nav-link @if (request()->routeIs('editeurs.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Editeurs</p>
                 </a>

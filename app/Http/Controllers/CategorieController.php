@@ -65,7 +65,7 @@ class CategorieController extends Controller
         $formFields = $request->validated();
         $categorie->update($formFields);
 
-        return redirect()->route('admin.categories.index')->with('success', 'categorie mis à jour avec succès.');
+        return redirect()->route('admin.categories.index')->with('update', 'categorie mis à jour avec succès.');
     }
 
     /**
@@ -76,7 +76,7 @@ class CategorieController extends Controller
        
         $categorie->delete();
 
-        return redirect()->route('admin.categories.index')->with('success', 'categorie supprimé avec succès.');
+        return redirect()->route('admin.categories.index')->with('destroy', 'categorie supprimé avec succès.');
     }
     
 }

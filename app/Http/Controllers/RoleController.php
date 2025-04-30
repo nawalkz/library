@@ -63,7 +63,7 @@ class RoleController extends Controller
         $formFields = $request->validated();
         $role->update($formFields);
 
-        return redirect()->route('admin.roles.index')->with('success', 'role mis à jour avec succès.');
+        return redirect()->route('admin.roles.index')->with('update', 'role mis à jour avec succès.');
     }
 
     /**
@@ -73,7 +73,7 @@ class RoleController extends Controller
     {
         $role->delete();
 
-        return redirect()->route('admin.roles.index')->with('success', 'role supprimé avec succès.');
+        return redirect()->route('admin.roles.index')->with('destroy', 'role supprimé avec succès.');
     }
     
 }

@@ -24,7 +24,7 @@
     <div class="mb-4">
         <strong>Date de retour :</strong> {{ $emprunt->date_retour }}
     </div>
-    <a href="{{ route('emprunts.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Retour</a>
+    <a href="{{ route('admin.emprunts.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded">Retour</a>
 </div>
 @endsection
 
