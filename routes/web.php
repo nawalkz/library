@@ -11,6 +11,8 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminRegisterController;
+use App\Models\User;
 
 
 /*
@@ -39,6 +41,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
+
+
+
+Route::middleware('preventIfAdminExists')->group(function () {
+    Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
+    Route::post('/register-admin', [AdminRegisterController::class, 'store'])->name('register.admin.store');
+});
+
 // ======= Admin routes =======
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('/', function () {
@@ -51,7 +61,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
         'parameters' => ['categories' => 'categorie']
     ]);
     Route::resource('editeurs', EditeurController::class);
-    Route::resource('livres', LivreController::class);
+    Route::resource('livres', LivreController::class, [
+        'parameters' => ['livres' => 'livre']]);
     Route::resource('notifications', NotificationController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('reservations', ReservationController::class);

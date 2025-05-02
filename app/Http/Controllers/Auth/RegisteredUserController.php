@@ -69,13 +69,14 @@ class RegisteredUserController extends Controller
             ]);
         }
 
+
         // Create the user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => $request->role_id,
-            'code_cin' => $request->role_id == 2 ? $request->code_cin : null, // Only save code_cin for students
+            'code_cin' => $request->role_id == 2 ? $request->code_cin : null,'isadmin'=>0 // Only save code_cin for students
         ]);
 
         event(new Registered($user));

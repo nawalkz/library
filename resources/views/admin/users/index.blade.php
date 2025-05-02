@@ -44,7 +44,7 @@
                                     <span class="badge bg-secondary">Non</span>
                                 @endif
                             </td>
-                            <td>{{ $user->role->role  }}</td>
+                            <td>{{ $user->role->role ?? '—' }}</td>
                             <td>
                                 <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-info btn-sm">
                                     <i class="bi bi-eye"></i>

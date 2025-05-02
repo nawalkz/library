@@ -13,7 +13,7 @@
         $editeurs = App\Models\Editeur::all();
     @endphp
 
-    <form action="{{ route('admin.livres.update', $livre) }}" method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
+    <form action="{{ route('admin.livres.update', $livre->id) }}" method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
         @csrf
         @method('PUT')
 
@@ -166,7 +166,7 @@
                 <input type="file" class="form-control" name="image" id="image">
                 @if ($livre->image)
                     <div class="mt-2">
-                        <img src="{{ asset('storage/' . $livre->image) }}" alt="livre Image" width="100">
+                    <img src="{{ asset('storage/' . $livre->image) }}" alt="Image du livre" width="100">
                     </div>
                 @endif
             </div>

@@ -36,6 +36,7 @@ class LivreController extends Controller
      */
     public function store(StoreLivreRequest $request)
 {
+   
     $formFields = $request->validated();
 
     if ($request->hasFile('image')) {
@@ -61,6 +62,7 @@ class LivreController extends Controller
     public function edit(Livre $livre)
     {
         return view('admin.livres.edit', compact('livre'));
+        
     }
 
     /**
@@ -69,7 +71,7 @@ class LivreController extends Controller
    
 
     public function update(UpdateLivreRequest $request, Livre $livre)
-{    dd($request->all()); 
+{  
     $formFields = $request->validated();
     
     if ($request->hasFile('image')) {

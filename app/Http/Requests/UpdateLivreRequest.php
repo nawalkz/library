@@ -22,16 +22,16 @@ class UpdateLivreRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'titre' => 'required|string|max:255',
-                'description' => 'nullable|string',
-                'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-                'auteur_id' => 'required|exists:auteurs,id',
-                'categorie_id' => 'required|exists:categories,id',
-                'editeur_id' => 'required|exists:editeurs,id',
-                'etat' => 'required|in:neuf,bon,abime',
-                'quantite' => 'required|integer|min:1',
-                'statut' => 'required|in:disponible,réservé,emprunté',
-                'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'titre' => 'required|string|max:255',
+            'auteur_id' => 'required|exists:auteurs,id',
+            'categorie_id' => 'required|exists:categories,id',
+            'nombre_inventaire' => 'required|string|max:255',
+            'editeur_id' => 'exists:editeurs,id',
+            'nombre_page' => 'required|integer',
+            'edition' => 'required|date',
+            'isbn' => 'string|max:255',
+            'statut' => 'required|in:disponible,réservé,emprunté',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png',
             ];
     }
 

@@ -11,7 +11,7 @@
         <p><strong>Adresse :</strong> {{ $user->adresse }}</p>
         <p><strong>Téléphone :</strong> {{ $user->telephone }}</p>
         <p><strong>Code CIN :</strong> {{ $user->code_cin }}</p>
-        <p><strong>Rôle :</strong> {{ $user->role->role }}</p>
+        <p><strong>Rôle :</strong> {{ $user->role->role ?? '—' }}</p>
         <p><strong>Admin ?</strong> {{ $user->isadmin ? 'Oui' : 'Non' }}</p>
 
         <a href="{{ route('admin.users.index') }}" class="btn btn-secondary mt-3">⬅️ Retour à la liste</a>
