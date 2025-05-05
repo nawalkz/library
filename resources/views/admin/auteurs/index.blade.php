@@ -26,7 +26,7 @@
     <!-- Bouton pour ajouter une nouvelle auteur -->
     <div class="d-flex justify-content-end mb-3">
         <a href="{{ route('admin.auteurs.create') }}" class="btn btn-success shadow">
-            <i class="bi bi-plus-circle"></i> Ajouter une nouvelle auteur
+            <i class="bi bi-plus-circle"></i> Ajouter un nouveau auteur
         </a>
     </div>
 
@@ -39,7 +39,7 @@
             @if($auteurs->isEmpty())
                 <div class="alert alert-info text-center py-4" role="alert">
                     <i class="bi bi-info-circle-fill me-2"></i>
-                    🚀 Aucune auteur . Ajoutez-en une maintenant !
+                    🚀 Aucun auteur . Ajoutez-en un maintenant !
                 </div>
             @else
                 <div class="table-responsive">

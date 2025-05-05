@@ -1,6 +1,6 @@
 @extends('admin.Layout.app')
 
-@section('title', 'Ajouter une nouvelle role')
+@section('title', 'Ajouter un nouveau role')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 
         <!-- Nom de l'role -->
         <div class="mb-3">
-            <label for="role" class="form-label fw-bold">Nom de le role</label>
+            <label for="role" class="form-label fw-bold">Nom du role</label>
             <input type="text" name="role" id="role" class="form-control @error('role') is-invalid @enderror" value="{{ old('role') }}" required>
 
             @error('role')

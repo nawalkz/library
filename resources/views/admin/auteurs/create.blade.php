@@ -1,6 +1,6 @@
 @extends('admin.Layout.app')
 
-@section('title', 'Ajouter une nouvelle auteur')
+@section('title', 'Ajouter un nouveau auteur')
 
 @section('content')
 <div class="container mt-5">

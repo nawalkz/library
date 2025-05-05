@@ -28,7 +28,7 @@
     <!-- Bouton pour ajouter une nouvelle role -->
     <div class="d-flex justify-content-end mb-3">
         <a href="{{ route('admin.roles.create') }}" class="btn btn-success shadow">
-            <i class="bi bi-plus-circle"></i> Ajouter une nouvelle role
+            <i class="bi bi-plus-circle"></i> Ajouter un nouveau role
         </a>
     </div>
 
@@ -41,7 +41,7 @@
             @if($roles->isEmpty())
                 <div class="alert alert-info text-center py-4" role="alert">
                     <i class="bi bi-info-circle-fill me-2"></i>
-                    🚀 Aucune role . Ajoutez-en une maintenant !
+                    🚀 Aucun role . Ajoutez-en un maintenant !
                 </div>
             @else
                 <div class="table-responsive">
@@ -49,7 +49,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Nom de l'role</th>
+                                <th>Nom du role</th>
                                 <th>Periode</th>
                                 <th>Nombre livre</th>
                                 <th>Actions</th>

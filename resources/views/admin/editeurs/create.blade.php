@@ -1,6 +1,6 @@
 @extends('admin.Layout.app')
 
-@section('title', 'Ajouter une nouvelle editeur')
+@section('title', 'Ajouter un nouveau editeur')
 
 @section('content')
 

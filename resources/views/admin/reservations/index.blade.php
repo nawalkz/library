@@ -1,6 +1,6 @@
 
 @extends('admin.Layout.app')
-@section('title', 'Liste des reservation')
+@section('title', 'Liste des reservations')
 @section('content')
 @if (session('destroy'))
     <div class="alert alert-danger">

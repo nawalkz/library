@@ -6,7 +6,7 @@
 
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center text-primary fw-bold">🖊️ Modifier l'categorie</h1>
+    <h1 class="mb-4 text-center text-primary fw-bold">🖊️ Modifier la categorie</h1>
 
     <form action="{{ route('admin.categories.update', ['categorie' => $categorie->id]) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
     @csrf
@@ -14,7 +14,7 @@
 
         <!-- Nom de l'categorie -->
         <div class="mb-3">
-            <label for="categorie" class="form-label fw-bold">Nom de l'categorie</label>
+            <label for="categorie" class="form-label fw-bold">Nom du categorie</label>
             <input type="text" name="categorie" id="categorie" class="form-control @error('categorie') is-invalid @enderror" value="{{ old('categorie', $categorie->categorie) }}" required>
 
             @error('categorie')
