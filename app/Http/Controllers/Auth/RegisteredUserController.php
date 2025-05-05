@@ -34,11 +34,16 @@ class RegisteredUserController extends Controller
         // Validate user input
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role_id' => ['required', 'exists:roles,id'],
             'code_cin' => ['nullable', 'string', 'max:20'], // We'll validate manually if needed
-        ],[
+            'adresse' => 'required|string|max:255',
+            'ville' => 'required|string|max:255',
+            'image' => 'nullable|image|max:2048',
+            'telephone' => 'required|string|max:20',
+        ], [
+
             'name.required' => 'Le nom est obligatoire.',
             'name.string' => 'Le nom doit être une chaîne de caractères.',
             'name.max' => 'Le nom ne peut pas dépasser 255 caractères.',
@@ -69,6 +74,11 @@ class RegisteredUserController extends Controller
             ]);
         }
 
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('users', 'public');
+        }
 
         // Create the user
         $user = User::create([
@@ -76,14 +86,18 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => $request->role_id,
-            'code_cin' => $request->role_id == 2 ? $request->code_cin : null,'isadmin'=>0 // Only save code_cin for students
+            'code_cin' => $request->role_id == 2 ? $request->code_cin : null,
+            'adresse' => $request->adresse,
+            'ville' => $request->ville,
+            'image' => $imagePath,
+            'telephone' => $request->telephone,
+            'isadmin' => 0 // Only save code_cin for students
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-       return redirect('/');
-        ;
+        return redirect('/');;
     }
 }

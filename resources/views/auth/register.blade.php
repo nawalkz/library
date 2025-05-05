@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -10,12 +10,36 @@
         </div>
 
         <!-- Email Address -->
+
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
+        <!-- Ville -->
+        <div class="mt-4">
+            <x-input-label for="ville" :value="'Ville'" />
+            <x-text-input id="ville" class="block mt-1 w-full" type="text" name="ville" :value="old('ville')" required />
+            <x-input-error :messages="$errors->get('ville')" class="mt-2" />
+        </div>
+        <!-- Adresse -->
+        <div class="mt-4">
+            <x-input-label for="adresse" :value="'Adresse'" />
+            <x-text-input id="adresse" class="block mt-1 w-full" type="text" name="adresse" :value="old('adresse')" required />
+            <x-input-error :messages="$errors->get('adresse')" class="mt-2" />
+        </div>
+        <!-- Téléphone -->
+        <div class="mt-4">
+            <x-input-label for="telephone" :value="('Téléphone')" />
+            <x-text-input id="telephone" class="block mt-1 w-full" type="text" name="telephone" :value="old('telephone')" required />
+            <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
+        </div>
+        <!-- Image -->
+        <div class="mt-4">
+            <x-input-label for="image" :value="'Image (facultative)'" />
+            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" accept="image/*" />
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+        </div>
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
@@ -36,9 +60,9 @@
             <select id="role_id" name="role_id" class="block mt-1 w-full" onchange="toggleCinField()" required>
                 <option value="">-- Choisir un rôle --</option>
                 @foreach ($roles as $role)
-                    <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>
-                        {{ $role->role }}
-                    </option>
+                <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>
+                    {{ $role->role }}
+                </option>
                 @endforeach
             </select>
             <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
@@ -77,7 +101,7 @@
         }
 
         // Show CIN field if old input exists (after validation error)
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             toggleCinField();
         });
     </script>

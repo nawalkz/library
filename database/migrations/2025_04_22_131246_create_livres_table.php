@@ -15,19 +15,19 @@ return new class extends Migration
 
         Schema::create('livres', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');
-            $table->unsignedBigInteger('auteur_id');
+            $table->string('titre')->nullable();
+            $table->unsignedBigInteger('auteur_id')->nullable();
             $table->foreign('auteur_id')->references('id')->on('auteurs');
-            $table->unsignedBigInteger('categorie_id');
+            $table->unsignedBigInteger('categorie_id')->nullable();
             $table->foreign('categorie_id')->references('id')->on('categories');
-            $table->string('nombre_inventaire');
-            $table->unsignedBigInteger('editeur_id');
+            $table->string('nombre_inventaire')->nullable();
+            $table->unsignedBigInteger('editeur_id')->nullable();
             $table->foreign('editeur_id')->references('id')->on('editeurs');
             $table->string('image')->nullable();
-            $table->bigInteger('nombre_page');
-            $table->date('edition');
-            $table->string('isbn');
-            $table->string('statut')->default('disponible');
+            $table->bigInteger('nombre_page')->nullable();
+            $table->date('edition')->nullable();
+            $table->string('isbn')->nullable();
+            $table->string('statut')->default('disponible')->nullable();
             $table->timestamps();
         });
 
