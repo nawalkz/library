@@ -15,21 +15,7 @@ return new class extends Migration
 
         Schema::create('livres', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-            $table->string('titre');
-            $table->unsignedBigInteger('auteur_id')->nullable();;
-            $table->foreign('auteur_id')->references('id')->on('auteurs')->nullable();;
-            $table->unsignedBigInteger('categorie_id')->nullable();;
-            $table->foreign('categorie_id')->references('id')->on('categories')->nullable();;
-            $table->string('nombre_inventaire')->nullable();;
-            $table->unsignedBigInteger('editeur_id')->nullable();;
-            $table->foreign('editeur_id')->references('id')->on('editeurs')->nullable();;
-            $table->string('image')->nullable();
-            $table->bigInteger('nombre_page')->nullable();;
-            $table->date('edition')->nullable();;
-            $table->string('isbn')->nullable();;
-            $table->string('statut')->default('disponible')->nullable();;
-=======
+
             $table->string('titre')->nullable();
             $table->unsignedBigInteger('auteur_id')->nullable();
             $table->foreign('auteur_id')->references('id')->on('auteurs');
@@ -43,7 +29,6 @@ return new class extends Migration
             $table->date('edition')->nullable();
             $table->string('isbn')->nullable();
             $table->string('statut')->default('disponible')->nullable();
->>>>>>> 562c9d17236c7cb29fd6b05f26b5c1bcf7fdaa8c
             $table->timestamps();
         });
 
