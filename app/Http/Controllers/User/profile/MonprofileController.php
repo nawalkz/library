@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client\Profile;
+namespace App\Http\Controllers\User\Profile;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class MonprofileController extends Controller
 
     public function index(){
         $user = auth()->user(); 
-        return view('client.profile.monprofile.index', compact('user'));
+        return view('users.profile.monprofile.index', compact('user'));
     }
 
 }

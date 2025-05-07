@@ -54,28 +54,18 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <h6 class="fs-14">Pays</h6>
-                                <p>{{ $user->pays }}</p> 
+                                <h6 class="fs-14">role</h6>
+                                <p>{{ $user->role->role }}</p> 
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div>
-                                <h6 class="fs-14">Région</h6>
-                                <p>{{ $user->region }}</p>
-                            </div>
-                        </div>
+                        
                         <div class="col-md-6">
                             <div>
                                 <h6 class="fs-14">Ville</h6>
                                 <p>{{ $user->ville }}</p> 
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div>
-                                <h6 class="fs-14">Code Postal</h6>
-                                <p>{{ $user->code_postal }}</p> 
-                            </div>
-                        </div>
+        
                     </div>
                 </div>
             </div>

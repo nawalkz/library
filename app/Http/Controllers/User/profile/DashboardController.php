@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\client\profile;
+namespace App\Http\Controllers\User\profile;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index(){
-        return view('client.profile.dashboard.index');
+        return view('users.profile.dashboard.index');
     }
 }
