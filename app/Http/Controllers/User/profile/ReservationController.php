@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client\Profile;
+namespace App\Http\Controllers\User\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReservationRequest;
@@ -18,7 +18,7 @@ class ReservationController extends Controller
 
     public function index(){
         $reservations = Reservation::where("user_id", auth()->user()->id)->get();
-        return view('client.profile.reservations.index', compact('reservations'));
+        return view('users.profile.reservations.index', compact('reservations'));
     }
 
 }

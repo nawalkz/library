@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminRegisterController;
+use App\Models\Livre;
 use App\Models\User;
 
 
@@ -30,16 +31,39 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/livres/livre_media/', function () {
+    return view('users.livres.livre_media');
+})->name('users.livres.livre_media');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
 Route::middleware('auth')->group(function () {
+
+    // ======= Users routes =======
+    // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+    Route::get('/users/create/reservation', [App\Http\Controllers\User\ReservationController::class, 'create'])->name('users.create.reservation');
+    Route::post('/users/store', [App\Http\Controllers\User\ReservationController::class, 'store'])->name('users.store');
 
+    Route::get('/ticket/{id}', [App\Http\Controllers\User\ReservationController::class, 'show'])->name('ticket.show');
+    Route::get('/ticket/{id}/download', [App\Http\Controllers\User\ReservationController::class, 'download'])->name('ticket.download');
+
+    Route::get('/users/profile/reservations', [App\Http\Controllers\User\Profile\ReservationController::class, 'index'])->name('users.profile.reservations.index');
+    Route::get('/users/profile/dashboard', [App\Http\Controllers\User\Profile\DashboardController::class, 'index'])->name('users.profile.dashboard.index');
+    Route::get('/users/profile/monprofile', [App\Http\Controllers\User\Profile\MonprofileController::class, 'index'])->name('users.profile.monprofile.index');
+    Route::get('/users/profile/parametres', [App\Http\Controllers\User\Profile\ParametreController::class, 'index'])->name('users.profile.parametres.index');
+    Route::put('/users/profile/parametres', [App\Http\Controllers\User\Profile\ParametreController::class, 'update'])->name('users.profile.parametres.update');
+    Route::get('/users/profile/parametres/dropprofileimage', [App\Http\Controllers\User\Profile\ParametreController::class, 'removeprofileimage'])->name('users.profile.parametres.removeImage');
+
+    Route::delete('/profile/delete-image', [App\Http\Controllers\User\Profile\ParametreController::class, 'deleteProfileImage'])
+    ->name('profile.delete-image');
 
 
 
@@ -70,7 +94,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('notifications', NotificationController::class,);
 
 });
-
+});
 
 require __DIR__.'/auth.php';
 

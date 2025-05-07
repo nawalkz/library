@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\client\profile;
+namespace App\Http\Controllers\User\profile;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -15,7 +15,7 @@ use App\Models\User;
 class ParametreController extends Controller
 {
     public function index(){
-        return view('client.profile.parametres.index');
+        return view('users.profile.parametres.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class ParametreController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('client.profile.parametres.index', [
+        return view('users.profile.parametres.index', [
             'user' => $request->user(),
         ]);
     }
@@ -52,7 +52,7 @@ class ParametreController extends Controller
     
         $user->save();
     
-        return Redirect::route('client.profile.monprofile.index')->with('status', 'Profil mis à jour avec succès');
+        return Redirect::route('users.profile.monprofile.index')->with('status', 'Profil mis à jour avec succès');
     }
  
     public function deleteProfileImage(Request $request)
