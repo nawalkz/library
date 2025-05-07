@@ -1,323 +1,1096 @@
-<x-app-layout>
-    <style>
-        .seat {
-            width: 40px;
-            height: 40px;
-            background-color: #28a745;
-            /* Bootstrap green */
-            color: #fff;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Optional spacing so icon & text fit well */
-            padding: 2px;
-        }
+<!-- @extends('user.layouts.app') 
 
-        .seat-selected {
-            background-color: #fd7e14;
-            /* Bootstrap orange */
-        }
+@section('content')
+<div class="container mt-5">
+    <h2 class="mb-4">Mes Réservations</h2>
 
-        /* Optional: smaller icon & text size if you want it more compact */
-        .seat i {
-            font-size: 0.9rem;
-        }
+    @if (session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
-        .seat small {
-            font-size: 0.75rem;
-        }
-    </style>
-    <!-- Breadcrumb -->
-    <div class="breadcrumb-bar breadcrumb-bg-05 text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-12">
-                    <h2 class="breadcrumb-title mb-2">Détails de voyage</h2>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center mb-0">
-                            <li class="breadcrumb-item"><a href="index-2.html"><i class="isax isax-home5"></i></a></li>
-                            <li class="breadcrumb-item">Voyage</li>
-                            <li class="breadcrumb-item active" aria-current="page">Détails de l'voyage</li>
-                        </ol>
+    @if ($reservations->isEmpty())
+        <div class="alert alert-info">Aucune réservation trouvée.</div>
+    @else
+        <div class="table-responsive">
+            <table class="table table-bordered text-center align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Livre</th>
+                        <th>Date de réservation</th>
+                        <th>Statut</th>
+                        <th>Date de retour (si applicable)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($reservations as $index => $reservation)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $reservation->livre->titre ?? 'Livre supprimé' }}</td>
+                            <td>{{ $reservation->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $reservation->statut }}</td>
+                            <td>
+                                @if ($reservation->date_reteure)
+                                    {{ \Carbon\Carbon::parse($reservation->date_reteure)->format('d/m/Y') }}
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+</div>
+@endsection
+ -->
+<!DOCTYPE html>
+<html lang="zxx">
+    
+
+<head>        
+
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+
+        <!-- Title -->
+        <title>..:: LIBRARIA ::..</title>
+
+        <!-- Favicon -->
+        <link href="../../assets/img/favicon.ico" rel="icon" type="image/x-icon" />
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <link href="../../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Mobile Menu -->
+        <link href="../../assets/css/mmenu.css" rel="stylesheet" type="text/css" />
+        <link href="../../assets/css/mmenu.positioning.css" rel="stylesheet" type="text/css" />
+
+        <link rel="stylesheet" type="text/css" href="../../assets/css/jquery.accordion.css">
+
+        <!-- Stylesheet -->
+        <link href="../../assets/style.css" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="../../assets/js/html5shiv.min.js"></script>
+        <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <!-- Start: Header Section -->
+        <header id="header-v1" class="navbar-wrapper inner-navbar-wrapper">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-default">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="navbar-header">
+                                    <div class="navbar-brand">
+                                        <h1>
+                                            <a href="index-2.html">
+                                                <img src="assets/img/libraria-logo-v1.png" alt="LIBRARIA" />
+                                            </a>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <!-- Header Topbar -->
+                                <div class="header-topbar hidden-sm hidden-xs">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="topbar-info">
+                                                <a href="tel:+61-3-8376-6284"><i class="fa fa-phone"></i>+61-3-8376-6284</a>
+                                                <span>/</span>
+                                                <a href="mailto:support@libraria.com"><i class="fa fa-envelope"></i>support@libraria.com</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="topbar-links">
+                                                <a href="signin.html"><i class="fa fa-lock"></i>Login / Register</a>
+                                                <span>|</span>
+                                                <div class="header-cart dropdown">
+                                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                        <small>0</small>
+                                                    </a>
+                                                    <div class="dropdown-menu cart-dropdown">
+                                                        <ul>
+                                                            <li class="clearfix">
+                                                                <img src="assets/img/header-cart-image-01.jpg" alt="cart item" />
+                                                                <div class="item-info">
+                                                                    <div class="name">
+                                                                        <a href="#">The Great Gatsby</a>
+                                                                    </div>
+                                                                    <div class="author"><strong>Author:</strong> F. Scott Fitzgerald</div>
+                                                                    <div class="price">1 X $10.00</div>
+                                                                </div>
+                                                                <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
+                                                            </li>
+                                                            <li class="clearfix">
+                                                                <img src="assets/img/header-cart-image-02.jpg" alt="cart item" />
+                                                                <div class="item-info">
+                                                                    <div class="name">
+                                                                        <a href="#">The Great Gatsby</a>
+                                                                    </div>
+                                                                    <div class="author"><strong>Author:</strong> F. Scott Fitzgerald</div>
+                                                                    <div class="price">1 X $10.00</div>
+                                                                </div>
+                                                                <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
+                                                            </li>
+                                                            <li class="clearfix">
+                                                                <img src="assets/img/header-cart-image-03.jpg" alt="cart item" />
+                                                                <div class="item-info">
+                                                                    <div class="name">
+                                                                        <a href="#">The Great Gatsby</a>
+                                                                    </div>
+                                                                    <div class="author"><strong>Author:</strong> F. Scott Fitzgerald</div>
+                                                                    <div class="price">1 X $10.00</div>
+                                                                </div>
+                                                                <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="cart-total">
+                                                            <div class="title">SubTotal</div>
+                                                            <div class="price">$30.00</div>
+                                                        </div>
+                                                        <div class="cart-buttons">
+                                                            <a href="cart.html" class="btn btn-dark-gray">View Cart</a>
+                                                            <a href="checkout.html" class="btn btn-primary">Checkout</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="navbar-collapse hidden-sm hidden-xs">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown active">
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="index-2.html">Home</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="index-2.html">Home V1</a></li>
+                                                <li><a href="home-v2.html">Home V2</a></li>
+                                                <li><a href="home-v3.html">Home V3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="books-media-list-view.html">Books &amp; Media</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="books-media-list-view.html">Books &amp; Media List View</a></li>
+                                                <li><a href="books-media-gird-view-v1.html">Books &amp; Media Grid View V1</a></li>
+                                                <li><a href="books-media-gird-view-v2.html">Books &amp; Media Grid View V2</a></li>
+                                                <li><a href="books-media-detail-v1.html">Books &amp; Media Detail V1</a></li>
+                                                <li><a href="books-media-detail-v2.html">Books &amp; Media Detail V2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="news-events-list-view.html">News &amp; Events</a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                <li><<a href="{{ route('users.reservations.index') }}">>News &amp; Events Detail</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="cart.html">Cart</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="signin.html">Signin/Register</a></li>
+                                                <li><a href="404.html">404/Error</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="blog.html">Blog</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="blog.html">Blog Grid View</a></li>
+                                                <li><a href="blog-detail.html">Blog Detail</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="services.html">Services</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-menu hidden-lg hidden-md">
+                            <a href="#mobile-menu"><i class="fa fa-navicon"></i></a>
+                            <div id="mobile-menu">
+                                <ul>
+                                    <li class="mobile-title">
+                                        <h4>Navigation</h4>
+                                        <a href="#" class="close"></a>
+                                    </li>
+                                    <li>
+                                        <a href="index-2.html">Home</a>
+                                        <ul>
+                                            <li><a href="index-2.html">Home V1</a></li>
+                                            <li><a href="home-v2.html">Home V2</a></li>
+                                            <li><a href="home-v3.html">Home V3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="books-media-list-view.html">Books &amp; Media</a>
+                                        <ul>
+                                            <li><a href="books-media-list-view.html">Books &amp; Media List View</a></li>
+                                            <li><a href="books-media-gird-view-v1.html">Books &amp; Media Grid View V1</a></li>
+                                            <li><a href="books-media-gird-view-v2.html">Books &amp; Media Grid View V2</a></li>
+                                            <li><a href="books-media-detail-v1.html">Books &amp; Media Detail V1</a></li>
+                                            <li><a href="books-media-detail-v2.html">Books &amp; Media Detail V2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="news-events-list-view.html">News &amp; Events</a>
+                                        <ul>
+                                            <li><<a href="{{ route('users.reservations.index') }}">>News &amp; Events Detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Pages</a>
+                                        <ul>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="signin.html">Signin/Register</a></li>
+                                            <li><a href="404.html">404/Error</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="blog.html">Blog</a>
+                                        <ul>
+                                            <li><a href="blog.html">Blog Grid View</a></li>
+                                            <li><a href="blog-detail.html">Blog Detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="services.html">Services</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </nav>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- /Breadcrumb -->
+        </header>
+        <!-- End: Header Section -->
 
-    <!-- Page Wrapper -->
-    <div class="content">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-xl-8">
-                    <!-- Slider -->
-                    <div>
-                        <div class="service-wrap slider-wrap-five mb-4">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
-                                <div class="mb-2">
-                                    <h4 class="mb-1 d-flex align-items-center flex-wrap">
-                                        {{ $voyage->autocar->societe->raison_social }}
-                                    </h4>
-                                    <div class="d-flex align-items-center flex-wrap">
-                                        <p class="fs-14 mb-2 me-3 pe-3 border-end d-flex align-items-center">
-                                            <img src="{{ asset('storage/' . $voyage->autocar->image) }}" class="me-2"
-                                                alt="Img">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Slider -->
-
-                    <div class="card shadow-none bg-light-200">
-                        <div class="card-body pb-1">
-                            <h5 class="d-flex align-items-center fs-18 mb-3">
-                                <span class="avatar avatar-md rounded-circle bg-primary me-2"><i
-                                        class="isax isax-bus5"></i></span>
-                                Informations de voyage
-                            </h5>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Date de départ</h6>
-                                        <p>{{ $voyage->date_depart }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Date d'arrivée</h6>
-                                        <p>{{ $voyage->date_arrivee }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Heure de départ</h6>
-                                        <p>{{ $voyage->heure_depart }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Heure d'arrivée</h6>
-                                        <p>{{ $voyage->heure_arrivee }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Ville de départ</h6>
-                                        <p>{{ $voyage->villeDepart->ville }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Ville d'arrivée</h6>
-                                        <p>{{ $voyage->villeArrivee->ville }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Autocar</h6>
-                                        <p>ID: {{ $voyage->autocar_id }}</p>
-                                    </div>
-                                </div>
-                                {{-- <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Type de voyage</h6>
-                                        <p>{{ $voyage->type_voyage }}</p>
-                                    </div>
-                                </div> --}}
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <h6 class="mb-1">Prix</h6>
-                                        <p>{{ $voyage->prix }} DH</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="accordion custom-accordion accordion-shadow-none">
-                        <div class="accordion-item mb-0 border-0 pb-1">
-                            <div class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#accordion_collapse_three" aria-expanded="true">
-                                    Équipements
-                                </button>
-                            </div>
-                            <div id="accordion_collapse_three" class="accordion-collapse collapse show">
-                                <div class="accordion-body pt-0">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="mb-3">
-                                                @foreach($equipements as $equipement)
-                                                    <div class="d-flex align-items-center mb-2">
-                                                        <i class="isax isax-verify text-primary me-2 fs-16"></i>
-                                                        <p>{{ $equipement->equipement }}</p>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
+        <!-- Start: Page Banner -->
+        <section class="page-banner news-listing-banner services-banner">
+            <div class="container">
+                <div class="banner-header">
+                    <h2>News Listing</h2>
+                    <span class="underline center"></span>
+                    <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
                 </div>
-                <div class="col-xl-4 theiaStickySidebar">
-                    <div class="card shadow-none">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-4">
-                                <span class="btn btn-outline-light flex-fill"><span class="icon-rotate-up me-2"><i
-                                            class="isax isax-airplane"></i></span>{{ $voyage->villeDepart->ville }}</span>
-                                <a href="javascript:void(0);" class="way-icon badge badge-primary rounded-pill mx-2">
-                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                </a>
-                                <span class="btn btn-outline-light flex-fill"><span class="icon-rotate-down me-2"><i
-                                            class="isax isax-airplane"></i></span>{{ $voyage->villeArrivee->ville }}</span>
-                            </div>
-                            <h5 class="fs-18 mb-3">Vérifier la disponibilité</h5>
-                            <div class="banner-form">
-                                <form action="{{ route('client.reservations.store') }}" method="POST"
-                                    class="form-info border-0">
-                                    @csrf
-                                    <input type="text" name="voyage_id" value="{{ $voyage->id }}" hidden>
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="index-2.html">Home</a></li>
+                        <li>News</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- End: Page Banner -->
 
-
-                                    <!-- From -->
-                                    <div class="form-item dropdown border rounded p-3 mb-3 w-100">
-                                        <label class="form-label fs-14 text-default mb-1">From</label>
-                                        <h5>{{ $voyage->villeDepart->ville }}</h5>
-                                    </div>
-
-                                    <!-- To -->
-                                    <div class="form-item dropdown border rounded p-3 mb-3 w-100">
-                                        <label class="form-label fs-14 text-default mb-1">To</label>
-                                        <h5>{{ $voyage->villeArrivee->ville }}</h5>
-                                    </div>
-
-                                    <!-- Departure -->
-                                    <div class="form-item border rounded p-3 mb-3 w-100">
-                                        <label class="form-label fs-14 text-default mb-1">Departure</label>
-                                        <input type="text" class="form-control datetimepicker"
-                                            value="{{ $voyage->date_depart }}" />
-                                    </div>
-
-                                    <!-- Preferred Class -->
-                                    {{-- <div class="mb-3">
-                                  <label class="form-label fs-14 text-default mb-1">Preferred Class</label>
-                                  <select class="form-select" name="classe_id">
-                                    @foreach (App\Models\TypeVoyage::all() as $typevoyage)
-                                      <option value="{{ $typevoyage->id }}">{{ $typevoyage->type_voyage }}</option>
-                                    @endforeach
-                                  </select>
-                                </div> --}}
-
-                                    <!-- Mode règlement -->
-                                    <div class="mb-3">
-                                        <label class="form-label fs-14 text-default mb-1">Mode règlement</label>
-                                        <select name="mode_reglement_id" class="form-select">
-                                            @foreach (App\Models\ModeReglement::all() as $moderegelement)
-                                                <option value="{{ $moderegelement->id }}">
-                                                    {{ $moderegelement->mode_reglement }}</option>
-                                            @endforeach
-
-                                        </select>
-                                    </div>
-
-                                    <!-- Seat Selection -->
-                                    <div class="card shadow-none mb-3">
-                                        <div class="card-body p-3 pb-0">
-                                            <div class="border-bottom pb-2 mb-2">
-                                                <h6 onclick="resetCheckboxes()">Sélection de siège</h6>
-                                            </div>
+        <!-- Start: Products Section -->
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    <div class="main-news-list">
+                        <div class="container">
+                            <!-- Start: Search Section -->
+                            <section class="search-filters">
+                                <div class="filter-box">
+                                    <h3>Find the library events &amp; classes</h3>
+                                    <form action="http://libraria.demo.presstigers.com/news-events-detail.html" method="get">
+                                        <div class="col-md-10">
                                             <div class="row">
-                                                @php
-                                                    $reservedSeats = App\Models\Reservation::where(
-                                                        'voyage_id',
-                                                        $voyage->id,
-                                                    )
-                                                        ->pluck('num_siege')
-                                                        ->toArray();
-                                                    $nbr_siege = $voyage->autocar->nbr_siege;
-                                                @endphp
-
-                                                @for ($i = 1; $i <= $nbr_siege; $i++)
-                                                    <div class="col-2 mb-2">
-                                                        <div
-                                                            class="seat @if (in_array($i, $reservedSeats)) seat-selected @endif">
-                                                            <label for="seat-{{ $i }}"
-                                                                class="seat-label d-flex align-items-center justify-content-center">
-                                                                <input type="checkbox" name="seats[]"
-                                                                    id="seat-{{ $i }}"
-                                                                    @if (in_array($i, $reservedSeats)) disabled @endif
-                                                                    class="d-none" value="{{ $i }}"
-                                                                    onclick="toggleCheckboxes(this);"
-
-                                                                    >
-                                                                <i class="fa fa-bus-alt"></i>
-                                                                <small class="ms-1">{{ $i }}</small>
-                                                            </label>
-                                                        </div>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="keywords">Search by Keyword</label>
+                                                        <input class="form-control" placeholder="Search by Keyword" id="keywords" name="keywords" type="text">
                                                     </div>
-                                                @endfor
-
+                                                </div>
+                                                <div class="col-md-4 col-sm-3">
+                                                    <div class="form-group">
+                                                        <select name="category" id="category" class="form-control">
+                                                            <option>All Categories</option>
+                                                            <option>Category 01</option>
+                                                            <option>Category 02</option>
+                                                            <option>Category 03</option>
+                                                            <option>Category 04</option>
+                                                            <option>Category 05</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-3">
+                                                    <div class="form-group">
+                                                        <select name="locations" id="locations" class="form-control">
+                                                            <option>All Locations</option>
+                                                            <option>Location 01</option>
+                                                            <option>Location 02</option>
+                                                            <option>Location 03</option>
+                                                            <option>Location 04</option>
+                                                            <option>Location 05</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <select name="startdate" id="startdate" class="form-control">
+                                                                    <option>Start Date</option>
+                                                                    <option>Start Date 01</option>
+                                                                    <option>Start Date 02</option>
+                                                                    <option>Start Date 03</option>
+                                                                    <option>Start Date 04</option>
+                                                                    <option>Start Date 05</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <select name="enddate" id="enddate" class="form-control">
+                                                                    <option>End Date</option>
+                                                                    <option>End Date 01</option>
+                                                                    <option>End Date 02</option>
+                                                                    <option>End Date 03</option>
+                                                                    <option>End Date 04</option>
+                                                                    <option>End Date 05</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                                <div class="col-md-4 col-sm-3">
+                                                    <div class="form-group">
+                                                        <select name="agegroup" id="agegroup" class="form-control">
+                                                            <option>Age Group</option>
+                                                            <option>Age Group 01</option>
+                                                            <option>Age Group 02</option>
+                                                            <option>Age Group 03</option>
+                                                            <option>Age Group 04</option>
+                                                            <option>Age Group 05</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-3">
+                                                    <div class="form-group">
+                                                        <select name="language" id="language" class="form-control">
+                                                            <option>Language</option>
+                                                            <option>Language 01</option>
+                                                            <option>Language 02</option>
+                                                            <option>Language 03</option>
+                                                            <option>Language 04</option>
+                                                            <option>Language 05</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control btn-clearform" type="submit" value="Clear Form">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="submit" value="Find Event">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="clear"></div>
+                            </section>
+                            <!-- End: Search Section -->
+                            <div class="row">
+                                <div class="col-md-9 col-md-push-3">
+                                    <div class="news-list-detail">
+                                        <div class="news-list-box">
+                                            <div class="single-news-list">
+                                                <div class="social-content">
+                                                    <div class="social-share">
+                                                        <ul>
+                                                            <li><a href="#."><i class="fa fa-comment"></i> 37</a></li>
+                                                            <li><a href="#."><i class="fa fa-thumbs-o-up"></i> 110</a></li>
+                                                            <li><a href="#."><i class="fa fa-eye"></i> 180</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="social-media">
+                                                        <ul>
+                                                            <li><a href="#." target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                                            <li><a href="#." target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                                            <li><a href="#." target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                                            <li><a href="#." target="_blank"><i class="fa fa-rss"></i></a></li>
+                                                            <li><a href="#." target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <figure>
+                                                    <img src="assets/img/news-event/new-detail-img.jpg" alt="News &amp; Event">
+                                                </figure>
+                                                <div class="content-block">
+                                                    <div class="member-info">
+                                                        <div class="content_meta_category">
+                                                            <span class="arrow-right"></span>
+                                                            <a href="#." rel="category tag">EVENT</a>
+                                                        </div>
+                                                        <ul class="news-event-info">
+                                                            <li>
+                                                                <a href="#" target="_blank">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                    July 25, 2016
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" target="_blank">
+                                                                    <i class="fa fa-clock-o"></i>
+                                                                    10:15 AM - 10:15 PM 
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" target="_blank">
+                                                                    <i class="fa fa-map-marker"></i>
+                                                                    New York, USA
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <h2>Curabitur leo elit, interdum nec pretium eu, convallis ut erat. Curabitur sagittis feugiat tortor eget vehicula.</h2>
+                                                        <p>Proin tincidunt molestie urna, non fringilla est pretium et. Proin dignissim porttitor quam, eget gravida ante accumsan et. Cras quis commodo massa. Nullam id mauris vel arcu ultricies hendrerit. Praesent hendrerit posuere risus, quis iaculis erat auctor non. Fusce bibendum in lorem ac pharetra. Mauris bibendum placerat massa non pellentesque. Maecenas interdum, nisl quis molestie gravida, sapien dui dictum urna, at pretium odio massa ut nibh. Nam sit amet eros ultricies leo ultrices sodales nec vel dui. Mauris imperdiet turpis sit amet lobortis efficitur. Mauris commodo nunc non risus auctor finibus. Ut egestas urna quis elit egestas, ac bibendum orci maximus. Maecenas risus magna, mollis et purus sit amet, pellentesque tempor lacus. Quisque dictum tortor ac est auctor, ut dapibus risus rutrum. Quisque porttitor turpis in sagittis porttitor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean egestas consequat porttitor. </p>
+                                                        <p>Praesent lorem felis, fringilla in feugiat a, pretium in erat. Mauris ultricies rhoncus justo, quis sollicitudin risus rutrum sed. Cras sit amet odio eget felis dignissim elementum sit amet a justo. Suspendisse sodales sem et fermentum luctus. Phasellus quis sapien tellus. Aenean sit amet est purus. Vestibulum justo risus, pharetra in sem eu, bibendum iaculis nisl. Aliquam pulvinar tellus vel ornare ultrices. Nam cursus varius egestas. Cras sed varius nulla, non volutpat diam. Sed ultricies dolor purus, vitae consectetur dolor imperdiet non. </p>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-5">
+                                                <div class="contact-info">
+                                                    <h3>Contact Info</h3>
+                                                    <span class="underline left"></span>
+                                                    <h5>Libraria – Downtown & Business</h5>
+                                                    <p>21 King Street, Melbourne</p>
+                                                    <p>Victoria 3000</p>
+                                                    <p>Australia</p>
+                                                    <h5>Libraria – Downtown & Business</h5>
+                                                    <p>Phone: + 012-345-6789</p>
+                                                    <p>Email: suport@virtualsoft.com</p>
+                                                    <p>Website: www.virtualsoft.com</p>
+                                                    <br>
+                                                    <img src="assets/img/contact-location.jpg" alt="Google Map">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-7">
+                                                <div class="events-calendar">
+                                                    <h3>Events Calendar</h3>
+                                                    <span class="underline left"></span>
+                                                    <div class="form-group">
+                                                        <label>Select a Category:</label>
+                                                        <select name="category" id="category1" class="form-control">
+                                                            <option>All Categories</option>
+                                                            <option>Category 01</option>
+                                                            <option>Category 02</option>
+                                                            <option>Category 03</option>
+                                                            <option>Category 04</option>
+                                                            <option>Category 05</option>
+                                                        </select>
+                                                    </div>
+                                                    <table class="event-table cart">
+                                                        <thead>                             
+                                                            <tr>
+                                                                <th class="product-name">Date/Time</th>
+                                                                <th class="product-name">Event</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td data-title="date-time">
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-calendar"></i> 
+                                                                        July 25 - 
+                                                                    </a>
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-clock-o"></i> 
+                                                                        9:30 am
+                                                                    </a>
+                                                                </td>
+                                                                <td data-title="event">
+                                                                    Event Name Here
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-title="date-time">
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-calendar"></i> 
+                                                                        July 25 - 
+                                                                    </a>
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-clock-o"></i> 
+                                                                        9:30 am
+                                                                    </a>
+                                                                </td>
+                                                                <td data-title="event">
+                                                                    Event Name Here
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-title="date-time">
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-calendar"></i> 
+                                                                        July 25 - 
+                                                                    </a>
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-clock-o"></i> 
+                                                                        9:30 am
+                                                                    </a>
+                                                                </td>
+                                                                <td data-title="event">
+                                                                    Event Name Here
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-title="date-time">
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-calendar"></i> 
+                                                                        July 25 - 
+                                                                    </a>
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-clock-o"></i> 
+                                                                        9:30 am
+                                                                    </a>
+                                                                </td>
+                                                                <td data-title="event">
+                                                                    Event Name Here
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-title="date-time">
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-calendar"></i> 
+                                                                        July 25 - 
+                                                                    </a>
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-clock-o"></i> 
+                                                                        9:30 am
+                                                                    </a>
+                                                                </td>
+                                                                <td data-title="event">
+                                                                    Event Name Here
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-title="date-time">
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-calendar"></i> 
+                                                                        July 25 - 
+                                                                    </a>
+                                                                    <a href="#" target="_blank">
+                                                                        <i class="fa fa-clock-o"></i> 
+                                                                        9:30 am
+                                                                    </a>
+                                                                </td>
+                                                                <td data-title="event">
+                                                                    Event Name Here
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="clear"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="related-event text-center">
+                                            <h2>Related Event</h2>
+                                            <span class="underline center"></span>
+                                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <div class="owl-carousel-event">
+                                                <div class="single-related-event">
+                                                    <figure>
+                                                        <<a href="{{ route('users.reservations.index') }}">><img src="assets/img/news-event/related-event-01.jpg" alt="Related event"></a>
+                                                        <figcaption>
+                                                            <header>
+                                                                <ul class="news-event-info">
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            July 25, 2016
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            New York, USA
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <h4><a href=".html#">It uses a dictionary of over 200 Latin word</a></h4>
+                                                            </header>
+                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                        </figcaption>
+                                                    </figure> 
+                                                </div>
+                                                <div class="single-related-event">
+                                                    <figure>
+                                                        <<a href="{{ route('users.reservations.index') }}">><img src="assets/img/news-event/related-event-02.jpg" alt="Related event"></a>
+                                                        <figcaption>
+                                                            <header>
+                                                                <ul class="news-event-info">
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            July 25, 2016
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            New York, USA
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <h4><a href=".html#">It uses a dictionary of over 200 Latin word</a></h4>
+                                                            </header>
+                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                        </figcaption>
+                                                    </figure> 
+                                                </div>
+                                                <div class="single-related-event">
+                                                    <figure>
+                                                        <<a href="{{ route('users.reservations.index') }}">><img src="assets/img/news-event/related-event-03.jpg" alt="Related event"></a>
+                                                        <figcaption>
+                                                            <header>
+                                                                <ul class="news-event-info">
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            July 25, 2016
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            New York, USA
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <h4><a href=".html#">It uses a dictionary of over 200 Latin word</a></h4>
+                                                            </header>
+                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                        </figcaption>
+                                                    </figure> 
+                                                </div>
+                                                <div class="single-related-event">
+                                                    <figure>
+                                                        <<a href="{{ route('users.reservations.index') }}">><img src="assets/img/news-event/related-event-01.jpg" alt="Related event"></a>
+                                                        <figcaption>
+                                                            <header>
+                                                                <ul class="news-event-info">
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            July 25, 2016
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            New York, USA
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <h4><a href=".html#">It uses a dictionary of over 200 Latin word</a></h4>
+                                                            </header>
+                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                        </figcaption>
+                                                    </figure> 
+                                                </div>
+                                                <div class="single-related-event">
+                                                    <figure>
+                                                        <<a href="{{ route('users.reservations.index') }}">><img src="assets/img/news-event/related-event-02.jpg" alt="Related event"></a>
+                                                        <figcaption>
+                                                            <header>
+                                                                <ul class="news-event-info">
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            July 25, 2016
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            New York, USA
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <h4><a href=".html#">It uses a dictionary of over 200 Latin word</a></h4>
+                                                            </header>
+                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                        </figcaption>
+                                                    </figure> 
+                                                </div>
+                                                <div class="single-related-event">
+                                                    <figure>
+                                                        <<a href="{{ route('users.reservations.index') }}">><img src="assets/img/news-event/related-event-03.jpg" alt="Related event"></a>
+                                                        <figcaption>
+                                                            <header>
+                                                                <ul class="news-event-info">
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                            July 25, 2016
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" target="_blank">
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            New York, USA
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <h4><a href=".html#">It uses a dictionary of over 200 Latin word</a></h4>
+                                                            </header>
+                                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                                        </figcaption>
+                                                    </figure> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- Submit Button -->
-                                    <button type="submit"
-                                        class="btn btn-primary btn-lg search-btn ms-0 w-100 mb-3 fs-14">
-                                        Réserver Maintenant
-                                    </button>
-                                </form>
-
+                                </div>
+                                <div class="col-md-3 col-md-pull-9">
+                                    <aside id="secondary" class="sidebar widget-area">
+                                        <div class="widget widget_search">
+                                            <h4 class="widget-title" data-control>Search News</h4>
+                                            <form method="get" action="#." class="form-horizontal search-form">
+                                                <input class="form-control" id="inputEmail" placeholder="Search Here" value="" name="s" type="text">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="widget widget_related_search">
+                                            <h4 class="widget-title" data-control>Related Searches</h4>
+                                            <div class="widget_categories">
+                                                <ul>
+                                                    <li><a href="#">Love stories <span>(18)</span></a></li>
+                                                    <li><a href="#">Texas <span>(04)</span></a></li>
+                                                    <li><a href="#">Rich people <span>(03)</span></a></li>
+                                                    <li><a href="#">Humorous stories <span>(02)</span></a></li>
+                                                    <li><a href="#">Widows <span>(02)</span></a></li>
+                                                    <li><a href="#">Women <span>(11)</span></a></li>
+                                                    <li><a href="#">Babysitters <span>(25)</span></a></li>
+                                                    <li><a href="#">Law firms <span>(09)</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="widget widget_recent_entries">
+                                            <h4 class="widget-title" data-control>Recent News</h4>
+                                            <ul>
+                                                <li>
+                                                    <figure>
+                                                        <img src="assets/img/order-item-04.jpg" alt="product" />
+                                                    </figure>
+                                                    <a href="#">It uses a dictionary</a>
+                                                    <span><i class="fa fa-calendar"></i> &nbsp; July 25, 2016</span>
+                                                    <span><i class="fa fa-clock-o"></i> &nbsp; 10:15 AM - 10:15 PM</span>
+                                                    <span><i class="fa fa-map-marker"></i> &nbsp; New York, USA</span>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                                <li>
+                                                    <figure>
+                                                        <img src="assets/img/order-item-05.jpg" alt="product" />
+                                                    </figure>
+                                                    <a href="#">It uses a dictionary</a>
+                                                    <span><i class="fa fa-calendar"></i> &nbsp; July 25, 2016</span>
+                                                    <span><i class="fa fa-clock-o"></i> &nbsp; 10:15 AM - 10:15 PM</span>
+                                                    <span><i class="fa fa-map-marker"></i> &nbsp; New York, USA</span>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                                <li>
+                                                    <figure>
+                                                        <img src="assets/img/order-item-06.jpg" alt="product" />
+                                                    </figure>
+                                                    <a href="#">It uses a dictionary</a>
+                                                    <span><i class="fa fa-calendar"></i> &nbsp; July 25, 2016</span>
+                                                    <span><i class="fa fa-clock-o"></i> &nbsp; 10:15 AM - 10:15 PM</span>
+                                                    <span><i class="fa fa-map-marker"></i> &nbsp; New York, USA</span>
+                                                    <div class="clearfix"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="widget widget_archives">
+                                            <h4 class="widget-title" data-control>News Archives</h4>
+                                            <form action="http://libraria.demo.presstigers.com/index.html" method="get">
+                                                <div class="form-group">
+                                                    <select name="month" id="month" class="form-control">
+                                                        <option>Select Month</option>
+                                                        <option>Month 01</option>
+                                                        <option>Month 02</option>
+                                                        <option>Month 03</option>
+                                                        <option>Month 04</option>
+                                                        <option>Month 05</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="widget widget_tag_cloud">
+                                            <h4 class="widget-title" data-control>News Tags</h4>
+                                            <ul>
+                                                <li><a href="#">Fashion</a></li>
+                                                <li><a href="#">Life Style</a></li>
+                                                <li><a href="#">Beauty</a></li>
+                                                <li><a href="#">Music</a></li>
+                                                <li><a href="#">Health</a></li>
+                                                <li><a href="#">Travel</a></li>
+                                                <li><a href="#">Library</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="widget twitter-widget">
+                                            <h3 class="footer-widget-title">Recent Tweets</h3>
+                                            <span class="underline left"></span>
+                                            <div id="twitter-feed-sidebar">
+                                                <ul>
+                                                    <li>
+                                                        <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem. <a href="#">template-libraria.com</a></p>
+                                                    </li>
+                                                    <li>
+                                                        <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem. <a href="#">template-libraria.com</a></p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </aside>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <!-- End: Products Section -->
+
+        <!-- Start: Social Network -->
+        <section class="social-network section-padding">
+            <div class="container">
+                <div class="center-content">
+                    <h2 class="section-title">Follow Us</h2>
+                    <span class="underline center"></span>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <ul>
+                    <li>
+                        <a class="facebook" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-facebook-f"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="twitter" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="google" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rss" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkedin" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-linkedin"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="youtube" href="#" target="_blank">
+                            <span>
+                                <i class="fa fa-youtube"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- End: Social Network -->
+
+        <!-- Start: Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div id="footer-widgets">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 widget-container">
+                            <div id="text-2" class="widget widget_text">
+                                <h3 class="footer-widget-title">About Libraria</h3>
+                                <span class="underline left"></span>
+                                <div class="textwidget">
+                                    It is a long established fact that a reader will be distracted by the readable content of a page when looking.
+                                </div>
+                                <address>
+                                    <div class="info">
+                                        <i class="fa fa-location-arrow"></i>
+                                        <span>21 King Street, Melbourne, Victoria 3000 Australia</span>
+                                    </div>
+                                    <div class="info">
+                                        <i class="fa fa-envelope"></i>
+                                        <span><a href="mailto:support@libraria.com">support@libraria.com</a></span>
+                                    </div>
+                                    <div class="info">
+                                        <i class="fa fa-phone"></i>
+                                        <span><a href="tel:012-345-6789">+ 012-345-6789</a></span>
+                                    </div>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 widget-container">
+                            <div id="nav_menu-2" class="widget widget_nav_menu">
+                                <h3 class="footer-widget-title">Quick Links</h3>
+                                <span class="underline left"></span>
+                                <div class="menu-quick-links-container">
+                                    <ul id="menu-quick-links" class="menu">
+                                        <li><a href="#">Library News</a></li>
+                                        <li><a href="#">History</a></li>
+                                        <li><a href="#">Meet Our Staff</a></li>
+                                        <li><a href="#">Board of Trustees</a></li>
+                                        <li><a href="#">Budget</a></li>
+                                        <li><a href="#">Annual Report</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix hidden-lg hidden-md hidden-xs tablet-margin-bottom"></div>
+                        <div class="col-md-2 col-sm-6 widget-container">
+                            <div id="text-4" class="widget widget_text">
+                                <h3 class="footer-widget-title">Timing</h3>
+                                <span class="underline left"></span>
+                                <div class="timming-text-widget">
+                                    <time datetime="2017-02-13">Mon - Thu: 9 am - 9 pm</time>
+                                    <time datetime="2017-02-13">Fri: 9 am - 6 pm</time>
+                                    <time datetime="2017-02-13">Sat: 9 am - 5 pm</time>
+                                    <time datetime="2017-02-13">Sun: 1 pm - 6 pm</time>
+                                    <ul>
+                                        <li><a href="#">Closings</a></li>
+                                        <li><a href="#">Branches</a></li>
+                                    </ul>
+                                </div>
+                            </div>			
+                        </div>
+                        <div class="col-md-4 col-sm-6 widget-container">
+                            <div class="widget twitter-widget">
+                                <h3 class="footer-widget-title">Latest Tweets</h3>
+                                <span class="underline left"></span>
+                                <div id="twitter-feed">
+                                    <ul>
+                                        <li>
+                                            <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem. <a href="#">template-libraria.com</a></p>
+                                        </li>
+                                        <li>
+                                            <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem. <a href="#">template-libraria.com</a></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>			
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="sub-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-text col-md-3">
+                            <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+                        </div>
+                        <div class="col-md-9 pull-right">
+                            <ul>
+                                <li><a href="index-2.html">Home</a></li>
+                                <li><a href="books-media-list-view.html">Books &amp; Media</a></li>
+                                <li><a href="news-events-list-view.html">News &amp; Events</a></li>
+                                <li><a href="#">Kids &amp; Teens</a></li>
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="#">Research</a></li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- /Page Wrapper -->
-    <script>
-        function toggleCheckboxes(selectedCheckbox) {
-            // resetCheckboxes();
-            reservedSeats=@json($reservedSeats);
-            selectedCheckbox.parentElement.parentElement.classList.toggle('seat-selected');
-            console.log(selectedCheckbox.checked);
+        </footer>
+        <!-- End: Footer -->
 
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                const seatNumber = Number(checkbox.id.split('-')[1]);
-                if (checkbox !== selectedCheckbox && !reservedSeats.includes(seatNumber) ) {
-                    checkbox.parentElement.parentElement.classList.remove('seat-selected')
-                    checkbox.checked = false;
-                }
-            });
-        }
+        <!-- jQuery Latest Version 1.x -->
+        <script type="text/javascript" src="../../assets/js/jquery-1.12.4.min.js"></script>
+        
+        <!-- jQuery UI -->
+        <script type="text/javascript" src="../../assets/js/jquery-ui.min.js"></script>
+        
+        <!-- jQuery Easing -->
+        <script type="text/javascript" src="../../assets/js/jquery.easing.1.3.js"></script>
 
-        function resetCheckboxes() {
-        reservedSeats=@json($reservedSeats);
-        nbr_siege=@json($nbr_siege);
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-           for(let i=1;i<=nbr_siege;i++){
-            if(reservedSeats.includes(i)){
-                continue;
-            }
-            const checkbox = document.getElementById(`seat-${i}`);
-            checkbox.disabled = false;
-            checkbox.checked = false;
-            checkbox.parentElement.parentElement.classList.remove('seat-selected');
-           }
+        <!-- Bootstrap -->
+        <script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
+        
+        <!-- Mobile Menu -->
+        <script type="text/javascript" src="../../assets/js/mmenu.min.js"></script>
+        
+        <!-- Harvey - State manager for media queries -->
+        <script type="text/javascript" src="../../assets/js/harvey.min.js"></script>
+        
+        <!-- Waypoints - Load Elements on View -->
+        <script type="text/javascript" src="../../assets/js/waypoints.min.js"></script>
 
-        }
-    </script>
-</x-app-layout>
+        <!-- Facts Counter -->
+        <script type="text/javascript" src="../../assets/js/facts.counter.min.js"></script>
+
+        <!-- MixItUp - Category Filter -->
+        <script type="text/javascript" src="../../assets/js/mixitup.min.js"></script>
+
+        <!-- Owl Carousel -->
+        <script type="text/javascript" src="../../assets/js/owl.carousel.min.js"></script>
+        
+        <!-- Accordion -->
+        <script type="text/javascript" src="../../assets/js/accordion.min.js"></script>
+        
+        <!-- Responsive Tabs -->
+        <script type="text/javascript" src="../../assets/js/responsive.tabs.min.js"></script>
+        
+        <!-- Responsive Table -->
+        <script type="text/javascript" src="../../assets/js/responsive.table.min.js"></script>
+        
+        <!-- Masonry -->
+        <script type="text/javascript" src="../../assets/js/masonry.min.js"></script>
+        
+        <!-- Carousel Swipe -->
+        <script type="text/javascript" src="../../assets/js/carousel.swipe.min.js"></script>
+        
+        <!-- bxSlider -->
+        <script type="text/javascript" src="../../assets/js/bxslider.min.js"></script>
+        
+        <!-- Custom Scripts -->
+        <script type="text/javascript" src="../../assets/js/main.js"></script>
+
+    </body>
+
+
+</html>

@@ -34,6 +34,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('reservation/', function () {
+    return view('users.reservations.index');
+})->name('users.reservations.index');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -70,7 +74,29 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('notifications', NotificationController::class,);
 
 });
+// ======= User routes =======
 
+use App\Http\Controllers\User\ReservationController as UserReservationController;
+
+
+// Routes protégées par authentification
+Route::middleware(['auth'])->group(function () {
+
+    // Réservations - côté utilisateur
+    Route::prefix('user')->name('user.')->group(function () {
+
+        // Voir toutes les réservations de l'utilisateur
+        Route::get('/reservations', [UserReservationController::class, 'index'])->name('reservations.index');
+
+
+
+        // Créer une réservation (formulaire)
+        Route::get('/reservations/create/{livre}', [UserReservationController::class, 'create'])->name('reservations.create');
+
+        // Enregistrer une réservation
+        Route::post('/reservations', [UserReservationController::class, 'store'])->name('reservations.store');
+    });
+});
 
 require __DIR__.'/auth.php';
 
