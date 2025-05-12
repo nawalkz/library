@@ -95,4 +95,83 @@ class LivreController extends Controller
         return redirect()->route('admin.livres.index')->with('destroy', 'Livre supprimé avec succès.');
     }
     
+    public function search(Request $request)
+{
+    $query = Livre::query();
+
+    if ($request->has('categorie_id') && !empty($request->categorie_id)) {
+        $query->where('categorie_id', $request->categorie_id);
+    }
+
+    if ($request->has('auteur_id') && !empty($request->auteur_id)) {
+        $query->where('auteur_id', $request->auteur_id);
+    }
+
+    if ($request->has('titre') && !empty($request->titre)) {
+        $query->where('titre', 'like', '%' . $request->titre . '%');
+    }
+
+    $livres = $query->paginate(12)->appends($request->query());
+
+    return response()->json([
+        'livres' => view('users.livres.livre_partial', compact('livres'))->render()
+    ]);
 }
+
+
+    /**
+     * Search for a book by category.
+     */
+
+     public function autocompleteTitre(Request $request)
+{
+    $term = $request->get('term');
+    $results = Livre::where('titre', 'LIKE', '%' . $term . '%')
+        ->select('id', 'titre as value') // 'value' هو لي كيتعرض فـ jQuery UI
+        ->get();
+
+    return response()->json($results);
+}
+public function autocompleteAuteur(Request $request)
+{
+    $term = $request->get('term');
+    $results = Auteur::where('auteur', 'LIKE', '%' . $term . '%')
+        ->select('id', 'auteur as value')
+        ->get();
+
+    return response()->json($results);
+}
+public function livreMedia(Request $request)
+{
+    $query = Livre::with(['auteur', 'categorie']);
+
+    // Filters إذا كانو
+    if ($request->filled('titre')) {
+        $query->where('titre', 'like', '%' . $request->titre . '%');
+    }
+
+    if ($request->filled('auteur_id')) {
+        $query->where('auteur_id', $request->auteur_id);
+    }
+
+    if ($request->filled('categorie_id')) {
+        $query->where('categorie_id', $request->categorie_id);
+    }
+
+    $livres = $query->paginate(12);
+
+    // هاد الشرط خاص باش يرجع فقط جزء الصفحة
+    if ($request->ajax()) {
+        return response()->json([
+            'livres' => view('partials.livres', compact('livres'))->render()
+        ]);
+    }
+
+    // الصفحة كاملة
+    return view('users.livres.livre_media', compact('livres'));
+}
+
+}
+
+
+

@@ -31,12 +31,6 @@ use App\Http\Controllers\User\ReservationController as UserReservationController
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
-Route::get('/livres/livre_media/', function () {
-    return view('users.livres.livre_media');
-})->name('users.livres.livre_media');
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -46,6 +40,12 @@ Route::get('reservation/', function () {
     return view('users.reservations.index');
 })->name('users.reservations.index');
 
+Route::get('/autocomplete/titre', [LivreController::class, 'autocompleteTitre'])->name('livres.autocomplete.titre');
+Route::get('/autocomplete/auteur', [LivreController::class, 'autocompleteAuteur'])->name('livres.autocomplete.auteur');
+
+Route::get('/livres/search', [LivreController::class, 'search'])->name('livres.search');
+Route::get('/livres/media', [LivreController::class, 'livreMedia'])->name('users.livres.livre_media');
+
 Route::middleware('auth')->group(function () {
 
     // ======= Users routes =======
@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::prefix('user')->name('user.')->group(function () {
+        
 
         // Voir toutes les réservations de l'utilisateur
         Route::get('/reservations', [UserReservationController::class, 'index'])->name('reservations.index');
@@ -68,39 +69,34 @@ Route::middleware('auth')->group(function () {
     });
 
 
+    Route::middleware('preventIfAdminExists')->group(function () {
+        Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
+        Route::post('/register-admin', [AdminRegisterController::class, 'store'])->name('register.admin.store');
+    });
 
+    // ======= Admin routes =======
+    Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+        Route::get('/', function () {
+            return view('admin.Layout.app');
+        })->name('dashboard');
 
-Route::middleware('preventIfAdminExists')->group(function () {
-    Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
-    Route::post('/register-admin', [AdminRegisterController::class, 'store'])->name('register.admin.store');
-});
-
-// ======= Admin routes =======
-Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
-    Route::get('/', function () {
-        return view('admin.Layout.app');
-    })->name('dashboard');
-
-    Route::resource('auteurs', AuteurController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('categories', CategorieController::class, [
-        'parameters' => ['categories' => 'categorie']
-    ]);
-    Route::resource('editeurs', EditeurController::class);
-    Route::resource('livres', LivreController::class, [
-        'parameters' => ['livres' => 'livre']]);
-    Route::resource('notifications', NotificationController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('reservations', ReservationController::class);
-    Route::resource('emprunts', EmpruntController::class);
-    Route::resource('notifications', NotificationController::class,);
-
-});
+        Route::resource('auteurs', AuteurController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('categories', CategorieController::class, [
+            'parameters' => ['categories' => 'categorie']
+        ]);
+        Route::resource('editeurs', EditeurController::class);
+        Route::resource('livres', LivreController::class, [
+            'parameters' => ['livres' => 'livre']
+        ]);
+        Route::resource('notifications', NotificationController::class);
+        Route::resource('roles', RoleController::class);
+        Route::resource('reservations', ReservationController::class);
+        Route::resource('emprunts', EmpruntController::class);
+        Route::resource('notifications', NotificationController::class,);
+    });
 });
 // ======= User routes =======
 
 
-require __DIR__.'/auth.php';
-
-
-
+require __DIR__ . '/auth.php';

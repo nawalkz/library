@@ -29,7 +29,6 @@ class UpdateLivreRequest extends FormRequest
             'editeur_id' => 'exists:editeurs,id',
             'nombre_page' => 'required|integer',
             'edition' => 'required|date',
-            'isbn' => 'string|max:255',
             'statut' => 'required|in:disponible,réservé,emprunté',
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
             ];
@@ -65,9 +64,7 @@ class UpdateLivreRequest extends FormRequest
             'edition.required' => "La date d'édition est obligatoire.",
             'edition.date' => "La date d'édition doit être une date valide.",
     
-            'isbn.string' => "Le code ISBN doit être une chaîne de caractères.",
-            'isbn.max' => "Le code ISBN ne doit pas dépasser 255 caractères.",
-
+           
             'statut.required' => 'Le statut du livre est obligatoire.',
             'statut.in' => 'Le statut doit être "disponible", "réservé" ou "emprunté".',
 

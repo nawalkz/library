@@ -200,7 +200,7 @@
     <div id="content" class="site-content">
         <div id="primary" class="content-area">
             <main id="main" class="site-main">
-                <div class="books-media-gird">
+                <div class="books-full-width">
                     <div class="container">
                         <div class="row">
                             <!-- Start: Search Section -->
@@ -269,7 +269,7 @@
                 </div>
             </main>
         </div>
-    </div>
+    </div> 
 
     <!-- Start: Footer -->
     <footer class="site-footer">
@@ -359,10 +359,13 @@
                     </div>
                     <div class="col-md-9 pull-right">
                         <ul>
-                            <li><a href="{{ route('welcome')}}">Home</a></li>
-                            <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a></li>
-                            <li><a href="{{ route('users.reservations.index') }}">News &amp; Events</a></li>
-                            <li><a href="#">Pages</a></li>
+                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="books-media-list-view.html">Books &amp; Media</a></li>
+                            <li><a href="news-events-list-view.html">News &amp; Events</a></li>
+                            <li><a href="#">Kids &amp; Teens</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="blog.html">Blog</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -469,25 +472,27 @@
         });
 
         // AJAX pagination clicks
-        let categorie = $('#categorie_id').val();
-        let auteur = $('#auteur_id').val();
-        let titre = $('#titre').val();
+        $(document).on('click', '.pagination a, .ajax-page', function(e) {
+            e.preventDefault();
 
-        $.ajax({
-            url: pageUrl,
-            type: "GET",
-            data: {
-                titre: titre,
-                auteur_id: auteur,
-                categorie_id: categorie
-            },
-            success: function(response) {
-                $('#livres').html(response.livres);
-            },
-            error: function(xhr) {
-                alert('Erreur lors du chargement des livres');
-                console.log(xhr.responseText); // هادي مهمة بزاف
-            }
+            let pageUrl = $(this).attr('href');
+
+            let categorie = $('#categorie_id').val(); // هذا خاص يكون ID
+            let auteur = $('#auteur_id').val(); // هذا خاص يكون ID
+            let titre = $('#titre').val();
+
+            $.ajax({
+                url: pageUrl,
+                type: "GET",
+                data: {
+                    categorie: categorie,
+                    auteur: auteur,
+                    titre: titre,
+                },
+                success: function(response) {
+                    $('#livres').html(response.livres);
+                }
+            });
         });
     </script>
 
