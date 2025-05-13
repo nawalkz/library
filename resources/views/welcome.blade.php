@@ -135,14 +135,13 @@
                         </div>
                         <div class="navbar-collapse hidden-sm hidden-xs">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown active">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="index-2.html">Home</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index-2.html">Home V1</a></li>
-                                        <li><a href="home-v2.html">Home V2</a></li>
-                                        <li><a href="home-v3.html">Home V3</a></li>
+                            <li class="dropdown active">
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('welcome')}}">Home</a>
+                                        <ul class="dropdown-menu">
+                                        <li><a href="{{ route('welcome')}}">Home</a></li>
+                
                                     </ul>
-                                </li>
+                                    </li>
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a>
                                     <ul class="dropdown-menu">
