@@ -35,27 +35,33 @@ class EmpruntController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Emprunt $emprunt ,$id)
-    {
-        $emprunt = Emprunt::findOrFail($id);
-        return view('admin.emprunts.show', compact('emprunt'));
-    }
+    public function show(Emprunt $emprunt)
+{
+    return view('admin.emprunts.show', compact('emprunt'));
+}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Emprunt $emprunt)
+   
+public function edit(Emprunt $emprunt)
     {
-        //
+        return view('admin.emprunts.edit', compact('emprunt'));
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Emprunt $emprunt)
-    {
-        //
-    }
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'date_reteure' => 'required|date|after_or_equal:date_emprunt',
+    ]);
+
+    $emprunt = Emprunt::findOrFail($id);
+    $emprunt->date_reteure = $request->date_reteure;
+    $emprunt->save();
+
+    return redirect()->route('admin.emprunts.index')->with('success', 'Date de retour mise à jour avec succès.');
+}
 
     /**
      * Remove the specified resource from storage.

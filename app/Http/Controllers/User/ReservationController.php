@@ -13,20 +13,34 @@ use Illuminate\Support\Facades\DB; */
 
 class ReservationController extends Controller
 {
-    // Afficher les réservations de l'utilisateur connecté
+    
     public function index()
-    {
-        $user = Auth::user(); // Récupère l'utilisateur connecté
-        $reservations = Reservation::where('user_id', $user->id)->with('livre')->get();
-    
-        return view('user.reservations.index', compact('reservations'));
-    }
-    
+{
+    // Récupère les réservations de l'utilisateur connecté
+    $reservations = Reservation::where('user_id', auth()->id())->with('livre')->get();
+return view('users.reservations.index', compact('reservations'));
+
+}
+
+public function emprunt()
+{
+    $user = auth()->user();
+    $emprunts = Reservation::where('user_id', $user->id)->with('livre')->get();
+
+    return view('users.reservations.emprunt', compact('user', 'emprunts'));
+}
+/* public function showTicket()
+{
+    $user = auth()->user();
+    $reservations = Reservation::where('user_id', $user->id)->with('livre')->get();
+
+    return view('users.reservations.ticket', compact('user', 'reservations'));
+} */
     
     public function create(Request $request)
     {
         $livre = Livre::find($request->livre_id);
-        return view('user.reservations.create', compact('livre'));
+        return view('users.reservations.create', compact('livre'));
     }
     
     public function store(Request $request)
@@ -35,7 +49,7 @@ class ReservationController extends Controller
     $livre_id = $request->livre_id;
 
     // Vérification du rôle
-    if ($user->role == 'etudiant') {
+    if ($user->role == 2) {
         // Vérifier s'il a déjà un livre réservé
         $hasReservation = Reservation::where('user_id', $user->id)->whereNull('date_reteure')->exists();
 
@@ -46,7 +60,7 @@ class ReservationController extends Controller
         // Date de retour = aujourd'hui + 10 jours
         $date_retour = now()->addDays(10);
 
-    } elseif ($user->role == 'professeur') {
+    } elseif ($user->role == 1) {
         // Pas de limite, mais tu peux ajouter des contrôles si besoin
         $date_retour = null; // pas de limite imposée
     } else {
@@ -61,7 +75,7 @@ class ReservationController extends Controller
         'date_reteure' => $date_retour,
     ]);
 
-    return redirect()->route('user.reservations.index')->with('success', 'Réservation effectuée avec succès.');
+    return redirect()->route('users.reservations.index')->with('success', 'Réservation effectuée avec succès.');
 }
 
      // Afficher une réservation spécifique
@@ -71,8 +85,9 @@ class ReservationController extends Controller
              ->where('user_id', Auth::id())
              ->findOrFail($id);
  
-         return view('user.reservations.show', compact('reservation'));
+         return view('users.reservations.show', compact('reservation'));
      }
+     
  }
  
     

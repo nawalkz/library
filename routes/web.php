@@ -41,27 +41,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::get('reservation/', function () {
-    return view('users.reservations.index');
-})->name('users.reservations.index');
+ 
 
 Route::middleware('auth')->group(function () {
-
     // ======= Users routes =======
+Route::get('/reservations/index', [UserReservationController::class, 'index'])->name('users.reservations.index');
+ Route::get('reservations/emprunt', [UserReservationController::class, 'emprunt'])->name('users.reservations.emprunt');
+//Route::get('/reservations/ticket', [UserReservationController::class, 'showTicket'])->name('users.reservations.ticket');
     // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::prefix('user')->name('user.')->group(function () {
-
-        // Voir toutes les réservations de l'utilisateur
-        Route::get('/reservations', [UserReservationController::class, 'index'])->name('reservations.index');
-
-
-
+    Route::prefix('user')->name('user')->group(function () {
         // Créer une réservation (formulaire)
-        Route::get('/reservations/create/{livre}', [UserReservationController::class, 'create'])->name('reservations.create');
+        Route::get('/reservations/create/{livre}', [UserReservationController::class, 'create'])->name('users.reservations.create');
 
         // Enregistrer une réservation
         Route::post('/reservations', [UserReservationController::class, 'store'])->name('reservations.store');
@@ -92,14 +85,16 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('notifications', NotificationController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('reservations', ReservationController::class);
+    
     Route::resource('emprunts', EmpruntController::class);
-    Route::resource('notifications', NotificationController::class,);
+    Route::resource('notifications', NotificationController::class);
 
 });
 });
-// ======= User routes =======
 
+Route::post('admin/reservations/{id}/convert', [ReservationController::class, 'convertToEmprunt'])->name('admin.reservations.convert');
 
+Route::put('admin/reservations/{id}/statut', [ReservationController::class, 'updateStatus'])->name('admin.reservations.updateStatus');
 require __DIR__.'/auth.php';
 
 

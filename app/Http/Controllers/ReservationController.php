@@ -22,7 +22,7 @@ class ReservationController extends Controller
         'user_id' => $reservation->user_id,
         'livre_id' => $reservation->livre_id,
         'date_emprunt' => Carbon::now(),
-        'date_retoure' => Carbon::now()->addDays(10), // par exemple, 15 jours
+        'date_reteure' => Carbon::now()->addDays(10), // par exemple, 15 jours
         'etat_livre' => 'bon',
         'observation' => 'Créé via réservation',
     ]);
@@ -37,7 +37,15 @@ class ReservationController extends Controller
         $reservations = Reservation::all();
         return view('admin.reservations.index', compact('reservations'));
     }
-
+    public function updateStatus(Request $request, $id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->statut = $request->statut;
+        $reservation->save();
+    
+        return redirect()->back()->with('success', 'Statut mis à jour avec succès.');
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

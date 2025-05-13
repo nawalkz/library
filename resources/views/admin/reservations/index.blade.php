@@ -16,16 +16,36 @@
                 <th>Utilisateur</th>
                 <th>Livre</th>
                 <th>Date de réservation</th>
+                <th>Statut</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($reservations as $reservation)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $reservation->user->name ?? 'N/A' }}</td>
-                <td>{{ $reservation->livre->titre ?? 'N/A' }}</td>
-                <td>{{ $reservation->date_reservation }}</td>
+                <td>{{ $reservation->id }}</td>
+                <td>{{ $reservation->user->name }}</td>
+                <td>{{ $reservation->livre->titre }}</td>
+                <td>{{ $reservation->statut }}</td>
+                <td>
+                     @if ($reservation->statut === 'en attente')
+                    <form action="{{ route('admin.reservations.updateStatus', $reservation->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('PUT')
+                           <input type="hidden" name="statut" value="confirmée">
+                            <button class="btn btn-success btn-sm">✅ Accepter</button>
+                    </form>
+
+                    <form action="{{ route('admin.reservations.updateStatus', $reservation->id) }}" method="POST" style="display: inline;">
+                         @csrf
+                         @method('PUT')
+                            <input type="hidden" name="statut" value="refusée">
+                            <button class="btn btn-danger btn-sm">❌ Refuser</button>
+                    </form>
+                   @else
+                    {{ $reservation->statut }}
+                   @endif
+                </td>
                 <td>
                 <form action="{{ route('admin.reservations.convert', $reservation->id) }}" method="POST" class="d-inline">
                     @csrf
