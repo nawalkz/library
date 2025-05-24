@@ -135,13 +135,13 @@
                         </div>
                         <div class="navbar-collapse hidden-sm hidden-xs">
                             <ul class="nav navbar-nav">
-                            <li class="dropdown active">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('welcome')}}">Home</a>
-                                        <ul class="dropdown-menu">
+                                <li class="dropdown active">
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('welcome')}}">Home</a>
+                                    <ul class="dropdown-menu">
                                         <li><a href="{{ route('welcome')}}">Home</a></li>
-                
+
                                     </ul>
-                                    </li>
+                                </li>
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a>
                                     <ul class="dropdown-menu">
@@ -160,10 +160,12 @@
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="signin.html">Signin/Register</a></li>
-                                        <li><a href="404.html">404/Error</a></li>
+                                        <li><a href="{{ route('users.profile.parametres.index') }}">parametres</a></li>
+                                        <li><a href="login.html">Checkout</a></li>
+                                        <li> <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                                                {{ __('Profile') }}
+                                            </x-nav-link></li>
+                                        <li><a href="{{route('users.profile.dashboard.index')}}">dashboard</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -212,10 +214,13 @@
                         <li>
                             <a href="#">Pages</a>
                             <ul>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="signin.html">Signin/Register</a></li>
-                                <li><a href="404.html">404/Error</a></li>
+                                <li><a href="{{ route('users.profile.parametres.index') }}">parametres</a></li>
+                                <li><a href="login.html">Checkout</a></li>
+                                <li> <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                                        {{ __('Profile') }}
+                                    </x-nav-link></li>
+                                <li><a href="{{route('users.profile.dashboard.index')}}">dashboard</a></li>
+
                             </ul>
                         </li>
                         <li>
@@ -243,7 +248,7 @@
         <div class="carousel-inner">
             <div class="item active">
                 <figure>
-                    <img alt="Home Slide" src="assets/img/header-slider/home-v1/header-slide.jpg" />
+                    <img alt="Home Slide" src="assets/img/header-slider/home-v2/header-slide.jpg" />
                 </figure>
                 <div class="container">
                     <div class="carousel-caption">
@@ -260,7 +265,7 @@
             </div>
             <div class="item">
                 <figure>
-                    <img alt="Home Slide" src="assets/img/header-slider/home-v1/header-slide.jpg" />
+                    <img alt="Home Slide" src="assets/img/header-slider/home-v2/header-slide.jpg" />
                 </figure>
                 <div class="container">
                     <div class="carousel-caption">
@@ -276,7 +281,7 @@
             </div>
             <div class="item">
                 <figure>
-                    <img alt="Home Slide" src="assets/img/header-slider/home-v1/header-slide.jpg" />
+                    <img alt="Home Slide" src="assets/img/header-slider/home-v2/header-slide.jpg" />
                 </figure>
                 <div class="container">
                     <div class="carousel-caption">
@@ -306,9 +311,11 @@
                 <form action="http://libraria.demo.presstigers.com/index.html" method="get">
                     <div class="col-md-4 col-sm-6">
                         <div class="form-group">
+
                             <label class="sr-only" for="keywords">Search by Keyword</label>
                             <input class="form-control" placeholder="Search by Keyword" id="keywords" name="keywords" type="text">
                         </div>
+
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="form-group">

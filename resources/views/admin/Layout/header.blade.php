@@ -15,15 +15,23 @@
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img src="{{ Storage::url('profile_images/' . basename(auth()->user()->image)) }}" class="user-image rounded-circle shadow"
-                        alt="User Image" />
+                    @if(Auth::user()->image)
+    <div class="flex justify-center mb-6">
+        <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="User Image"
+             class="user-image rounded-circle shadow" />
+    </div>
+@endif
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <!--begin::User Image-->
                     <li class="user-header text-bg-primary">
-                        <img src="{{ asset('assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow"
-                            alt="User Image" />
+                        @if(Auth::user()->image)
+    <div class="flex justify-center mb-6">
+        <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="User Image"
+             class="user-image rounded-circle shadow" />
+    </div>
+@endif
                         <p>
                             {{ Auth::user()->name }} <small>{{ __('Member since') }}
                                 {{ Auth::user()->created_at->format('M Y') }}</small>

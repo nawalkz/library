@@ -80,9 +80,9 @@ class LivreController extends Controller
 
     $livre->update($formFields);
 
+    
     return redirect()->route('admin.livres.index')->with('update', 'Livre mis à jour avec succès.');
 }
-
 
     /**
      * Remove the specified resource from storage.

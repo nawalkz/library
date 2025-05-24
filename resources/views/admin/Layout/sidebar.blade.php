@@ -12,14 +12,14 @@
             <br>
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-dark" style="color: #193557;">Admin Bibliothèque</span>
+            <span class="brand-text fw-dark" style="color:rgb(77,49,36);">Admin Bibliothèque</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
         </div>
         <!--end::Sidebar Brand-->
         <!--begin::Sidebar Wrapper-->
-        <div class="sidebar-wrapper" style="background-color: #193557;">
+        <div class="sidebar-wrapper" style="background-color:rgb(77,49,36);">
           <nav class="mt-2">
             <!--begin::Sidebar Menu-->
             <ul
