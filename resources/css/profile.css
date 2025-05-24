@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+
+
+
+ /* Container */
+.profile-container {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: rgb(77, 49, 36);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #171616;
+}
+
+/* Headers */
+.profile-container h2,
+.profile-container h3 {
+    color: #222;
+    margin-bottom: 1rem;
+}
+
+.profile-container h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid #4f46e5; /* Indigo underline */
+    padding-bottom: 0.5rem;
+}
+
+.profile-container h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+/* Paragraphs */
+.profile-container p {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Form styles */
+.profile-container form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.profile-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.profile-container input[type="text"],
+.profile-container input[type="email"],
+.profile-container input[type="password"],
+.profile-container input[type="file"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.profile-container input[type="text"]:focus,
+.profile-container input[type="email"]:focus,
+.profile-container input[type="password"]:focus,
+.profile-container input[type="file"]:focus {
+    border-color: #4f46e5;
+    outline: none;
+}
+
+/* Buttons */
+.profile-container button {
+    grid-column: 1 / -1;
+    padding: 0.8rem 1.2rem;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    max-width: 150px;
+    justify-self: start;
+}
+
+.profile-container button:hover {
+    background-color: #3730a3;
+}
+
+/* Delete section styles */
+.delete-account-section {
+    background-color: #fff5f5;
+    border: 1px solid #f87171;
+    color: #b91c1c;
+    padding: 1.2rem;
+    border-radius: 12px;
+}
+
+.delete-account-section h3 {
+    color: #b91c1c;
+}
+
+.delete-account-section button {
+    background-color: #b91c1c;
+    max-width: 180px;
+}
+
+.delete-account-section button:hover {
+    background-color: #7f1d1d;
+}

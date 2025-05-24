@@ -17,7 +17,7 @@
                     </div>
                     <div>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="{{ route('client.profile.parametres.index') }}" class="p-1 rounded-circle btn btn-light d-flex align-items-center justify-content-center"></a>
+                            <a href="{{ route('users.profile.parametres.index') }}" class="p-1 rounded-circle btn btn-light d-flex align-items-center justify-content-center"></a>
                         </div>
                     </div>
                 </div>
@@ -29,12 +29,12 @@
                     <span class="fs-14 text-gray-3 fw-medium mb-2">Principal</span>
                 </li>
                 <li>
-                    <a href="{{ route('client.profile.dashboard.index') }}" class="d-flex align-items-center @if(request()->routeIs('client.profile.dashboard.*')) active @endif">
+                    <a href="{{ route('users.profile.dashboard.index') }}" class="d-flex align-items-center @if(request()->routeIs('users.profile.dashboard.*')) active @endif">
                         <i class="isax isax-grid-55"></i> Tableau de bord
                     </a>
                 </li>
                 <li class="submenu">
-                    <a href="{{ route('client.profile.reservations.index') }}" class="d-block subdrop @if(request()->routeIs('client.profile.reservations.*')) active @endif" class="d-flex align-items-center" onclick="toggleSubMenu(this)">
+                    <a href="{{ route('users.profile.reservations.index') }}" class="d-block subdrop @if(request()->routeIs('users.profile.reservations.*')) active @endif" class="d-flex align-items-center" onclick="toggleSubMenu(this)">
                         <i class="isax isax-calendar-tick5"></i>
                         <span>Mes reservations</span>
                     </a>
@@ -69,7 +69,7 @@
                     <span class="fs-14 text-gray-3 fw-medium mb-2">Compte</span>
                 </li>
                 <li>
-                    <a href="{{ route('client.profile.monprofile.index') }}" class="d-flex align-items-center @if(request()->routeIs('client.profile.monprofile.*')) active @endif">
+                    <a href="{{ route('users.profile.monprofile.index') }}" class="d-flex align-items-center @if(request()->routeIs('users.profile.monprofile.*')) active @endif">
                         <i class="isax isax-profile-tick5"></i> Mon Profile
                     </a>
                 </li>
@@ -82,7 +82,7 @@
                     </div>
                 </li> --}}
                 <li>
-                    <a href="{{ route('client.profile.parametres.index') }}" class="d-flex align-items-center @if(request()->routeIs('client.profile.parametres.*')) active @endif">
+                    <a href="{{ route('users.profile.parametres.index') }}" class="d-flex align-items-center @if(request()->routeIs('users.profile.parametres.*')) active @endif">
                         <i class="isax isax-setting-25"></i> Paramètres
                     </a>
                 </li>

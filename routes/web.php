@@ -31,6 +31,7 @@ use App\Http\Controllers\User\ReservationController as UserReservationController
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -52,8 +53,23 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+<<<<<<< HEAD
    
         
+=======
+    Route::get('/users/profile/reservations', [App\Http\Controllers\User\Profile\ReservationController::class, 'index'])->name('users.profile.reservations.index');
+    Route::get('/users/profile/dashboard', [App\Http\Controllers\User\Profile\DashboardController::class, 'index'])->name('users.profile.dashboard.index');
+    Route::get('/users/profile/monprofile', [App\Http\Controllers\User\Profile\MonprofileController::class, 'index'])->name('users.profile.monprofile.index');
+    Route::get('/users/profile/parametres', [App\Http\Controllers\User\Profile\ParametreController::class, 'index'])->name('users.profile.parametres.index');
+    Route::put('/users/profile/parametres', [App\Http\Controllers\User\Profile\ParametreController::class, 'update'])->name('users.profile.parametres.update');
+    Route::get('profil/', function () {
+        return view('users.pages.profile');
+    })->name('users.pages.profile');
+
+
+    Route::prefix('user')->name('user.')->group(function () {
+
+>>>>>>> 888014fd95410fe2ba3b303c6279c6c4351400b7
 
         // Voir toutes les réservations de l'utilisateur
         Route::get('/reservations', [UserReservationController::class, 'index'])->name('users.reservations.index');

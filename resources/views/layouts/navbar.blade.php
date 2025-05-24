@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--   Start: Slider Section 
     <div data-ride="carousel" class="carousel slide" id="home-v1-header-carousel">
 
@@ -67,3 +68,5 @@
                     </div>
     </section>
      End: Welcome Section -->
+=======
+>>>>>>> 888014fd95410fe2ba3b303c6279c6c4351400b7

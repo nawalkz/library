@@ -15,7 +15,7 @@
                 </figcaption>
             </figure>
 
-            <div class="book-list-icon blue-icon"></div>
+          
 
             <div class="single-book-box">
                 <div class="post-detail">

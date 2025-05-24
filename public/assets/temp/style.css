@@ -12281,7 +12281,7 @@ a:focus {
   }
 }
 .layout-v2 .layout-v2-counter:before {
-  background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+  background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
   content: "";
   height: 100%;
   position: absolute;
@@ -12464,7 +12464,7 @@ a:focus {
   }
 }
 .layout-v2 .team:before {
-  background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+  background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
   content: "";
   height: 100%;
   position: absolute;
@@ -13620,7 +13620,7 @@ a:focus {
   }
 }
 .page-banner::before {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   content: "";
   height: 100%;
   left: 0;
@@ -16676,7 +16676,7 @@ a:focus {
   }
 }
 .staff-picks::before {
-  background: rgba(0, 0, 0, 0.67) none repeat scroll 0 0;
+  background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
   content: "";
   height: 100%;
   position: absolute;
@@ -18821,7 +18821,7 @@ a:focus {
   position: relative;
 }
 #home-v1-header-carousel figure::before {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.2);
   content: '';
   height: 100%;
   position: absolute;
