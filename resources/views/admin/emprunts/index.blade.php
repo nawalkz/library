@@ -22,12 +22,12 @@
                 <td>{{ $emprunt->user->name ?? 'N/A' }}</td>
                 <td>{{ $emprunt->livre->titre ?? 'N/A' }}</td>
                 <td>{{ $emprunt->date_emprunt }}</td>
-                <td>{{ $emprunt->date_retoure }}</td>
+                <td>{{ $emprunt->date_reteure }}</td>
                 <td>{{ $emprunt->etat_livre }}</td>
                 <td>{{ $emprunt->observation }}</td>
                 <td>
                     <a href="{{ route('admin.emprunts.show', $emprunt->id) }}" class="btn btn-info btn-sm">Voir</a>
-
+                    <a href="{{ route('admin.emprunts.edit', $emprunt->id) }}" class="btn btn-info btn-sm">modifier</a>
                 </td>
             </tr>
             @endforeach

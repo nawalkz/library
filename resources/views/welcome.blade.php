@@ -124,7 +124,7 @@
                                                     <div class="price">$30.00</div>
                                                 </div>
                                                 <div class="cart-buttons">
-                                                    <a href="cart.html" class="btn btn-dark-gray">View Cart</a>
+                                                    <a href="{{ route('users.reservations.emprunt') }}" class="btn btn-dark-gray">View Cart</a>
                                                     <a href="checkout.html" class="btn btn-primary">Checkout</a>
                                                 </div>
                                             </div>
@@ -151,10 +151,11 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="news-events-list-view.html">News &amp; Events</a>
+                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.reservations.index') }}"
+                                    >News &amp; Events</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="news-events-list-view.html">News &amp; Events List View</a></li>
-                                        <li><a href="news-events-detail.html">News &amp; Events Detail</a></li>
+                                        
+                                        <li><a href="{{ route('users.reservations.index') }}">News &amp; Events Detail</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -166,6 +167,10 @@
                                                 {{ __('Profile') }}
                                             </x-nav-link></li>
                                         <li><a href="{{route('users.profile.dashboard.index')}}">dashboard</a></li>
+                                        <li><a href="{{ route('users.reservations.emprunt') }}">Cart</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="signin.html">Signin/Register</a></li>
+                                        <li><a href="404.html">404/Error</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -205,10 +210,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="news-events-list-view.html">News &amp; Events</a>
+                            <a href="{{ route('users.reservations.index') }}">News &amp; Events</a>
                             <ul>
-                                <li><a href="news-events-list-view.html">News &amp; Events List View</a></li>
-                                <li><a href="news-events-detail.html">News &amp; Events Detail</a></li>
+                                
+                                <li><a href="{{ route('users.reservations.index') }}">News &amp; Events Detail</a></li>
                             </ul>
                         </li>
                         <li>
@@ -221,6 +226,10 @@
                                     </x-nav-link></li>
                                 <li><a href="{{route('users.profile.dashboard.index')}}">dashboard</a></li>
 
+                                <li><a href="{{ route('users.reservations.emprunt') }}">Cart</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="signin.html">Signin/Register</a></li>
+                                <li><a href="404.html">404/Error</a></li>
                             </ul>
                         </li>
                         <li>
@@ -1871,7 +1880,7 @@
                         <ul>
                             <li><a href="index-2.html">Home</a></li>
                             <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a></li>
-                            <li><a href="news-events-list-view.html">News &amp; Events</a></li>
+                            <li><a href="{{ route('users.reservations.index') }}">News &amp; Events</a></li>
                             <li><a href="#">Kids &amp; Teens</a></li>
                             <li><a href="services.html">Services</a></li>
                             <li><a href="#">Research</a></li>
