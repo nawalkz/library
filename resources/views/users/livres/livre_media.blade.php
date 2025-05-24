@@ -128,7 +128,7 @@
                                                         <div class="price">$30.00</div>
                                                     </div>
                                                     <div class="cart-buttons">
-                                                        <a href="cart.html" class="btn btn-dark-gray">View Cart</a>
+                                                        <a href="{{ route('users.reservations.emprunt') }}" class="btn btn-dark-gray">View Cart</a>
                                                         <a href="checkout.html" class="btn btn-primary">Checkout</a>
                                                     </div>
                                                 </div>
@@ -161,7 +161,7 @@
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="{{ route('users.reservations.emprunt') }}">Cart</a></li>
                                             <li><a href="checkout.html">Checkout</a></li>
                                             <li><a href="signin.html">Signin/Register</a></li>
                                             <li><a href="404.html">404/Error</a></li>

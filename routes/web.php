@@ -52,22 +52,20 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::prefix('user')->name('user.')->group(function () {
+   
         
 
         // Voir toutes les réservations de l'utilisateur
-        Route::get('/reservations', [UserReservationController::class, 'index'])->name('reservations.index');
-
-
-
+        Route::get('/reservations', [UserReservationController::class, 'index'])->name('users.reservations.index');
 
         // Créer une réservation (formulaire)
         Route::get('/reservations/create/{livre}', [UserReservationController::class, 'create'])->name('users.reservations.create');
 
-        // Enregistrer une réservation
-        Route::post('/reservations', [UserReservationController::class, 'store'])->name('reservations.store');
-    });
 
+        // Enregistrer une réservation
+        Route::post('/reservations', [UserReservationController::class, 'store'])->name('users.reservations.store');
+  
+});
 
     Route::middleware('preventIfAdminExists')->group(function () {
         Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
@@ -102,7 +100,7 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
 Route::post('admin/reservations/{id}/convert', [ReservationController::class, 'convertToEmprunt'])->name('admin.reservations.convert');
 Route::put('admin/reservations/{id}/statut', [ReservationController::class, 'updateStatus'])->name('admin.reservations.updateStatus');
 require __DIR__.'/auth.php';
-});
+
 
 
 

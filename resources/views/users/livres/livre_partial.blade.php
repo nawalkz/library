@@ -30,8 +30,17 @@
                     </header>
 
                     <footer class="entry-footer mt-2">
+@auth
+    <form action="{{ route('users.reservations.create', ['livre' => $livre->id]) }}" method="GET">
+        @csrf
+        <button type="submit" class="btn btn-primary">Réserver ce livre</button>
+    </form>
+@else
+    <a href="{{ route('login') }}" class="btn btn-warning">Connectez-vous pour réserver</a>
+@endauth
 
-                        <button type="submit" class="btn btn-primary">Réserver</button>
+
+
 
                     </footer>
                 </div>

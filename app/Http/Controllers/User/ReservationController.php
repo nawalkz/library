@@ -37,16 +37,21 @@ public function emprunt()
     return view('users.reservations.ticket', compact('user', 'reservations'));
 } */
     
-    public function create(Request $request)
-    {
-        $livre = Livre::find($request->livre_id);
-        return view('users.reservations.create', compact('livre'));
-    }
+   public function create(Livre $livre)
+{
+    return view('users.reservations.create', compact('livre'));
+}
+
     
     public function store(Request $request)
 {
     $user = auth()->user(); // L'utilisateur connecté
     $livre_id = $request->livre_id;
+
+
+if (!$user) {
+    return redirect()->route('login')->with('error', 'Vous devez être connecté pour réserver un livre.');
+}
 
     // Vérification du rôle
     if ($user->role == 2) {

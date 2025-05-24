@@ -1,5 +1,5 @@
- <!-- Start: Footer -->
- <footer class="site-footer">
+<!-- Start: Footer -->
+    <footer class="site-footer">
         <div class="container">
             <div id="footer-widgets">
                 <div class="row">
@@ -88,7 +88,7 @@
                         <ul>
                             <li><a href="index-2.html">Home</a></li>
                             <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a></li>
-                            <li><a href="news-events-list-view.html">News &amp; Events</a></li>
+                            <li><a href="{{ route('users.reservations.index') }}">News &amp; Events</a></li>
                             <li><a href="#">Kids &amp; Teens</a></li>
                             <li><a href="services.html">Services</a></li>
                             <li><a href="#">Research</a></li>
