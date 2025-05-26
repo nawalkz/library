@@ -2129,6 +2129,95 @@ pre code {
   .col-md-offset-2 {
     margin-left: 16.66666667%;
   }
+
+
+  .welcome-container {
+  background: linear-gradient(135deg, #eef2f3, #dbe9f4);
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.welcome-card h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.welcome-card h1 span {
+  color: #1e90ff;
+}
+
+.welcome-card .subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.welcome-card .intro {
+  margin: 24px 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.welcome-card .features {
+  text-align: left;
+  margin: 30px 0;
+}
+
+.welcome-card .features h2 {
+  font-size: 20px;
+  color: #2980b9;
+  margin-bottom: 12px;
+}
+
+.welcome-card .features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.welcome-card .features ul li {
+  margin-bottom: 10px;
+  padding-left: 18px;
+  position: relative;
+  color: #444;
+}
+
+.welcome-card .note {
+  font-style: italic;
+  color: #555;
+  margin-top: 30px;
+}
+
+.start-btn {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 12px 28px;
+  margin-top: 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.start-btn:hover {
+  background-color: #2980b9;
+}
+
+
+
   .col-md-offset-1 {
     margin-left: 8.33333333%;
   }
@@ -9406,8 +9495,8 @@ a:focus {
   position: relative;
 }
 .welcome-section .welcome-image {
-  background-image: url(../../assets/img/welcome-img-home-v1.jpg);
-  background-position: center top;
+  background-image: url(../../assets/img/header-slider/home-v2/headr.jpg);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -9610,7 +9699,7 @@ a:focus {
 .category-filter .category-list .category-item {
   display: none;
   float: left;
-  width: 25%;
+  width: 18%;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .category-filter .category-list .category-item {

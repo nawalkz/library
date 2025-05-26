@@ -170,7 +170,30 @@ public function livreMedia(Request $request)
     // الصفحة كاملة
     return view('users.livres.livre_media', compact('livres'));
 }
+ public function usersIndex(Request $request)
+    {
+        $query = Livre::query();
 
+        if ($request->filled('titre')) {
+        $query->where('titre', 'like', '%' . $request->titre . '%');
+    }
+
+    if ($request->filled('auteur_id')) {
+        $query->where('auteur_id', $request->auteur_id);
+    }
+
+    if ($request->filled('categorie_id')) {
+        $query->where('categorie_id', $request->categorie_id);
+    }
+
+        $livres = $query->paginate(12);
+
+        return view('users.livres.livre_media', [
+            'livres' => $livres,
+            'categories' => Categorie::all(),
+            'auteurs' => Auteur::all(),
+        ]);
+    }
 }
 
 

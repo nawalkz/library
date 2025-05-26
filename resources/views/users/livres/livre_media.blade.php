@@ -235,7 +235,7 @@
 
                                                 <!-- Bouton Search -->
                                                 <div class="col-md-2">
-                                                    <button type="button" id="search" class="btn btn-warning w-100">SEARCH</button>
+                                                    <button type="button" id="search" class="btn btn-primary search-btn rounded w-100">SEARCH</button>
                                                 </div>
 
                                             </form>
