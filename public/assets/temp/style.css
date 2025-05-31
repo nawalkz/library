@@ -58,6 +58,34 @@ Version: 1.0.0
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+.reading-tips {
+  background-color: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px); 
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  max-width: 1400px;
+height: 400px;
+  margin: 100px auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+
+.reading-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reading-tips li h3{
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 5;
+  box-shadow: 0 5px 20px rgba(247, 61, 5, 0.986);
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -2156,7 +2184,7 @@ pre code {
 }
 
 .welcome-card h1 span {
-  color: #1e90ff;
+  color: #ff7236;
 }
 
 .welcome-card .subtitle {
@@ -2178,7 +2206,7 @@ pre code {
 
 .welcome-card .features h2 {
   font-size: 20px;
-  color: #2980b9;
+  color: #ff7236;
   margin-bottom: 12px;
 }
 
@@ -2202,7 +2230,7 @@ pre code {
 
 .start-btn {
   display: inline-block;
-  background-color: #3498db;
+  background-color: #ff7236;
   color: white;
   padding: 12px 28px;
   margin-top: 20px;
@@ -2213,7 +2241,7 @@ pre code {
 }
 
 .start-btn:hover {
-  background-color: #2980b9;
+  background-color: #ff7236;
 }
 
 

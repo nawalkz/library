@@ -58,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <<div class="topbar-info">
-                                            <span><i class="fa fa-smile-o"></i> Bienvenue sur notre site !</span>
+                                            <span><i class="fa fa-smile-o"></i> Welcome to our website ! </span>
                                     </div>
 
                                 </div>
@@ -120,15 +120,7 @@
                                         <li><a href="404.html">404/Error</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toggle disabled" href="blog.html">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="blog.html">Blog Grid View</a></li>
-                                        <li><a href="blog-detail.html">Blog Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -142,11 +134,10 @@
                             <a href="#" class="close"></a>
                         </li>
                         <li>
-                            <a href="index-2.html">Home</a>
+                            <a href="{{ route('welcome')}}">Home</a>
                             <ul>
-                                <li><a href="index-2.html">Home V1</a></li>
-                                <li><a href="home-v2.html">Home V2</a></li>
-                                <li><a href="home-v3.html">Home V3</a></li>
+                                <li><a href="{{ route('welcome')}}">Home</a></li>
+
                             </ul>
                         </li>
                         <li>
@@ -177,15 +168,7 @@
                                 <li><a href="404.html">404/Error</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="blog.html">Blog</a>
-                            <ul>
-                                <li><a href="blog.html">Blog Grid View</a></li>
-                                <li><a href="blog-detail.html">Blog Detail</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -207,53 +190,30 @@
                 <div class="container">
                     <div class="carousel-caption">
 
-                        <h3>Online Learning Anytime, Anywhere!</h3>
-                        <h2>Discover Your Roots</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words.</p>
-                        <div class="slide-buttons hidden-sm hidden-xs">
-                            <a href="#" class="btn btn-primary">Read More</a>
-                            <a href="#" class="btn btn-default">Purchase</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <figure>
-                    <img alt="Home Slide" src="assets/img/header-slider/home-v2/header-slide.jpg" />
-                </figure>
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Online Learning Anytime, Anywhere!</h3>
-                        <h2>Discover Your Roots</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words.</p>
-                        <div class="slide-buttons hidden-sm hidden-xs">
-                            <a href="#" class="btn btn-primary">Read More</a>
-                            <a href="#" class="btn btn-default">Purchase</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <figure>
-                    <img alt="Home Slide" src="assets/img/header-slider/home-v2/header-slide.jpg" />
-                </figure>
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Online Learning Anytime, Anywhere!</h3>
-                        <h2>Discover Your Roots</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words.</p>
-                        <div class="slide-buttons hidden-sm hidden-xs">
-                            <a href="#" class="btn btn-primary">Read More</a>
-                            <a href="#" class="btn btn-default">Purchase</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#home-v1-header-carousel" data-slide="prev"></a>
-        <a class="right carousel-control" href="#home-v1-header-carousel" data-slide="next"></a>
+                        <h2>Welcome to the ENA Architecture Library</h2>
+                        <p>
+                            Your gateway to knowledge, creativity, and discovery.
+                            Our library offers a curated collection of books and resources in architecture and beyond, tailored for students of ENA.
+                        </p>
+                        <p>
+                            Whether you're conducting research, expanding your ideas, or just exploring, the library is here to support your academic journey.
+                        </p>
+                        <div class="slide-buttons hidden-sm hidden-xs">
+                            <a href="#" class="btn btn-primary">Read More</a>
+                            <a href="#" class="btn btn-default">Purchase</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#home-v1-header-carousel" data-slide="prev"></a>
+    <a class="right carousel-control" href="#home-v1-header-carousel" data-slide="next"></a>
     </div>
     <!-- End: Slider Section -->
 
@@ -463,453 +423,33 @@
     <section class="latest-blog section-padding banner">
         <div class="container">
             <div class="center-content">
-                <h2 class="section-title">Latest from Blog</h2>
+                <h2 class="section-title">Effective Reading Tips</h2>
                 <span class="underline center"></span>
-                <p class="lead">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
             </div>
-            <div class="tabs-container">
-                <div class="tabs-menu">
-                    <ul>
-                        <li class="active">
-                            <a href="#" class="bg-yellow">
-                                <div class="title">
-                                    <i class="yellow"></i>
-                                    <h3>Books</h3>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="bg-light-green">
-                                <div class="title">
-                                    <i class="light-green"></i>
-                                    <h3>eBooks</h3>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="bg-blue">
-                                <div class="title">
-                                    <i class="blue"></i>
-                                    <h3>DVDS</h3>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="bg-red">
-                                <div class="title">
-                                    <i class="red"></i>
-                                    <h3>Magazines</h3>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="bg-violet">
-                                <div class="title">
-                                    <i class="violet"></i>
-                                    <h3>Audio</h3>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="bg-green">
-                                <div class="title">
-                                    <i class="green"></i>
-                                    <h3>eAudio</h3>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tabs-list">
-                    <div class="tab-content active">
-                        <article>
-                            <figure>
-                                <img src="assets/img/latest-blog-img-home-v1.jpg" alt="Latest Blog">
-                                <figcaption>
-                                    <a href="#.">
-                                        <span class="date">07</span>
-                                        <span class="month">Mar</span>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                            <div class="post-detail">
-                                <div class="info-bar">
-                                    <div class="comments">
-                                        <a href="#">
-                                            <i class="fa fa-comment"></i> 37
-                                        </a>
-                                    </div>
-                                    <div class="likes">
-                                        <a href="#">
-                                            <i class="fa fa-thumbs-o-up"></i> 110
-                                        </a>
-                                    </div>
-                                    <div class="viewed">
-                                        <a href="#">
-                                            <i class="fa fa-eye"></i> 180
-                                        </a>
-                                    </div>
-                                    <div class="share">
-                                        <a href="#">
-                                            <i class="fa fa-share-alt"></i> Share
-                                        </a>
-                                    </div>
-                                </div>
-                                <h4>It uses dictionary over 200 Latin</h4>
-                                <div class="author">
-                                    <a href="#">
-                                        <i class="fa fa-user"></i> Adrey Pachai
-                                    </a>
-                                </div>
-                                <p>Etiam posuere ultrices mauris vitae tincidunt. Cras lacinia, lectus quis ullamcorper auctor, mauris lacus imperdiet turpis, et semper enim massa ut diam. Sed at malesuada urna. Mauris quis venenatis leo. Proin a malesuada purus. Suspendisse odio diam, ornare sit amet interdum ut, vehicula a lorem. Donec a sem erat. Etiam condimentum semper mauris vitae porttitor.</p>
-                                <a class="btn btn-dark-gray">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="tab-content">
-                        <article>
-                            <figure>
-                                <img src="assets/img/latest-blog-img-home-v1-2.jpg" alt="Latest Blog">
-                                <figcaption>
-                                    <a href="#.">
-                                        <span class="date">06</span>
-                                        <span class="month">Mar</span>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                            <div class="post-detail">
-                                <div class="info-bar">
-                                    <div class="comments">
-                                        <a href="#">
-                                            <i class="fa fa-comment"></i> 37
-                                        </a>
-                                    </div>
-                                    <div class="likes">
-                                        <a href="#">
-                                            <i class="fa fa-thumbs-o-up"></i> 110
-                                        </a>
-                                    </div>
-                                    <div class="viewed">
-                                        <a href="#">
-                                            <i class="fa fa-eye"></i> 180
-                                        </a>
-                                    </div>
-                                    <div class="share">
-                                        <a href="#">
-                                            <i class="fa fa-share-alt"></i> Share
-                                        </a>
-                                    </div>
-                                </div>
-                                <h4>eBooks</h4>
-                                <div class="author">
-                                    <a href="#">
-                                        <i class="fa fa-user"></i> Adrey Pachai
-                                    </a>
-                                </div>
-                                <p>Sed at malesuada urna. Mauris quis venenatis leo. Proin a malesuada purus. Suspendisse odio diam, ornare sit amet interdum ut, vehicula a lorem. Donec a sem erat. Etiam condimentum semper mauris vitae porttitor. Etiam posuere ultrices mauris vitae tincidunt. Cras lacinia, lectus quis ullamcorper auctor, mauris lacus imperdiet turpis, et semper enim massa ut.</p>
-                                <a class="btn btn-dark-gray">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="tab-content">
-                        <article>
-                            <figure>
-                                <img src="assets/img/latest-blog-img-home-v1.jpg" alt="Latest Blog">
-                                <figcaption>
-                                    <a href="#.">
-                                        <span class="date">05</span>
-                                        <span class="month">Mar</span>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                            <div class="post-detail">
-                                <div class="info-bar">
-                                    <div class="comments">
-                                        <a href="#">
-                                            <i class="fa fa-comment"></i> 37
-                                        </a>
-                                    </div>
-                                    <div class="likes">
-                                        <a href="#">
-                                            <i class="fa fa-thumbs-o-up"></i> 110
-                                        </a>
-                                    </div>
-                                    <div class="viewed">
-                                        <a href="#">
-                                            <i class="fa fa-eye"></i> 180
-                                        </a>
-                                    </div>
-                                    <div class="share">
-                                        <a href="#">
-                                            <i class="fa fa-share-alt"></i> Share
-                                        </a>
-                                    </div>
-                                </div>
-                                <h4>DVDS</h4>
-                                <div class="author">
-                                    <a href="#">
-                                        <i class="fa fa-user"></i> Adrey Pachai
-                                    </a>
-                                </div>
-                                <p>Etiam posuere ultrices mauris vitae tincidunt. Cras lacinia, lectus quis ullamcorper auctor, mauris lacus imperdiet turpis, et semper enim massa ut diam. Sed at malesuada urna. Mauris quis venenatis leo. Proin a malesuada purus. Suspendisse odio diam, ornare sit amet interdum ut, vehicula a lorem. Donec a sem erat. Etiam condimentum semper mauris vitae porttitor.</p>
-                                <a class="btn btn-dark-gray">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="tab-content">
-                        <article>
-                            <figure>
-                                <img src="assets/img/latest-blog-img-home-v1-2.jpg" alt="Latest Blog">
-                                <figcaption>
-                                    <a href="#.">
-                                        <span class="date">04</span>
-                                        <span class="month">Mar</span>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                            <div class="post-detail">
-                                <div class="info-bar">
-                                    <div class="comments">
-                                        <a href="#">
-                                            <i class="fa fa-comment"></i> 37
-                                        </a>
-                                    </div>
-                                    <div class="likes">
-                                        <a href="#">
-                                            <i class="fa fa-thumbs-o-up"></i> 110
-                                        </a>
-                                    </div>
-                                    <div class="viewed">
-                                        <a href="#">
-                                            <i class="fa fa-eye"></i> 180
-                                        </a>
-                                    </div>
-                                    <div class="share">
-                                        <a href="#">
-                                            <i class="fa fa-share-alt"></i> Share
-                                        </a>
-                                    </div>
-                                </div>
-                                <h4>Magazines</h4>
-                                <div class="author">
-                                    <a href="#">
-                                        <i class="fa fa-user"></i> Adrey Pachai
-                                    </a>
-                                </div>
-                                <p>Sed at malesuada urna. Mauris quis venenatis leo. Proin a malesuada purus. Suspendisse odio diam, ornare sit amet interdum ut, vehicula a lorem. Donec a sem erat. Etiam condimentum semper mauris vitae porttitor. Etiam posuere ultrices mauris vitae tincidunt. Cras lacinia, lectus quis ullamcorper auctor, mauris lacus imperdiet turpis, et semper enim massa ut.</p>
-                                <a class="btn btn-dark-gray">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="tab-content">
-                        <article>
-                            <figure>
-                                <img src="assets/img/latest-blog-img-home-v1.jpg" alt="Latest Blog">
-                                <figcaption>
-                                    <a href="#.">
-                                        <span class="date">03</span>
-                                        <span class="month">Mar</span>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                            <div class="post-detail">
-                                <div class="info-bar">
-                                    <div class="comments">
-                                        <a href="#">
-                                            <i class="fa fa-comment"></i> 37
-                                        </a>
-                                    </div>
-                                    <div class="likes">
-                                        <a href="#">
-                                            <i class="fa fa-thumbs-o-up"></i> 110
-                                        </a>
-                                    </div>
-                                    <div class="viewed">
-                                        <a href="#">
-                                            <i class="fa fa-eye"></i> 180
-                                        </a>
-                                    </div>
-                                    <div class="share">
-                                        <a href="#">
-                                            <i class="fa fa-share-alt"></i> Share
-                                        </a>
-                                    </div>
-                                </div>
-                                <h4>Audio</h4>
-                                <div class="author">
-                                    <a href="#">
-                                        <i class="fa fa-user"></i> Adrey Pachai
-                                    </a>
-                                </div>
-                                <p>Etiam posuere ultrices mauris vitae tincidunt. Cras lacinia, lectus quis ullamcorper auctor, mauris lacus imperdiet turpis, et semper enim massa ut diam. Sed at malesuada urna. Mauris quis venenatis leo. Proin a malesuada purus. Suspendisse odio diam, ornare sit amet interdum ut, vehicula a lorem. Donec a sem erat. Etiam condimentum semper mauris vitae porttitor.</p>
-                                <a class="btn btn-dark-gray">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="tab-content">
-                        <article>
-                            <figure>
-                                <img src="assets/img/latest-blog-img-home-v1-2.jpg" alt="Latest Blog">
-                                <figcaption>
-                                    <a href="#.">
-                                        <span class="date">02</span>
-                                        <span class="month">Mar</span>
-                                    </a>
-                                </figcaption>
-                            </figure>
-                            <div class="post-detail">
-                                <div class="info-bar">
-                                    <div class="comments">
-                                        <a href="#">
-                                            <i class="fa fa-comment"></i> 37
-                                        </a>
-                                    </div>
-                                    <div class="likes">
-                                        <a href="#">
-                                            <i class="fa fa-thumbs-o-up"></i> 110
-                                        </a>
-                                    </div>
-                                    <div class="viewed">
-                                        <a href="#">
-                                            <i class="fa fa-eye"></i> 180
-                                        </a>
-                                    </div>
-                                    <div class="share">
-                                        <a href="#">
-                                            <i class="fa fa-share-alt"></i> Share
-                                        </a>
-                                    </div>
-                                </div>
-                                <h4>eAudio</h4>
-                                <div class="author">
-                                    <a href="#">
-                                        <i class="fa fa-user"></i> Adrey Pachai
-                                    </a>
-                                </div>
-                                <p>Sed at malesuada urna. Mauris quis venenatis leo. Proin a malesuada purus. Suspendisse odio diam, ornare sit amet interdum ut, vehicula a lorem. Donec a sem erat. Etiam condimentum semper mauris vitae porttitor. Etiam posuere ultrices mauris vitae tincidunt. Cras lacinia, lectus quis ullamcorper auctor, mauris lacus imperdiet turpis, et semper enim massa ut.</p>
-                                <a class="btn btn-dark-gray">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                </div>
+            <div class="reading-tips">
+
+                <ul>
+                    <li>
+                        <h3>Set a consistent daily reading time to build the habit.</h3>
+                    </li>
+                    <li>
+                        <h3>Choose a quiet and well-lit environment to help you focus.</h3>
+                    </li>
+                    <li>
+                        <h3>Take notes and highlight key ideas while reading.</h3>
+                    </li>
+                    <li>
+                        <h3>Read with attention, aiming to understand rather than just memorize.</h3>
+                    </li>
+                </ul>
             </div>
+
+
         </div>
     </section>
     <!-- End: Latest Blog -->
 
 
-    <!-- Start: News & Event -->
-    <section class="news-events section-padding banner">
-        <div class="container">
-            <div class="center-content">
-                <h2 class="section-title c-light">News &amp; Events</h2>
-                <span class="underline center"></span>
-                <p class="lead c-light">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
-            </div>
-            <div class="news-events-list">
-                <div class="single-news-event">
-                    <figure>
-                        <img src="assets/img/news-event/news-event-01.jpg" alt="News & Event" />
-                    </figure>
-                    <div class="content-block">
-                        <div class="member-info">
-                            <div class="content_meta_category">
-                                <span class="arrow-right"></span>
-                                <a href="#." rel="category tag">EVENT</a>
-                            </div>
-                            <ul class="news-event-info">
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-calendar"></i>
-                                        July 25, 2016
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-clock-o"></i>
-                                        10:15 AM - 10:15 PM
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-map-marker"></i>
-                                        New York, USA
-                                    </a>
-                                </li>
-                            </ul>
-                            <h3><a href=".html#">It uses a dictionary of over 200 Latin word</a></h3>
-                            <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model.</p>
-                            <a class="btn btn-primary" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="single-news-event">
-                    <figure>
-                        <img src="assets/img/news-event/news-event-02.jpg" alt="News & Event" />
-                    </figure>
-                    <div class="content-block">
-                        <div class="member-info">
-                            <div class="content_meta_category">
-                                <span class="arrow-right"></span>
-                                <a href="#." rel="category tag">EVENT</a>
-                            </div>
-                            <ul class="news-event-info">
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-calendar"></i>
-                                        July 25, 2016
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-map-marker"></i>
-                                        New York, USA
-                                    </a>
-                                </li>
-                            </ul>
-                            <h3><a href=".html#">It uses a dictionary of over 200 Latin word</a></h3>
-                            <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', </p>
-                            <a class="btn btn-primary" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="single-news-event">
-                    <figure>
-                        <img src="assets/img/news-event/news-event-03.jpg" alt="News & Event" />
-                    </figure>
-                    <div class="content-block">
-                        <div class="member-info">
-                            <div class="content_meta_category">
-                                <span class="arrow-right"></span>
-                                <a href="#." rel="category tag">EVENT</a>
-                            </div>
-                            <ul class="news-event-info">
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-calendar"></i>
-                                        July 25, 2016
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <i class="fa fa-map-marker"></i>
-                                        New York, USA
-                                    </a>
-                                </li>
-                            </ul>
-                            <h3><a href=".html#">It uses a dictionary of over 200 Latin word</a></h3>
-                            <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', </p>
-                            <a class="btn btn-primary" href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </section>
-    <!-- End: News & Event -->
 
 
     <!-- Start: Footer -->
@@ -1000,14 +540,11 @@
                     </div>
                     <div class="col-md-9 pull-right">
                         <ul>
-                            <li><a href="index-2.html">Home</a></li>
+                            <li><a href="{{ route('welcome')}}">Home</a></li>
                             <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a></li>
                             <li><a href="{{ route('users.reservations.index') }}">News &amp; Events</a></li>
-                            <li><a href="#">Kids &amp; Teens</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="#">Research</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+
+
                         </ul>
                     </div>
                 </div>

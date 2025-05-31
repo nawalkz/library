@@ -59,9 +59,7 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
     
     
 
-    Route::prefix('user')->name('user.')->group(function () {
-
-
+    
         // Voir toutes les réservations de l'utilisateur
         Route::get('/reservations', [UserReservationController::class, 'index'])->name('users.reservations.index');
 
@@ -72,7 +70,7 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
         // Enregistrer une réservation
         Route::post('/reservations', [UserReservationController::class, 'store'])->name('users.reservations.store');
   
-});
+;
 
     Route::middleware('preventIfAdminExists')->group(function () {
         Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');

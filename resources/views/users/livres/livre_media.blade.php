@@ -62,7 +62,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="topbar-info">
-                                            <span><i class="fa fa-smile-o"></i> Bienvenue chez Libraria – votre partenaire de lecture !</span>
+                                            <span><i class="fa fa-smile-o"></i> Welcome to Libraria – your gateway to a world of reading ! </span>
                                         </div>
 
                                     </div>
@@ -82,57 +82,8 @@
                                             </div>
                                             @endif
                                             <span>|</span>
-                                            <div class="header-cart dropdown">
-                                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                    <small>0</small>
-                                                </a>
-                                                <div class="dropdown-menu cart-dropdown">
-                                                    <ul>
-                                                        <li class="clearfix">
-                                                            <img src="../../assets/img/header-cart-image-01.jpg" alt="cart item" />
-                                                            <div class="item-info">
-                                                                <div class="name">
-                                                                    <a href="#">The Great Gatsby</a>
-                                                                </div>
-                                                                <div class="author"><strong>Author:</strong> F. Scott Fitzgerald</div>
-                                                                <div class="price">1 X $10.00</div>
-                                                            </div>
-                                                            <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
-                                                        </li>
-                                                        <li class="clearfix">
-                                                            <img src="../../assets/img/header-cart-image-02.jpg" alt="cart item" />
-                                                            <div class="item-info">
-                                                                <div class="name">
-                                                                    <a href="#">The Great Gatsby</a>
-                                                                </div>
-                                                                <div class="author"><strong>Author:</strong> F. Scott Fitzgerald</div>
-                                                                <div class="price">1 X $10.00</div>
-                                                            </div>
-                                                            <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
-                                                        </li>
-                                                        <li class="clearfix">
-                                                            <img src="../../assets/img/header-cart-image-03.jpg" alt="cart item" />
-                                                            <div class="item-info">
-                                                                <div class="name">
-                                                                    <a href="#">The Great Gatsby</a>
-                                                                </div>
-                                                                <div class="author"><strong>Author:</strong> F. Scott Fitzgerald</div>
-                                                                <div class="price">1 X $10.00</div>
-                                                            </div>
-                                                            <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="cart-total">
-                                                        <div class="title">SubTotal</div>
-                                                        <div class="price">$30.00</div>
-                                                    </div>
-                                                    <div class="cart-buttons">
-                                                        <a href="{{ route('users.reservations.emprunt') }}" class="btn btn-dark-gray">View Cart</a>
-                                                        <a href="checkout.html" class="btn btn-primary">Checkout</a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
+                                         
                                         </div>
                                     </div>
                                 </div>
