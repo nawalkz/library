@@ -113,13 +113,13 @@
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ route('users.reservations.emprunt') }}">Cart</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="signin.html">Signin/Register</a></li>
-                                            <li><a href="404.html">404/Error</a></li>
+                                            <li> <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                                                {{ __('Profile') }}
+                                            </x-nav-link></li>
                                         </ul>
                                     </li>
 
-                                    <li><a href="contact.html">Contact</a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
