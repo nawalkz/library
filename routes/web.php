@@ -36,7 +36,19 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
- 
+
+/* use App\Models\Emprunt;
+use App\Notifications\RetourLivreRetardNotification;
+
+Route::get('/test-notification', function () {
+    $user = User::find(1); // remplace 1 par ton user_id
+    $livreTitre = "Laravel 10 Avancé";
+
+    $user->notify(new RetourLivreRetardNotification($livreTitre));
+
+    return "Notification envoyée à " . $user->name;
+});
+ */
 
 Route::get('/autocomplete/titre', [LivreController::class, 'autocompleteTitre'])->name('livres.autocomplete.titre');
 Route::get('/autocomplete/auteur', [LivreController::class, 'autocompleteAuteur'])->name('livres.autocomplete.auteur');

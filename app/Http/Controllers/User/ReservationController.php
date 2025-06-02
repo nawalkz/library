@@ -54,7 +54,7 @@ if (!$user) {
 }
 
     // Vérification du rôle
-    if ($user->role == 2) {
+    if ($user->role_id == 2) {
         // Vérifier s'il a déjà un livre réservé
         $hasReservation = Reservation::where('user_id', $user->id)->whereNull('date_reteure')->exists();
 
@@ -65,7 +65,7 @@ if (!$user) {
         // Date de retour = aujourd'hui + 10 jours
         $date_retour = now()->addDays(10);
 
-    } elseif ($user->role == 1) {
+    } elseif ($user->role_id == 1) {
         // Pas de limite, mais tu peux ajouter des contrôles si besoin
         $date_retour = null; // pas de limite imposée
     } else {
