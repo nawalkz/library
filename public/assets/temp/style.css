@@ -16823,6 +16823,7 @@ a:focus {
 /*--------------------------------------------------------------
 13.1.7. Books & Media --- Grid View
 --------------------------------------------------------------*/
+
 .books-gird img {
   width: 100%;
 }
@@ -16845,7 +16846,7 @@ a:focus {
   transition: border 500ms ease-out 0.3s ease-in-out;
   -webkit-transition: border 500ms ease-out 0.3s ease-in-out;
   vertical-align: top;
-  width: 30.99%;
+  width: 28%;
 }
 @media (min-width: 768px) and (max-width: 1199px) {
   .books-gird ul li {

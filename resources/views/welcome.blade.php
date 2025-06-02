@@ -116,8 +116,7 @@
                                             </x-nav-link></li>
 
                                         <li><a href="{{ route('users.reservations.emprunt') }}">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="404.html">404/Error</a></li>
+                                        
                                     </ul>
                                 </li>
                                  @auth
