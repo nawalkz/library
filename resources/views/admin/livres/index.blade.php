@@ -69,9 +69,11 @@
 
                         <td class="fw-bold">{{ $livre->titre }}</td>
                         <td class="fw-bold">{{ $livre->isbn }}</td>
-                        <td class="fw-bold">{{ $livre->auteur->auteur}}</td>
-                        <td class="fw-bold">{{ $livre->editeur->editeur }}</td>
-                        <td class="fw-bold">{{ $livre->categorie->categorie }}</td>
+                       
+                         <td class="fw-bold">{{ $livre->auteur?->auteur ?? 'N/A' }}</td>
+                        <td class="fw-bold">{{ $livre->editeur?->editeur ?? 'N/A' }}</td>
+
+                        <td class="fw-bold">{{ $livre->categorie?->categorie ?? 'N/A'}}</td>
                         <td class="fw-bold">{{ $livre->edition}}</td>
                         <td class="fw-bold">{{ $livre->nombre_page}}</td>
                         <td class="fw-bold">{{ $livre->nombre_inventaire}}</td>

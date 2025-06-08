@@ -6,7 +6,7 @@
 
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter un nouveau role</h1>
+    <h1 class="mb-4 text-center text-success fw-bold"> Ajouter un nouveau role</h1>
 
     <form action="{{ route('admin.roles.store') }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf

@@ -56,8 +56,7 @@ class StoreLivreRequest extends FormRequest
             'nombre_inventaire.string' => "Le nombre d'inventaire doit être une chaîne de caractères.",
             'nombre_inventaire.max' => "Le nombre d'inventaire ne doit pas dépasser 255 caractères.",
     
-            'editeur_id.exists' => "L'éditeur sélectionné est invalide.",
-    
+           
             'nombre_page.required' => 'Le nombre de pages est obligatoire.',
             'nombre_page.integer' => 'Le nombre de pages doit être un nombre entier.',
     

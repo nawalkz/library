@@ -26,9 +26,9 @@ class UpdateLivreRequest extends FormRequest
             'auteur_id' => 'required|exists:auteurs,id',
             'categorie_id' => 'required|exists:categories,id',
             'nombre_inventaire' => 'required|string|max:255',
-            'editeur_id' => 'exists:editeurs,id',
+            
             'nombre_page' => 'required|integer',
-            'edition' => 'required|date',
+            
             'statut' => 'required|in:disponible,réservé,emprunté',
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
             ];
@@ -56,14 +56,11 @@ class UpdateLivreRequest extends FormRequest
             'nombre_inventaire.string' => "Le nombre d'inventaire doit être une chaîne de caractères.",
             'nombre_inventaire.max' => "Le nombre d'inventaire ne doit pas dépasser 255 caractères.",
     
-            'editeur_id.exists' => "L'éditeur sélectionné est invalide.",
-    
+           
             'nombre_page.required' => 'Le nombre de pages est obligatoire.',
             'nombre_page.integer' => 'Le nombre de pages doit être un nombre entier.',
     
-            'edition.required' => "La date d'édition est obligatoire.",
-            'edition.date' => "La date d'édition doit être une date valide.",
-    
+            
            
             'statut.required' => 'Le statut du livre est obligatoire.',
             'statut.in' => 'Le statut doit être "disponible", "réservé" ou "emprunté".',

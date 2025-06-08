@@ -6,7 +6,7 @@
 
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center text-primary fw-bold">🖊️ Modifier le role</h1>
+    <h1 class="mb-4 text-center text-primary fw-bold"> Modifier le role</h1>
 
     <form action="{{ route('admin.roles.update', $role) }}" method="POST" class="bg-white p-4 rounded shadow-sm">
         @csrf

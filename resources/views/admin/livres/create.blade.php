@@ -6,7 +6,7 @@
 
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center text-success fw-bold">📝 Ajouter un nouveau livre</h1>
+    <h1 class="mb-4 text-center text-success fw-bold">Ajouter un nouveau livre</h1>
     @php
         $categories = App\Models\Categorie::all();
         $auteurs = App\Models\Auteur::all();

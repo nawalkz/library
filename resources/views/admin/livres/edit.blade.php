@@ -6,7 +6,7 @@
 
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center text-primary fw-bold">🖊️ Modifier le livre</h1>
+    <h1 class="mb-4 text-center text-primary fw-bold"> Modifier le livre</h1>
     @php
         $categories = App\Models\Categorie::all();
         $auteurs = App\Models\Auteur::all();
@@ -36,7 +36,7 @@
          <!-- Auteur -->
          <div class="mb-3">
             <label for="auteur_id" class="form-label fw-bold">Auteur:</label>
-            <select name="auteur_id" id="auteur_id" class="form-select" required>
+            <select name="auteur_id" id="auteur_id" class="form-select" >
                 @foreach($auteurs as $auteur)
                     <option value="{{ $auteur->id }}" {{ $livre->auteur_id == $auteur->id ? 'selected' : '' }}>
                         {{ $auteur->auteur }}
@@ -52,7 +52,7 @@
  <!-- Editeur -->
  <div class="mb-3">
             <label for="editeur_id" class="form-label fw-bold">Editeur:</label>
-            <select name="editeur_id" id="editeur_id" class="form-select" required>
+            <select name="editeur_id" id="editeur_id" class="form-select" >
                 @foreach($editeurs as $editeur)
                     <option value="{{ $editeur->id }}" {{ $livre->editeur_id == $editeur->id ? 'selected' : '' }}>
                         {{ $editeur->editeur }}
@@ -119,7 +119,7 @@
                 class="form-control"
                 name="edition"
                 id="edition" value="{{ $livre->edition }}"
-                required>
+                >
             <small class="text-danger">
                 @error('edition')
                     {{ $message }}
