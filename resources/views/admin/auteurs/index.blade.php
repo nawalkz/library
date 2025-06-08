@@ -18,7 +18,7 @@
         {{ session('destroy') }}
     </div>
     @endif
-    <h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des auteurs</h1>
+    <h1 class="mb-4 text-center text-primary fw-bold"> Liste des auteurs</h1>
 
 
 
