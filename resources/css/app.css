@@ -148,7 +148,7 @@ button:hover {
     max-width: 100%;
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: rgb(77, 49, 36);
+    background-color: rgba(159, 137, 129, 0.982);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
