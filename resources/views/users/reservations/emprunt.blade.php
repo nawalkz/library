@@ -216,7 +216,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Livre</th>
-                                                                    <th>Date d'emprunt</th>
+                                                                    <th>Date de réservation</th>
                                                                     <th>Date de retour prévue</th>
                                                                 </tr>
                                                             </thead>
@@ -224,7 +224,7 @@
                                                                 @foreach($emprunts as $emprunt)
                                                                     <tr>
                                                                         <td>{{ $emprunt->livre->titre }}</td>
-                                                                        <td>{{ $emprunt->date_emprunt }}</td>
+                                                                        <td>{{ $emprunt->date_reservation}}</td>
                                                                         <td>{{ $emprunt->date_reteure }}</td>
                                                                     </tr>
                                                                 @endforeach

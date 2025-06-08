@@ -119,6 +119,27 @@
                                         
                                     </ul>
                                 </li>
+                                 @auth
+<li class="dropdown">
+    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        🔔 Notifications
+        @if(auth()->user()->unreadNotifications->count())
+            <span class="badge bg-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
+        @endif
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end p-2" style="width: 300px; max-height: 300px; overflow-y: auto;">
+        @forelse(auth()->user()->unreadNotifications as $notification)
+            <li class="dropdown-item small">
+                📚 {{ $notification->data['message'] }}
+            </li>
+        @empty
+            <li class="dropdown-item text-muted text-center">Aucune notification</li>
+        @endforelse
+    </ul>
+</li>
+@endauth
+
+                                </li>
 
                             </ul>
                         </div>
