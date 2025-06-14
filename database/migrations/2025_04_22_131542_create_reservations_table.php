@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->date('date_reservation');
-            $table->date('date_reteure');
+            $table->date('date_reteure')->nullable();
             $table->string('statut')->default('en attente')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
