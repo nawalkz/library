@@ -45,8 +45,8 @@
                                                                 <div class="card mt-3">
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">{{ $livre->titre }}</h5>
-                                                                        <p class="card-text"><strong>Auteur:</strong> {{ $livre->auteur_id }}</p>
-                                                                        <p class="card-text"><strong>Catégorie:</strong> {{ $livre->categorie_id }}</p>
+                                                                        <p class="card-text"><strong>Auteur:</strong> {{ $livre->auteur->auteur ?? 'Auteur inconnu' }}</p>
+                                                                        <p class="card-text"><strong>Catégorie:</strong> {{ $livre->categorie->categorie ?? 'Catégorie inconnue' }}</p>
                                                                         <p class="card-text"><strong>Disponible:</strong> {{ $livre->nombre_inventaire> 0 ? 'Oui' : 'Non' }}</p>
 
                                                                         @if ($livre->nombre_inventaire > 0)
