@@ -164,7 +164,7 @@
 
                                                 <!-- Titre (autocomplete) -->
                                                 <div class="col-md-3">
-                                                    <input type="text" id="titre" class="form-control" placeholder="Search by Keyword">
+                                                    <input type="text" id="titre" class="form-control" placeholder="Search by titre">
                                                     <input type="hidden" name="titre_id" id="titre_id">
                                                 </div>
 
@@ -177,7 +177,7 @@
                                                 <!-- Catégorie (select) -->
                                                 <div class="col-md-3">
                                                     <select name="categorie_id" class="form-control">
-                                                        <option value="">Choisir une category</option>
+                                                        <option value="">Choose a Category</option>
                                                         @foreach (App\Models\Categorie::all() as $cat)
                                                         <option value="{{ $cat->id }}">{{ $cat->categorie }}</option>
                                                         @endforeach

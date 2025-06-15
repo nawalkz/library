@@ -20,7 +20,7 @@
 @endif
 
 
-<h1 class="mb-4 text-center text-primary fw-bold"> Liste des livres</h1>
+<h1 class="mb-4 text-center text-dark fw-bold"> Liste des livres</h1>
 
 
 
@@ -34,7 +34,7 @@
 
 <!-- Liste des livres -->
 <div class="card shadow-lg border-0">
-    <div class="card-header bg-primary text-white fw-bold">
+    <div class="card-header bg-gray text-dark fw-bold">
         <i class="bi bi-list-task"></i> livres
     </div>
     <div class="card-body">

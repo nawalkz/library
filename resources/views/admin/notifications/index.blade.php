@@ -1,12 +1,12 @@
 @extends('admin.Layout.app')
 
 @section('content')
-<h1 class="mb-4 text-center text-primary fw-bold">📌 Liste des notifications</h1>
+<h1 class="mb-4 text-center text-dark fw-bold"> Liste des notifications</h1>
 
 
 
 <div class="card shadow-lg border-0">
-    <div class="card-header bg-primary text-white fw-bold">
+    <div class="card-header bg-dark text-white fw-bold">
         <i class="bi bi-bell-fill"></i> Notifications
     </div>
     <div class="card-body">

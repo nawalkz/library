@@ -55,7 +55,10 @@ Route::get('/autocomplete/auteur', [LivreController::class, 'autocompleteAuteur'
 
 Route::get('/livres/search', [LivreController::class, 'search'])->name('livres.search');
 Route::get('/livres/media', [LivreController::class, 'livreMedia'])->name('users.livres.livre_media');
-
+Route::middleware('preventIfAdminExists')->group(function () {
+        Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
+        Route::post('/register-admin', [AdminRegisterController::class, 'store'])->name('register.admin.store');
+    });
 Route::middleware('auth')->group(function () {
     // ======= Users routes =======
 Route::get('/reservations/index', [UserReservationController::class, 'index'])->name('users.reservations.index');
@@ -84,10 +87,7 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
   
 ;
 
-    Route::middleware('preventIfAdminExists')->group(function () {
-        Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
-        Route::post('/register-admin', [AdminRegisterController::class, 'store'])->name('register.admin.store');
-    });
+    
 
     // ======= Admin routes =======
     Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {

@@ -58,7 +58,15 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <<div class="topbar-info">
-                                            <span><i class="fa fa-smile-o"></i> Welcome to our website ! </span>
+                                            <span>  @php 
+        use Illuminate\Support\Facades\Auth;
+    @endphp
+
+    @if(Auth::check())
+        <h2> <i class="fa fa-smile-o"></i>Welcome to our website  {{ Auth::user()->name }}</h2>
+    @else
+        <h2><i class="fa fa-smile-o"></i>Welcome to our website </h2>
+    @endif </span>
                                     </div>
 
                                 </div>
@@ -95,7 +103,7 @@
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a>
                                     <ul class="dropdown-menu">
-                                        <li> <a href="{{ route('users.livres.livre_media') }}">Books &amp; Media List View</a>
+                                        <li> <a href="{{ route('users.livres.livre_media') }}">Books &amp; </a>
                                         </li>
 
                                     </ul>
@@ -163,7 +171,7 @@
                         <li>
                             <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a>
                             <ul class="dropdown-menu">
-                                <li> <a href="{{ route('users.livres.livre_media') }}">Books &amp; Media List View</a>
+                                <li> <a href="{{ route('users.livres.livre_media') }}">Books &amp; </a>
                                 </li>
                             </ul>
                         </li>
@@ -183,9 +191,7 @@
                                     </x-nav-link></li>
 
                                 <li><a href="{{ route('users.reservations.emprunt') }}">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="signin.html">Signin/Register</a></li>
-                                <li><a href="404.html">404/Error</a></li>
+                               
                             </ul>
                         </li>
 
@@ -220,9 +226,7 @@
                             Whether you're conducting research, expanding your ideas, or just exploring, the library is here to support your academic journey.
                         </p>
                         <div class="slide-buttons hidden-sm hidden-xs">
-                            <a href="#" class="btn btn-primary">Read More</a>
-                            <a href="#" class="btn btn-default">Purchase</a>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -247,7 +251,7 @@
                     <!-- Titre (autocomplete) -->
                     <div class="col-md-3">
                         <select name="livre_id" class="form-control">
-                            <option value="">Choisir une Livre</option>
+                            <option value=""> Choose a Book</option>
                             @foreach (App\Models\Livre::all() as $liv)
                             <option value="{{ $liv->id }}">{{ $liv->titre }}</option>
                             @endforeach
@@ -257,7 +261,7 @@
                     <!-- Auteur (autocomplete) -->
                     <div class="col-md-3">
                         <select name="auteur_id" class="form-control">
-                            <option value="">Choisir un Auteur</option>
+                            <option value="">Choose an Author</option>
                             @foreach (App\Models\Auteur::all() as $aut)
                             <option value="{{ $aut->id }}">{{ $aut->auteur }}</option>
                             @endforeach
@@ -267,7 +271,7 @@
                     <!-- Catégorie (select) -->
                     <div class="col-md-3">
                         <select name="categorie_id" class="form-control">
-                            <option value="">Choisir une category</option>
+                            <option value="">Choose a Category</option>
                             @foreach (App\Models\Categorie::all() as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->categorie }}</option>
                             @endforeach
@@ -474,91 +478,14 @@
 
     <!-- Start: Footer -->
     <footer class="site-footer">
-        <div class="container">
-            <div id="footer-widgets">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6 widget-container">
-                        <div id="text-2" class="widget widget_text">
-                            <h3 class="footer-widget-title">About Libraria</h3>
-                            <span class="underline left"></span>
-                            <div class="textwidget">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking.
-                            </div>
-                            <address>
-                                <div class="info">
-                                    <i class="fa fa-location-arrow"></i>
-                                    <span>21 King Street, Melbourne, Victoria 3000 Australia</span>
-                                </div>
-                                <div class="info">
-                                    <i class="fa fa-envelope"></i>
-                                    <span><a href="mailto:support@libraria.com">support@libraria.com</a></span>
-                                </div>
-                                <div class="info">
-                                    <i class="fa fa-phone"></i>
-                                    <span><a href="tel:012-345-6789">+ 012-345-6789</a></span>
-                                </div>
-                            </address>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-6 widget-container">
-                        <div id="nav_menu-2" class="widget widget_nav_menu">
-                            <h3 class="footer-widget-title">Quick Links</h3>
-                            <span class="underline left"></span>
-                            <div class="menu-quick-links-container">
-                                <ul id="menu-quick-links" class="menu">
-                                    <li><a href="#">Library News</a></li>
-                                    <li><a href="#">History</a></li>
-                                    <li><a href="#">Meet Our Staff</a></li>
-                                    <li><a href="#">Board of Trustees</a></li>
-                                    <li><a href="#">Budget</a></li>
-                                    <li><a href="#">Annual Report</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix hidden-lg hidden-md hidden-xs tablet-margin-bottom"></div>
-                    <div class="col-md-2 col-sm-6 widget-container">
-                        <div id="text-4" class="widget widget_text">
-                            <h3 class="footer-widget-title">Timing</h3>
-                            <span class="underline left"></span>
-                            <div class="timming-text-widget">
-                                <time datetime="2017-02-13">Mon - Thu: 9 am - 9 pm</time>
-                                <time datetime="2017-02-13">Fri: 9 am - 6 pm</time>
-                                <time datetime="2017-02-13">Sat: 9 am - 5 pm</time>
-                                <time datetime="2017-02-13">Sun: 1 pm - 6 pm</time>
-                                <ul>
-                                    <li><a href="#">Closings</a></li>
-                                    <li><a href="#">Branches</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 widget-container">
-                        <div class="widget twitter-widget">
-                            <h3 class="footer-widget-title">Latest Tweets</h3>
-                            <span class="underline left"></span>
-                            <div id="twitter-feed">
-                                <ul>
-                                    <li>
-                                        <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem. <a href="#">template-libraria.com</a></p>
-                                    </li>
-                                    <li>
-                                        <p><a href="#">@TemplateLibraria</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem. <a href="#">template-libraria.com</a></p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
+        
         <div class="sub-footer">
             <div class="container">
                 <div class="row">
-                    <div class="footer-text col-md-3">
-                        <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
-                    </div>
+                    
                     <div class="col-md-9 pull-right">
+                        
                         <ul>
                             <li><a href="{{ route('welcome')}}">Home</a></li>
                             <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a></li>
