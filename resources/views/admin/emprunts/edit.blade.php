@@ -1,21 +1,18 @@
-@extends('admin.Layout.app')
-
-@section('content')
-<div class="container">
-    <h2>Modifier la date de retour</h2>
-
-    
-    <form action="{{ route('admin.emprunts.update', $emprunt->id) }}" method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
+<form method="POST" action="{{ route('admin.emprunts.update', $emprunt->id) }}">
     @csrf
-        @csrf
-        @method('PUT')
+    @method('PUT')
 
-        <div class="mb-3">
-            <label for="date_reteure" class="form-label">Date de retour</label>
-            <input type="date" class="form-control" id="date_reteure" name="date_reteure" value="{{ $emprunt->date_reteure }}">
-        </div>
+    <label for="date_retour_reelle">Date de retour réelle:</label>
+    <input type="date" name="date_retour_reelle" value="{{ date('Y-m-d') }}" class="form-control">
 
-        <button type="submit" class="btn btn-success">Mettre à jour</button>
-    </form>
-</div>
-@endsection
+    <label for="etat_livre">État du livre:</label>
+    <select name="etat_livre" class="form-control">
+        <option value="bon">Bon</option>
+        <option value="endommagé">Endommagé</option>
+    </select>
+
+    <label for="observation">Observation:</label>
+    <textarea name="observation" class="form-control"></textarea>
+
+    <button type="submit" class="btn btn-success mt-2">Enregistrer le retour</button>
+</form>

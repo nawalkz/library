@@ -46,6 +46,7 @@
                   <p>Categorie</p>
                 </a>
               </li>
+
               <li class="nav-item">
                 <a href="{{ route('admin.auteurs.index') }}" class="nav-link @if (request()->routeIs('auteurs.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
@@ -83,6 +84,12 @@
                 <a href="{{ route('admin.editeurs.index') }}" class="nav-link @if (request()->routeIs('editeurs.*')) active @endif">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Editeurs</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.emprunts.rapport')}}" class="nav-link @if (request()->routeIs('emprunts.*')) active @endif">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Rapport des emprunts</p>
                 </a>
               </li>
             </ul>

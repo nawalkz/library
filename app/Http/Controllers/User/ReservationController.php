@@ -54,16 +54,18 @@ if (!$user) {
 }
 
     // Vérification du rôle
-    if ($user->role_id == 2) {
-        // Vérifier s'il a déjà un livre réservé
-        $hasReservation = Reservation::where('user_id', $user->id)->whereNull('date_reteure')->exists();
+    if ($user->role_id == 2) { // étudiant
+    // Vérifier s'il a déjà une réservation en cours (non expirée)
+    $hasReservation = Reservation::where('user_id', $user->id)
+                             ->where('statut', 'en attente') 
+                             ->exists();
 
-        if ($hasReservation) {
-            return redirect()->back()->with('error', 'Vous avez déjà un livre réservé. Vous devez le retourner avant d’en réserver un autre.');
-        }
+    if ($hasReservation) {
+        return redirect()->back()->with('error', 'Vous avez déjà un livre réservé. Vous devez le retourner avant d’en réserver un autre.');
+    }
 
-        // Date de retour = aujourd'hui + 10 jours
-        $date_retour = now()->addDays(10);
+    // Réservation autorisée
+    $date_retour = now()->addDays(10);
 
     } elseif ($user->role_id == 1) {
         // Pas de limite, mais tu peux ajouter des contrôles si besoin
@@ -74,11 +76,13 @@ if (!$user) {
 
     // Création de la réservation
     Reservation::create([
-        'user_id' => $user->id,
-        'livre_id' => $livre_id,
-        'date_reservation' => now(),
-        'date_reteure' => $date_retour,
-    ]);
+    'user_id' => $user->id,
+    'livre_id' => $livre_id,
+    'date_reservation' => now(),
+    'date_reteure' => $date_retour,
+    'statut' => 'en attente', 
+]);
+   
 
     return redirect()->route('users.reservations.index')->with('success', 'Réservation effectuée avec succès.');
 }
@@ -94,5 +98,3 @@ if (!$user) {
      }
      
  }
- 
-    

@@ -6,26 +6,30 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Emprunt;
 use Illuminate\Support\Carbon;
+use App\Notifications\LivrePretNotification;
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function convertToEmprunt($id)
+    {
+        $reservation = Reservation::findOrFail($id);
 
-     public function convertToEmprunt($id)
-{
-    $reservation = Reservation::findOrFail($id);
+        // Créer l'emprunt à partir de la réservation
+        $emprunt = Emprunt::create([
+            'user_id' => $reservation->user_id,
+            'livre_id' => $reservation->livre_id,
+            'date_emprunt' => Carbon::now(),
+            'date_reteure' => Carbon::now()->addDays(10), // 10 jours pour l'exemple
+            'etat_livre' => 'bon',
+            'observation' => 'Créé via réservation',
+        ]);
 
-    // Créer l'emprunt à partir de la réservation
-    Emprunt::create([
-        'user_id' => $reservation->user_id,
-        'livre_id' => $reservation->livre_id,
-        'date_emprunt' => Carbon::now(),
-        'date_reteure' => Carbon::now()->addDays(10), // par exemple, 15 jours
-        'etat_livre' => 'bon',
-        'observation' => 'Créé via réservation',
-    ]);
+        // Envoyer une notification à l'utilisateur
+        $user = $reservation->user;
+       $message = "📚 Votre livre '" . $emprunt->livre->titre . "' est prêt à être retiré à la bibliothèque.";
+
+        $user->notify(new LivrePretNotification($message));
+
 
     // Supprimer la réservation ou la marquer comme traitée (selon le besoin)
     $reservation->delete();

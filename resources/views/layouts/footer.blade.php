@@ -7,9 +7,9 @@
                     
                     <div class="col-md-9 pull-right">
                         <ul>
-                            <li><a href="{{ route('welcome')}}">Home</a></li>
-                            <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a></li>
-                            <li><a href="{{ route('users.reservations.index') }}">News &amp; Events</a></li>
+                            <li><a href="{{ route('welcome')}}">Accueil</a></li>
+                            <li><a href="{{ route('users.livres.livre_media') }}">Livres</a></li>
+                            <li><a href="{{ route('users.reservations.index') }}">Reservation</a></li>
 
                             
                         </ul>

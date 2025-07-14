@@ -11,24 +11,25 @@ class NotificationController extends Controller
 {
     public function index()
 {
-    $notifications = auth()->user()->notifications; // Ou Notification::all() si tu veux tout voir
+    $notifications = auth()->user()->notifications()
+        ->where('created_at', '>=', now()->subDays(7))
+        ->get();
 
-    return view('admin.notifications.index', compact('notifications'));
+    return view('users.notifications.index', compact('notifications'));
 }
 
-public function verifierRetards()
-{
-    $emprunts = Emprunt::where('date_retoure', '<', Carbon::today())->get();
 
-    foreach ($emprunts as $emprunt) {
-        $user = User::find($emprunt->user_id);
-        if ($user) {
-            $livre = $emprunt->livre; // Assure-toi que la relation existe
-            $user->notify(new RetourLivreRetardNotification($livre->titre ?? 'Inconnu'));
-        }
+public function markAsRead($id)
+    {
+        $notification = auth()->user()->notifications()->findOrFail($id);
+        $notification->markAsRead();
+
+        return redirect()->back();
     }
-
-    return redirect()->back()->with('success', 'Notifications envoyées aux utilisateurs en retard.');
+public function markAllAsRead()
+{
+    auth()->user()->unreadNotifications->markAsRead();
+    return redirect()->back()->with('success', 'Toutes les notifications ont été marquées comme lues.');
 }
 
 }

@@ -3,14 +3,14 @@
         <section class="page-banner news-listing-banner services-banner">
             <div class="container">
                 <div class="banner-header">
-                    <h2>News Listing</h2>
+                    <h2>Confirmer la réservation</h2>
                     <span class="underline center"></span>
                     <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
                 </div>
                 <div class="breadcrumb">
                     <ul>
-                        <li><a href="{{route('welcome')}}">Home</a></li>
-                        <li>News</li>
+                        <li><a href="{{route('welcome')}}">Accueil</a></li>
+                        <li>Confirmer la réservation</li>
                     </ul>
                 </div>
             </div>
@@ -26,12 +26,8 @@
                             <!-- Start: Search Section -->
                             <section class="search-filters">
                                 <div class="filter-box">
-
                                     <div class="container mt-5" >
                                         <h3>Vous avez trouvé le livre qu’il vous faut ? Réservez-le en un clic !</h3>
-                                       
-
-
                                                     @section('content')
                                                             <div class="container mt-4">
 
@@ -44,6 +40,7 @@
                                                     @endif
                                                                 <div class="card mt-3">
                                                                     <div class="card-body">
+                                                                        <img src="{{ asset('storage/' . $livre->image) }}" alt="Book">
                                                                         <h5 class="card-title">{{ $livre->titre }}</h5>
                                                                         <p class="card-text"><strong>Auteur:</strong> {{ $livre->auteur->auteur ?? 'Auteur inconnu' }}</p>
                                                                         <p class="card-text"><strong>Catégorie:</strong> {{ $livre->categorie->categorie ?? 'Catégorie inconnue' }}</p>

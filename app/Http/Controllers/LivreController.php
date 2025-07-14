@@ -19,6 +19,7 @@ class LivreController extends Controller
     public function index()
     {
        $livres = Livre::paginate(10);
+       /* $livres = Livre::orderBy('id', 'desc')->paginate(10); */
        return view('admin.livres.index', compact('livres'));
     }
 
@@ -42,6 +43,21 @@ class LivreController extends Controller
     if ($request->hasFile('image')) {
         $formFields['image'] = $request->file('image')->store('livres', 'public');
     }
+    if ($request->filled('auteur') && !$request->filled('auteur_id')) {
+    $auteur = Auteur::create(['auteur' => $request->auteur]);
+    $request->merge(['auteur_id' => $auteur->id]);
+}
+
+if ($request->filled('categorie') && !$request->filled('categorie_id')) {
+    $categorie = Categorie::create(['categorie' => $request->categorie]);
+    $request->merge(['categorie_id' => $categorie->id]);
+}
+
+if ($request->filled('editeur') && !$request->filled('editeur_id')) {
+    $editeur = Editeur::create(['editeur' => $request->editeur]);
+    $request->merge(['editeur_id' => $editeur->id]);
+}
+
 
     Livre::create($formFields);
 

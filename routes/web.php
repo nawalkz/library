@@ -56,38 +56,50 @@ Route::get('/autocomplete/auteur', [LivreController::class, 'autocompleteAuteur'
 Route::get('/livres/search', [LivreController::class, 'search'])->name('livres.search');
 Route::get('/livres/media', [LivreController::class, 'livreMedia'])->name('users.livres.livre_media');
 Route::middleware('preventIfAdminExists')->group(function () {
-        Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
-        Route::post('/register-admin', [AdminRegisterController::class, 'store'])->name('register.admin.store');
-    });
+    Route::get('/register-admin', [AdminRegisterController::class, 'create'])->name('register.admin');
+    Route::post('/register-admin', [AdminRegisterController::class, 'store'])->name('register.admin.store');
+});
 Route::middleware('auth')->group(function () {
     // ======= Users routes =======
-Route::get('/reservations/index', [UserReservationController::class, 'index'])->name('users.reservations.index');
- Route::get('reservations/emprunt', [UserReservationController::class, 'emprunt'])->name('users.reservations.emprunt');
-//Route::get('/reservations/ticket', [UserReservationController::class, 'showTicket'])->name('users.reservations.ticket');
+    Route::get('/reservations/index', [UserReservationController::class, 'index'])->name('users.reservations.index');
+    Route::get('reservations/emprunt', [UserReservationController::class, 'emprunt'])->name('users.reservations.emprunt');
+    //Route::get('/reservations/ticket', [UserReservationController::class, 'showTicket'])->name('users.reservations.ticket');
     // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-   Route::get('/users/livres', [LivreController::class, 'usersIndex'])->name('livres.users.index');
+    Route::get('/users/livres', [LivreController::class, 'usersIndex'])->name('livres.users.index');
 
-        
-    
-    
-
-    
-        // Voir toutes les réservations de l'utilisateur
-        Route::get('/reservations', [UserReservationController::class, 'index'])->name('users.reservations.index');
-
-        // Créer une réservation (formulaire)
-        Route::get('/reservations/create/{livre}', [UserReservationController::class, 'create'])->name('users.reservations.create');
+    Route::fallback(function () {
+        return response()->view('errors.404', [], 404);
+    });
 
 
-        // Enregistrer une réservation
-        Route::post('/reservations', [UserReservationController::class, 'store'])->name('users.reservations.store');
-  
-;
 
-    
+/* Route::get('/autocomplete/auteurs', [AuteurController::class, 'autocomplete'])->name('autocomplete.auteurs');
+Route::get('/autocomplete/categories', [CategorieController::class, 'autocomplete'])->name('autocomplete.categories');
+Route::get('/autocomplete/editeurs', [EditeurController::class, 'autocomplete'])->name('autocomplete.editeurs');
+ */
+    // Tickets
+    Route::get('/autocomplete-email', [EmpruntController::class, 'autocompleteEmail'])->name('autocomplete.email');
+    Route::get('/admin/emprunts/{id}/rapport/download', [EmpruntController::class, 'downloadRapport'])->name('emprunts.downloadRapport');
+    Route::get('/admin/emprunts/rapport', [EmpruntController::class, 'rapport'])->name('admin.emprunts.rapport');
+    Route::post('/admin/emprunts/search', [EmpruntController::class, 'search'])->name('admin.rapport.search');
+
+    // Voir toutes les réservations de l'utilisateur
+    Route::get('/reservations', [UserReservationController::class, 'index'])->name('users.reservations.index');
+
+    // Créer une réservation (formulaire)
+    Route::get('/reservations/create/{livre}', [UserReservationController::class, 'create'])->name('users.reservations.create');
+
+
+    // Enregistrer une réservation
+    Route::post('/reservations', [UserReservationController::class, 'store'])->name('users.reservations.store');;
+
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
+
 
     // ======= Admin routes =======
     Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
@@ -105,7 +117,7 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
         Route::resource('livres', LivreController::class, [
             'parameters' => ['livres' => 'livre']
         ]);
-        Route::resource('notifications', NotificationController::class);
+       /*  Route::resource('notifications', NotificationController::class); */
         Route::resource('roles', RoleController::class);
         Route::resource('reservations', ReservationController::class);
         Route::resource('emprunts', EmpruntController::class);
@@ -114,11 +126,7 @@ Route::get('/reservations/index', [UserReservationController::class, 'index'])->
 
 
 
-Route::post('admin/reservations/{id}/convert', [ReservationController::class, 'convertToEmprunt'])->name('admin.reservations.convert');
-Route::put('admin/reservations/{id}/statut', [ReservationController::class, 'updateStatus'])->name('admin.reservations.updateStatus');
+    Route::post('admin/reservations/{id}/convert', [ReservationController::class, 'convertToEmprunt'])->name('admin.reservations.convert');
+    Route::put('admin/reservations/{id}/statut', [ReservationController::class, 'updateStatus'])->name('admin.reservations.updateStatus');
 });
-require __DIR__.'/auth.php';
-
-
-
-
+require __DIR__ . '/auth.php';

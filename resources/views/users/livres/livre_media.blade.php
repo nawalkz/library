@@ -62,28 +62,25 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="topbar-info">
-                                            <span><i class="fa fa-smile-o"></i> Welcome to Libraria – your gateway to a world of reading ! </span>
+                                            <span><i class="fa fa-smile-o"></i> Bienvenue à Libraria – votre porte d’entrée vers un monde de lecture!  </span>
                                         </div>
 
                                     </div>
-                                    <div class="col-sm-6">
+                                   <div class="col-sm-6">
                                         <div class="topbar-links">
                                             @if (Route::has('login'))
                                             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                                                 @auth
                                                 <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                                                 @else
-                                                <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                                                <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Se connecter</a>
 
-                                                @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                                                @endif
+
                                                 @endauth
                                             </div>
                                             @endif
                                             <span>|</span>
-                                            
-                                         
+
                                         </div>
                                     </div>
                                 </div>
@@ -91,41 +88,134 @@
                             <div class="navbar-collapse hidden-sm hidden-xs">
                                 <ul class="nav navbar-nav">
                                     <li class="dropdown active">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('welcome')}}">Home</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('welcome')}}">Accueil</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ route('welcome')}}">Home</a></li>
+                                            <li><a href="{{ route('welcome')}}">Accueil</a></li>
 
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.livres.livre_media') }}">Livres </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media List View</a></li>
+                                            <li> <a href="{{ route('users.livres.livre_media') }}">Affichage en liste des livres
+                                                </a>
+                                            </li>
+
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.reservations.index') }}">News &amp; Events</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('users.reservations.index') }}">Reservation</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ route('users.reservations.index') }}">News &amp; Events Detail</a></li>
+
+                                            <li><a href="{{ route('users.reservations.index') }}">Informations de réservation</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ route('users.reservations.emprunt') }}">Cart</a></li>
+
                                             <li> <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                                                {{ __('Profile') }}
-                                            </x-nav-link></li>
+                                                    {{ __('Profile') }}
+                                                </x-nav-link></li>
+
+                                            <li><a href="{{ route('users.reservations.emprunt') }}">Emprunt</a></li>
+
                                         </ul>
                                     </li>
 
-                                    
+                                    @auth
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('notifications.index') }}">
+        🔔 Notifications
+        @if(auth()->user()->unreadNotifications->count() > 0)
+            <span class="badge bg-danger">
+                {{ auth()->user()->unreadNotifications->count() }}
+            </span>
+        @endif
+    </a>
+</li>
+@endauth
+
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    <div class="mobile-menu hidden-lg hidden-md">
+                        <a href="#mobile-menu"><i class="fa fa-navicon"></i></a>
+                        <div id="mobile-menu">
+                            <ul>
+                                <li class="mobile-title">
+                                    <h4>Navigation</h4>
+                                    <a href="#" class="close"></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('welcome')}}">Accueil</a>
+                                    <ul>
+                                        <li><a href="{{route('welcome')}}">Accueil</a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{{ route('users.livres.livre_media') }}">Livres</a>
+                                    <ul>
+                                        <li><a href="{{ route('users.livres.livre_media') }}">Affichage en liste des livres
+                                            </a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{{ route('users.reservations.index') }}">Reservation</a>
+                                    <ul>
+                                        <li><a href="{{ route('users.reservations.index') }}">Informations de réservation</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Pages</a>
+                                    <ul>
+
+                                        <li> <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                                                {{ __('Profile') }}
+                                            </x-nav-link></li>
+
+                                        <li><a href="{{ route('users.reservations.emprunt') }}">Emprunt</a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+
+
+                                    @auth
+                                    <a class="nav-link" href="#">
+                                        🔔 Notifications
+                                        @if(auth()->user()->unreadNotifications->count() > 0)
+                                        <span class="badge bg-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
+                                        @endif
+                                    </a>
+
+
+                                    <ul>
+                                        @foreach(auth()->user()->unreadNotifications as $notification)
+                                        <li>
+                                            <a href="{{ route('notifications.read', $notification->id) }}">
+                                                {{ $notification->data['message'] }}
+                                                <small>{{ $notification->created_at->diffForHumans() }}</small>
+                                            </a>
+                                        </li>
+                                        @endforeach
+
+                                        @if(auth()->user()->unreadNotifications->isEmpty())
+                                        <li><em>Aucune nouvelle notification</em></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                                @endauth
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </nav>
             </div>
+        </div>
     </header>
     <!-- End: Header Section -->
 
@@ -133,14 +223,14 @@
     <section class="page-banner services-banner">
         <div class="container">
             <div class="banner-header">
-                <h2>Books & Media Listing</h2>
+                <h2>Books </h2>
                 <span class="underline center"></span>
-                <p class="lead">Proin ac eros pellentesque dolor pharetra tempo.</p>
+               
             </div>
             <div class="breadcrumb">
                 <ul>
-                    <li><a href="{{ route('welcome')}}">Home</a></li>
-                    <li>Books & Media</li>
+                    <li><a href="{{ route('welcome')}}">Accueil</a></li>
+                    <li>Livres </li>
                 </ul>
             </div>
         </div>
@@ -159,25 +249,25 @@
                                 <div class="container">
                                     <div class="filter-box">
                                         <div id="livres">
-                                            <h3>What are you looking for at the library?</h3>
+                                            <h3>Qu’aimeriez-vous découvrir à la bibliothèque?</h3>
                                             <form method="GET" class="row g-2 align-items-center">
 
                                                 <!-- Titre (autocomplete) -->
                                                 <div class="col-md-3">
-                                                    <input type="text" id="titre" class="form-control" placeholder="Search by titre">
+                                                    <input type="text" id="titre" class="form-control" placeholder="Rechercher par titre">
                                                     <input type="hidden" name="titre_id" id="titre_id">
                                                 </div>
 
                                                 <!-- Auteur (autocomplete) -->
                                                 <div class="col-md-3">
-                                                    <input type="text" id="auteur" class="form-control" placeholder="Search the auteur">
+                                                    <input type="text" id="auteur" class="form-control" placeholder="Rechercher par auteur">
                                                     <input type="hidden" name="auteur_id" id="auteur_id">
                                                 </div>
 
                                                 <!-- Catégorie (select) -->
                                                 <div class="col-md-3">
                                                     <select name="categorie_id" class="form-control">
-                                                        <option value="">Choose a Category</option>
+                                                        <option value="">Choisis une catégorie</option>
                                                         @foreach (App\Models\Categorie::all() as $cat)
                                                         <option value="{{ $cat->id }}">{{ $cat->categorie }}</option>
                                                         @endforeach
@@ -186,7 +276,7 @@
 
                                                 <!-- Bouton Search -->
                                                 <div class="col-md-2">
-                                                    <button type="button" id="search" class="btn btn-primary search-btn rounded w-100">SEARCH</button>
+                                                    <button type="button" id="search" class="btn btn-primary search-btn rounded w-100">Rechercher </button>
                                                 </div>
 
                                             </form>
@@ -224,18 +314,18 @@
 
     <!-- Start: Footer -->
     <footer class="site-footer">
-       
-        
+
+
         <div class="sub-footer">
             <div class="container">
                 <div class="row">
-                    
+
                     <div class="col-md-9 pull-right">
-                        
+
                         <ul>
-                            <li><a href="{{ route('welcome')}}">Home</a></li>
-                            <li><a href="{{ route('users.livres.livre_media') }}">Books &amp; Media</a></li>
-                            <li><a href="{{ route('users.reservations.index') }}">News &amp; Events</a></li>
+                            <li><a href="{{ route('welcome')}}">Accueil</a></li>
+                            <li><a href="{{ route('users.livres.livre_media') }}">Livres</a></li>
+                            <li><a href="{{ route('users.reservations.index') }}">Reservation</a></li>
 
 
                         </ul>

@@ -1,11 +1,11 @@
 <footer class="app-footer">
         <!--begin::To the end-->
-        <div class="float-end d-none d-sm-inline">Anything you want</div>
+        <div class="float-end d-none d-sm-inline"><a data-toggle="dropdown" class="dropdown-toggle disabled" href="{{ route('welcome')}}">Home</a>
+                                    </div>
         <!--end::To the end-->
         <!--begin::Copyright-->
         <strong>
-          Copyright &copy; 2025&nbsp;
-          <a href="" class="text-decoration-none">Bibliothèque</a>.
+         
         </strong>
         
         <!--end::Copyright-->
